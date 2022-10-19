@@ -1,0 +1,7 @@
+#!/bin/sh
+xrandr --newmode "1024x576_60.00"   46.50  1024 1064 1160 1296  576 579 584 599 -hsync +vsync
+xrandr --addmode HDMI-1 "1024x576_60.00"
+xrandr -s 1024x576_60.00
+#sleep 5
+#sh "/home/kou/.conky/conky-startup.sh"
+

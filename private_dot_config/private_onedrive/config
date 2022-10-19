@@ -1,0 +1,4 @@
+sync_dir = "~/OneDrive"
+skip_file = "~*|.~*|*.tmp|Personal*.lnk"
+# sync_dir_permissions = "777"
+# sync_file_permissions = "777"

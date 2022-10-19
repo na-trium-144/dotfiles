@@ -1,0 +1,20 @@
+{
+    "autoclose": true,
+    "autosu": true,
+    "comment": true,
+    "diff": true,
+    "eofnewline": false,
+    "fastdirty": true,
+    "ftoptions": true,
+    "ignorecase": false,
+    "linter": true,
+    "literate": true,
+    "pluginchannels": [
+        "https://raw.githubusercontent.com/micro-editor/plugin-channel/master/channel.json"
+    ],
+    "pluginrepos": [],
+    "ruler": false,
+    "status": true,
+    "statusformatl": "$(filename) $(modified): $(line)L,$(col)C $(status.paste)",
+    "statusformatr": "Space:$(opt:tabstospaces),$(opt:tabsize) | $(opt:filetype) | $(opt:fileformat) | $(opt:encoding)"
+}

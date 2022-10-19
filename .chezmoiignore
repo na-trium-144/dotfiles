@@ -1,0 +1,19 @@
+{{ if ne .chezmoi.hostname "kou-Ace" }}
+pareset.sh
+fixd.sh
+.xmodmaprc
+{{ end }}
+{{ if ne .chezmoi.hostname "kou-CelKn" }}
+.xrandr
+{{ end }}
+{{ if and ( ne .chezmoi.hostname "kou-Ace" ) ( ne .chezmoi.hostname "kou-CelKn" ) }}
+.local/rpi
+.local/fstab
+{{ end }}
+{{ if and ( ne .chezmoi.hostname "kou-MAir" ) ( and ( ne .chezmoi.hostname "kou-Ace" ) ( ne .chezmoi.hostname "kou-CelKn" ) ) }}
+backup.sh
+.local/share/fonts/
+{{ end }}
+
+README.md
+.zshrc

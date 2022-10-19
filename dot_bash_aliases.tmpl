@@ -1,0 +1,29 @@
+alias snano="sudo $(which nano) -f $HOME/.nanorc"
+alias smicro="MICRO_CONFIG_HOME=$HOME/.config/micro sudo $(which micro)"
+alias sgit="sudo PATH=\"${PATH}\" $(which git)"
+
+alias gcc="gcc -std=c99 -Wall -Wextra"
+alias g++="g++ -std=c++17 -Wall -Wextra -Wconversion -pedantic"
+alias cbash="LANG=C bash"
+alias eagle='export LIBGL_ALWAYS_SOFTWARE=1 && QTWEBENGINE_CHROMIUM_FLAGS="--ignore-gpu-blacklist" LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libxcb-dri3.so.0 /usr/local/eagle-9.6.2/eagle'
+alias exa="exa --git --group-directories-first --color=auto"
+
+{{- if eq .chezmoi.hostname "kou-MAir" }}
+alias ibrew="arch -x86_64 /usr/local/bin/brew"
+alias ipip3="arch -x86_64 /usr/local/bin/pip3"
+alias ipython3="arch -x86_64 /usr/local/bin/python3"
+alias ls=exa #macのデフォルトのlsが無能なので
+{{- end }}
+
+#入力中に上下キーでhistoryから検索
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+cdpeco() { 
+    dir=`fd -Lt d . "${1:-./}" | peco`;
+    if [ -n "$dir" ]; then
+        cd "$dir";
+    fi
+}
+diffl() {
+    diff --old-line-format "<%L" --new-line-format ">%L" "$1" "$2"
+}

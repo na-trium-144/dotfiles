@@ -1,0 +1,7 @@
+clear shift
+clear control
+keycode 131 = Muhenkan
+keycode 130 = XF86TouchpadToggle
+keycode 62 = Control_R
+add shift = Shift_L
+add control = Control_L Control_R
