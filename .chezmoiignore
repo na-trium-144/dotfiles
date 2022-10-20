@@ -6,10 +6,6 @@ fixd.sh
 {{ if ne .chezmoi.hostname "kou-CelKn" }}
 .xrandr
 {{ end }}
-{{ if and ( ne .chezmoi.hostname "kou-Ace" ) ( ne .chezmoi.hostname "kou-CelKn" ) }}
-.local/rpi
-.local/fstab
-{{ end }}
 {{ if and ( ne .chezmoi.hostname "kou-MAir" ) ( and ( ne .chezmoi.hostname "kou-Ace" ) ( ne .chezmoi.hostname "kou-CelKn" ) ) }}
 backup.sh
 .local/share/fonts/
