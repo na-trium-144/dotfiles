@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 {{- if or ( eq .chezmoi.hostname "kou-Ace" ) ( eq .chezmoi.hostname "kou-CelKn" ) }}
 src=/mnt/d
 dst=/mnt/hd0/data
@@ -49,7 +49,8 @@ exec_rsync OneDrive\ -\ The\ University\ of\ Tokyo/UTokyo UTokyo -del
 rsync=/opt/homebrew/bin/rsync
 opt="-avz --iconv=utf-8-mac,utf-8"
 dest="kou@192.168.3.200:/mnt/hd0/data"
-$rsync $opt --exclude={".DS_Store","*.mscz,"} /Users/kou/Documents/MuseScore3/ $dest/DTM/MuseScore3/
-$rsync $opt --exclude={".DS_Store","名称未設定*"} /Users/kou/Music/GarageBand/ $dest/DTM/GarageBand/
-$rsync $opt --exclude={".DS_Store","1*/"} --del UTokyo/ $dest/UTokyo/
+# $rsync $opt --exclude={".DS_Store","*.mscz,"} /Users/kou/Documents/MuseScore3/ $dest/DTM/MuseScore3/
+$rsync $opt --exclude={".DS_Store"} $HOME/Projects/ $dest/Projects/
+$rsync $opt --exclude={".DS_Store","名称未設定*"} $HOME/Music/GarageBand/ $dest/DTM/GarageBand/
+$rsync $opt --exclude={".DS_Store","1*/"} --del $HOME/UTokyo/ $dest/UTokyo/
 {{- end }}
