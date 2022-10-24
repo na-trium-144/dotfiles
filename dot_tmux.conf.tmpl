@@ -4,6 +4,7 @@ bind-key C-j send-prefix
 set-window-option -g xterm-keys on
 set-option -g default-terminal "xterm-256color"
 
+bind-key -T copy-mode C-z send-keys -X begin-selection
 bind-key -T copy-mode Space send-keys -X copy-pipe-and-cancel {{- if eq .chezmoi.os "darwin" }} "pbcopy" {{- else }} "xclip -selection clipboard -i" {{- end }} 
 bind-key -T copy-mode M-Left send-keys -X previous-word
 bind-key -T copy-mode M-Right send-keys -X next-word-end
