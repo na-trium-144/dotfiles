@@ -146,7 +146,7 @@ if [ $LANG != C ]; then
 	PS1='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a${debian_chroot:+($debian_chroot)}\[\033[1;33m\]'${FACE}'\[\033[0m\]:\[\033[1;36m\]\W\[\033[0;32m\]$(__git_ps1) \[\033[0m\]'
 {{- else if eq .chezmoi.hostname "kou-RPi3" }}
     FACE='kou- '
-	PS1='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a${debian_chroot:+($debian_chroot)}\[\033[1;31m\]'${FACE}'\[\033[0m\]:\[\033[1;36m\]\W\[\033[0;32m\]$(__git_ps1) \[\033[0m\]'
+	PS1='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a${debian_chroot:+($debian_chroot)}\[\033[1;31m\]'${FACE}'\[\033[0m\]:\[\033[1;36m\]\w\[\033[0;32m\]$(__git_ps1) \[\033[0m\]'
 {{- end }}
 else
     if [ "$color_prompt" = yes ]; then
