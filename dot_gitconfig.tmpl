@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.hostname "staranise" }}
+{{- if or (eq .chezmoi.hostname "staranise") (eq .chezmoi.hostname "laurier") }}
 [user]
 	name = 21nakakou
 	email = nakak_u21@yahoo.co.jp
