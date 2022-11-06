@@ -1,7 +1,4 @@
-{{- if eq .chezmoi.hostname "staranise" }}
-[user]
-	name = 21nakakou
-	email = nakak_u21@yahoo.co.jp
+{{- if or (eq .chezmoi.hostname "staranise") (eq .chezmoi.hostname "laurier") }}
 [safe]
 	directory = *
 {{- end }}
