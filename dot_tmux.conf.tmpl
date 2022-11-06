@@ -8,6 +8,8 @@ bind-key -T copy-mode C-z send-keys -X begin-selection
 bind-key -T copy-mode Space send-keys -X copy-pipe-and-cancel {{- if eq .chezmoi.os "darwin" }} "pbcopy" {{- else }} "xclip -selection clipboard -i" {{- end }} 
 bind-key -T copy-mode M-Left send-keys -X previous-word
 bind-key -T copy-mode M-Right send-keys -X next-word-end
+bind-key -T prefix u command-prompt -p "(save buffer)" "save-buffer \"%%%\""
+bind-key -T prefix y capture-pane -S -
 
 set-option -g status on
 set-option -g status-interval 2
