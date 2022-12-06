@@ -1,0 +1,18 @@
+// Settings in here override those in "Default/Preferences.sublime-settings",
+// and are overridden in turn by syntax-specific settings.
+{
+	"font_face": "azuki_font_modified",
+	"font_size": 17,
+	"line_numbers": false,
+	"margin": 0,
+	"line_padding_bottom": 2,
+	"draw_white_space": ["leading_mixed", "trailing_all", "isolated_mixed", "selection_spaces"],
+	"color_scheme": "Celeste.sublime-color-scheme",
+	"ignored_packages":
+	[
+		"Vintage",
+	],
+	"theme": "Adaptive.sublime-theme",
+	"highlight_line": true,
+	"caret_style": "smooth",
+}

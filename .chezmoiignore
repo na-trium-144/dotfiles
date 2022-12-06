@@ -6,10 +6,12 @@ fixd.sh
 {{ if ne .chezmoi.hostname "kou-CelKn" }}
 .xrandr
 {{ end }}
+{{ if ne .chezmoi.hostname "kou-MAir" }}
+private_Library
+{{ end }}
 {{ if and ( ne .chezmoi.hostname "kou-MAir" ) ( and ( ne .chezmoi.hostname "kou-Ace" ) ( ne .chezmoi.hostname "kou-CelKn" ) ) }}
 backup.sh
 .local/share/fonts/
 {{ end }}
-
 README.md
 .zshrc
