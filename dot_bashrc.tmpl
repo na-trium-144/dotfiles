@@ -108,7 +108,7 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 source /opt/homebrew/etc/bash_completion.d/*
 {{- end }}
 [ -e ~/.git-prompt.sh ] && source ~/.git-prompt.sh
-[ -e ~/.git-completion.sh ] && source ~/.git-completion.bash
+[ -e ~/.git-completion.bash ] && source ~/.git-completion.bash
 
 export PATH="${HOME}/.pyenv/bin:$PATH"
 if type pyenv >/dev/null 2>&1; then
