@@ -105,6 +105,7 @@ export PATH="${HOME}/.local/bin:${PATH}"
 {{- if eq .chezmoi.hostname "kou-MAir" }}
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 source /opt/homebrew/etc/bash_completion.d/*
 {{- end }}
 [ -e ~/.git-prompt.sh ] && source ~/.git-prompt.sh
