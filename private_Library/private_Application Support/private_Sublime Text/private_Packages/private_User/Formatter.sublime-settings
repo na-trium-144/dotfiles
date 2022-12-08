@@ -33,7 +33,7 @@
             "executable_path": "/opt/homebrew/opt/llvm/bin/clang-format",
             "config_path": {
                 // "default": "${packages}/User/formatter.assets/config/clangformatrc.yaml"
-                "default": "~/.clang-format"
+                // "default": "~/.clang-format"
             }
         },
         /*"csscomb": {

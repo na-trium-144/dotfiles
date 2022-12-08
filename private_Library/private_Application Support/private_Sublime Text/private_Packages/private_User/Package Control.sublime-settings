@@ -5,13 +5,16 @@
 	],
 	"installed_packages":
 	[
+		"A File Icon",
+		"ayu",
 		"BracketHighlighter",
 		"CMake",
 		"Formatter",
 		"MarkdownPreview",
 		"Package Control",
 		"SublimeLinter",
-		"SublimeLinter-clang",
+		"SublimeLinter-contrib-cmakelint",
+		"SublimeLinter-cppcheck",
 		"SublimeLinter-pylint",
 	],
 }
