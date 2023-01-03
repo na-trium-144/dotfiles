@@ -1,3 +1,4 @@
 {
-	"shell_cmd": "cmake --build build"
+	"shell_cmd": "cmake --build build",
+	"file_patterns": ["CMakeLists.txt"],
 }
