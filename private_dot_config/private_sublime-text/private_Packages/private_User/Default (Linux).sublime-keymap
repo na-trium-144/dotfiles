@@ -13,4 +13,9 @@
 	{ "keys": ["ctrl+pageup"], "command": "goto_reference" },
 	{ "keys": ["ctrl+home"], "command": "jump_back" },
 	{ "keys": ["ctrl+end"], "command": "jump_forward" },
+	{ "keys": ["alt+backspace"], "command": "delete_word", "args": { "forward": false } },
+	{ "keys": ["alt+shift+backspace"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete to Hard BOL.sublime-macro"} },
+	{ "keys": ["alt+delete"], "command": "delete_word", "args": { "forward": true } },
+	{ "keys": ["alt+shift+delete"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete to Hard EOL.sublime-macro"} },
+
 ]
