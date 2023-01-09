@@ -52,16 +52,16 @@
             "config_path": {
                 "default": "${packages}/User/formatter.assets/config/csscombrc.json"
             }
-        },
+        },*/
         "eslint": {
             "disable": false,
             "format_on_save": false,
             "syntaxes": ["js"],
-            "executable_path": "${packages}/User/formatter.assets/javascript/node_modules/.bin/eslint",
-            "config_path": {
-                "default": "${packages}/User/formatter.assets/config/eslintrc.json"
-            }
-        },*/
+            // "executable_path": "${packages}/User/formatter.assets/javascript/node_modules/.bin/eslint",
+            // "config_path": {
+            //     "default": "${packages}/User/formatter.assets/config/eslintrc.json"
+            // }
+        },
         "htmltidy": {
             "disable": false,
             "format_on_save": false,
@@ -107,15 +107,15 @@
                 "default": "${packages}/User/formatter.assets/config/phpcsfixerrc.php"
             }
         },*/
-        /*"prettier": {
+        "prettier": {
             "disable": false,
             "format_on_save": false,
             "syntaxes": ["css", "scss", "less", "js", "jsx", "json", "html", "graphql", "markdown", "tsx", "vue", "yaml"],
             "executable_path": "${packages}/User/formatter.assets/javascript/node_modules/.bin/prettier",
-            "config_path": {
-                "default": "${packages}/User/formatter.assets/config/prettierrc.json"
-            }
-        },*/
+            // "config_path": {
+            //     "default": "${packages}/User/formatter.assets/config/prettierrc.json"
+            // }
+        },
         /*"rubocop": {
             "disable": false,
             "format_on_save": false,

@@ -9,14 +9,19 @@
         "cppcheck":{
             "std": ["c99", "c++20"],
             "enable": ["warning", "style", "performance", "portability", "unusedFunction"]
+        },
+        "eslint": {
+            "selector": "source.ts, source.js - meta.attribute-with-value"
         }
     },
     "paths": {
         "linux": [
-            "~/.local/bin"
+            "~/.local/bin",
+            "~/.config/sublime-text/Packages/User/formatter.assets/javascript/node_modules/.bin/",
         ],
         "osx": [
-            "/opt/homebrew/bin"
+            "/opt/homebrew/bin",
+            "~/.config/sublime-text/Packages/User/formatter.assets/javascript/node_modules/.bin/",
         ],
         "windows": []
     },

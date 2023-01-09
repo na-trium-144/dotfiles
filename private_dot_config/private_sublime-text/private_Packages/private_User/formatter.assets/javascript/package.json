@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "js-beautify": "^1.14.7"
+    "js-beautify": "^1.14.7",
+    "prettier": "^2.8.2"
   }
 }
