@@ -14,4 +14,3 @@ backup.sh
 .local/share/fonts/
 {{ end }}
 README.md
-.zshrc
