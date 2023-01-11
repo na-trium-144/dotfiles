@@ -18,4 +18,15 @@
 	{ "keys": ["super+pageup"], "command": "goto_reference" },
 	{ "keys": ["super+home"], "command": "jump_back" },
 	{ "keys": ["super+end"], "command": "jump_forward" },
+	{ "keys": ["super+_"], "command": "show_panel", "args": {"panel": "console", "toggle": true} },
+	{ "keys": ["super+k", "super+l"], "command": "sublime_linter_lint" },
+	{ "keys": ["super+k", "super+a"], "command": "sublime_linter_panel_toggle" },
+	{ "keys": ["super+e"], "command": "sublime_linter_line_report" },
+	{ "keys": ["super+k", "super+n"], "command": "sublime_linter_goto_error",
+	  "args": { "direction": "next" }
+	},
+	{ "keys": ["super+k", "super+p"], "command": "sublime_linter_goto_error",
+	  "args": { "direction": "previous" }
+	},
+	{ "keys": ["super+option+p"], "command": "prompt_select_workspace" },
 ]
