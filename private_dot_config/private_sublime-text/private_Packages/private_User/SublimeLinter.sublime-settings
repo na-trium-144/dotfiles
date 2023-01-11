@@ -1,6 +1,6 @@
 // SublimeLinter Settings - User
 {
-    // "debug": true,
+    "debug": true,
     
     "linters": {
         "pylint":{
@@ -11,7 +11,9 @@
             "enable": ["warning", "style", "performance", "portability", "unusedFunction"]
         },
         "eslint": {
-            "selector": "source.ts, source.js - meta.attribute-with-value"
+            // "lint_mode": "manual",
+            "selector": "source.tsx, source.jsx, source.ts, source.js - meta.attribute-with-value"
+
         }
     },
     "paths": {

@@ -75,7 +75,7 @@
         "jsbeautifier": {
             "disable": false,
             "format_on_save": false,
-            "syntaxes": ["js", "css", "html", "json"],
+            "syntaxes": ["js", "ts", "css", "html", "json"],
             "executable_path": "${packages}/User/formatter.assets/javascript/node_modules/.bin/js-beautify",
             // "config_path": {
             //     "default": "${packages}/User/formatter.assets/config/jsbeautifyrc.json"
@@ -110,7 +110,7 @@
         "prettier": {
             "disable": false,
             "format_on_save": false,
-            "syntaxes": ["css", "scss", "less", "js", "jsx", "json", "html", "graphql", "markdown", "tsx", "vue", "yaml"],
+            "syntaxes": ["css", "scss", "less", "js", "jsx", "json", "html", "graphql", "markdown", "ts", "tsx", "vue", "yaml"],
             "executable_path": "${packages}/User/formatter.assets/javascript/node_modules/.bin/prettier",
             // "config_path": {
             //     "default": "${packages}/User/formatter.assets/config/prettierrc.json"
