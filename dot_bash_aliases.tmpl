@@ -19,11 +19,14 @@ alias ls=exa #macのデフォルトのlsが無能なので
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
-cdpeco() { 
-    dir="$(fd -Lt d . "${1:-./}" | peco)"
-    [ -n "$dir" ] && cd "$dir"
+fdpeco() { 
+    dir="$(fd -Lt d . "${2:-./}" | peco)"
+    [ -n "$dir" ] && $1 "$dir"
     unset dir
 }
+alias cdpeco="fdpeco cd"
+alias pdpeco="fdpeco pushd"
+
 diffl() {
     diff --old-line-format "<%L" --new-line-format ">%L" "$1" "$2"
 }
