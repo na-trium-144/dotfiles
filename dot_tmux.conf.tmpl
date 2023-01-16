@@ -1,6 +1,8 @@
-unbind C-b
-set -g prefix C-j
-bind-key C-j send-prefix
+if-shell "hostname | grep kou-" {
+	unbind C-b
+	set -g prefix C-j
+	bind-key C-j send-prefix
+}
 set-window-option -g xterm-keys on
 set-option -g default-terminal "xterm-256color"
 
