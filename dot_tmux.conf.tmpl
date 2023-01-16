@@ -1,17 +1,23 @@
 if-shell "hostname | grep kou-" {
+	# prefix=ctrl-j
 	unbind C-b
 	set -g prefix C-j
 	bind-key C-j send-prefix
+} { #else
+	# docker or ssh
+	# prefix=ctrl-b
+	# 外のtmuxでcopy modeできるようにする
+	set -g terminal-overrides 'xterm*:smcup@:rmcup@'
 }
 set-window-option -g xterm-keys on
 set-option -g default-terminal "xterm-256color"
 
 bind-key -T copy-mode C-z send-keys -X begin-selection
-bind-key -T copy-mode Space send-keys -X copy-pipe-and-cancel {{- if eq .chezmoi.os "darwin" }} "pbcopy" {{- else }} "xclip -selection clipboard -i" {{- end }} 
+bind-key -T copy-mode Space send-keys -X copy-pipe-and-cancel '{{- if eq .chezmoi.os "darwin" }} pbcopy {{- else }} xclip -selection clipboard -i {{- end }}'
 bind-key -T copy-mode M-Left send-keys -X previous-word
 bind-key -T copy-mode M-Right send-keys -X next-word-end
 bind-key -T prefix u command-prompt -p "(save buffer)" "save-buffer \"%%%\""
-bind-key -T prefix y capture-pane -S -
+bind-key -T prefix y capture-pane -S - \; run-shell 'tmux capture-pane -p -S - | {{- if eq .chezmoi.os "darwin" }} pbcopy {{- else }} xclip -selection clipboard -i {{- end }}'\; display-message "captured pane"
 
 set-option -g status on
 set-option -g status-interval 2
