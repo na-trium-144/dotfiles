@@ -134,6 +134,14 @@ GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUPSTREAM="verbose"
 
+function _dirs_state(){
+	_dirs_c=$(($(dirs -p | wc -l) - 1))
+	if [ $_dirs_c != 0 ]; then
+		echo "^${_dirs_c}"
+	fi
+	unset _dirs_c
+}
+
 export LANG=${LANG:-"C.utf8"}
 if [ $LANG != C ]; then
     FACE=
@@ -144,13 +152,13 @@ if [ $LANG != C ]; then
 {{- else if eq .chezmoi.hostname "kou-MAir" }}
     FACE='･_･)φ_'
 {{- end }}
-    PS1='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a${debian_chroot:+($debian_chroot)}\[\033[1;31m\]\h\[\033[0m\]:\[\033[1;36m\]\w\[\033[0;32m\]$(__git_ps1) \[\033[0;33m\]'${FACE}' \[\033[0m\]'
+    PS1='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a${debian_chroot:+($debian_chroot)}\[\033[1;31m\]\h\[\033[0m\]:\[\033[1;36m\]\w\[\033[0;36m\]$(_dirs_state)\[\033[0;32m\]$(__git_ps1) \[\033[0;33m\]'${FACE}' \[\033[0m\]'
 {{- if eq .chezmoi.hostname "kou-RPi3" }}
     FACE='kou- '
-	PS1='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a${debian_chroot:+($debian_chroot)}\[\033[1;31m\]'${FACE}'\[\033[0m\]:\[\033[1;36m\]\w\[\033[0;32m\]$(__git_ps1) \[\033[0m\]'
+	PS1='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a${debian_chroot:+($debian_chroot)}\[\033[1;31m\]'${FACE}'\[\033[0m\]:\[\033[1;36m\]\w\[\033[0;36m\]$(_dirs_state)\[\033[0;32m\]$(__git_ps1) \[\033[0m\]'
 {{- end }}
     if [ -n "$MC_SID" ]; then
-        PS1='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a${debian_chroot:+($debian_chroot)}[mc]\[\033[1;31m\]\h\[\033[0m\]:\[\033[1;36m\]\W\[\033[0;32m\]$(__git_ps1) \[\033[0m\]'
+        PS1='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a${debian_chroot:+($debian_chroot)}[mc]\[\033[1;31m\]\h\[\033[0m\]:\[\033[1;36m\]\W\[\033[0;36m\]$(_dirs_state)\[\033[0;32m\]$(__git_ps1) \[\033[0m\]'
     fi
 else
     if [ "$color_prompt" = yes ]; then
