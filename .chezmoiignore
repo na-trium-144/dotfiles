@@ -7,7 +7,7 @@ fixd.sh
 .xrandr
 {{ end }}
 {{ if ne .chezmoi.hostname "kou-MAir" }}
-private_Library
+Library
 {{ end }}
 {{ if and ( ne .chezmoi.hostname "kou-MAir" ) ( and ( ne .chezmoi.hostname "kou-Ace" ) ( ne .chezmoi.hostname "kou-CelKn" ) ) }}
 backup.sh
