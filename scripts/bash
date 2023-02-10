@@ -20,7 +20,7 @@ bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
 fdpeco() { 
-    dir="$(fd -Lt d . "${2:-./}" | peco)"
+    dir="$(fd -Lt d -d 5 . "${2:-./}" | peco)"
     [ -n "$dir" ] && $1 "$dir"
     unset dir
 }
