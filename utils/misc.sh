@@ -4,6 +4,7 @@ if type apt-get; then
 	sudo apt-get install -y micro peco mc tmux fzf
 elif type pacman; then
 	# pacmanはインストール済みのも再インストールしてしまうので、いちいち確認する
+	type hostname || sudo pacman -S inetutils
 	type micro || sudo pacman -S micro
 	type peco || sudo pacman -S peco
 	type mc || sudo pacman -S mc
