@@ -18,4 +18,7 @@ type cargo || curl https://sh.rustup.rs -sSf | sh
 cargo install fd-find git-delta hexyl
 type pyenv || curl https://pyenv.run | bash
 pip3 install pipenv
-[ -d ~/.local/extrakto ] || git clone https://github.com/laktak/extrakto ~/.local/extrakto
+if ! [ -d ~/.tmux/plugins/tpm ]; then
+	mkdir -p ~/.tmux/plugins
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
