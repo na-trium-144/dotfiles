@@ -1,0 +1,19 @@
+[http]
+	sslVerify = False
+[credential]
+	helper = cache
+[push]
+	default = simple
+	recurseSubmodules = check
+[core]
+	editor = micro
+	pager = delta
+[pull]
+	rebase = false
+[delta]
+	navigate = true
+	side-by-side = true
+	line-numbers = true
+	light = true
+[include]
+	path = ~/.gitconfig.local
