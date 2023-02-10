@@ -107,7 +107,9 @@ fi
 export PATH="${PATH}:${HOME}/.robotech/bin"
 export PATH="${HOME}/.local/bin:${PATH}"
 
-if [ `hostname` = "kou-MAir" ]; then
+type hostname 1>/dev/null 2>&1 || echo hostname command not found.
+
+if [ "$(hostname)" = "kou-MAir" ]; then
     export PATH="/opt/homebrew/bin:$PATH"
     export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
     [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
@@ -150,9 +152,9 @@ function _dirs_state(){
 export LANG=${LANG:-"C.utf8"}
 if [ $LANG != C ]; then
     FACE=
-    [ `hostname` = "kou-CelKn" ] && FACE='ε=ヾ(・∀ ・)ﾉ'
-    [ `hostname` = "kou-Ace" ] && FACE='(σ ･∀ ･)σ '
-    [ `hostname` = "kou-MAir" ] && FACE='･_･)φ_'
+    [ "$(hostname)" = "kou-CelKn" ] && FACE='ε=ヾ(・∀ ・)ﾉ'
+    [ "$(hostname)" = "kou-Ace" ] && FACE='(σ ･∀ ･)σ '
+    [ "$(hostname)" = "kou-MAir" ] && FACE='･_･)φ_'
 	PS1_TIT='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a'
 	PS1_CHROOT='${debian_chroot:+($debian_chroot)}'
 	PS1_HOST='\[\033[1;107;31m\]\h\[\033[0;107m\]:'
@@ -161,7 +163,7 @@ if [ $LANG != C ]; then
 	PS1_GIT='\[\033[0;107;32m\]$(__git_ps1) '
 	PS1_FACE='\[\033[0;107;33m\]'${FACE}
 	PS1_END='\[\033[0;97m\]\[\033[0m\] '
-	if [ `hostname` = "kou-RPi3" ]; then
+	if [ "$(hostname)" = "kou-RPi3" ]; then
         FACE='kou- '
     	PS1_TIT='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a'
     	PS1_HOST='\[\033[1;107;31m\]'${FACE}'\[\033[0;107m\]:'
