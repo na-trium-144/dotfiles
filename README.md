@@ -43,7 +43,8 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 * misc.sh: いろいろインストールする
 	* システムにインストール micro, [peco](https://github.com/peco/peco), mc, tmux, fzf, cargo
 	* cargoで入れる [fd-find](https://github.com/sharkdp/fd), [git-delta](https://github.com/dandavison/delta), (あまり使ってないけど[hexyl](https://github.com/sharkdp/hexyl))
-	* その他 pyenv, pipenv, tpm, [git-user](https://github.com/geongeorge/Git-User-Switch)
+	* nvm, npm, [git-user](https://github.com/geongeorge/Git-User-Switch)
+	* その他 pyenv, pipenv, tpm
 * subl-plugin.sh: メインの開発環境用
 	* システムに cppcheck, tidy
 	* pipで black, pylint, cmakelint
