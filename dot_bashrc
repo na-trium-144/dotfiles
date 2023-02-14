@@ -149,7 +149,7 @@ if [ $LANG != C ]; then
     FACE=
     [ "${_hostname}" = "kou-CelKn" ] && FACE='ε=ヾ(・∀ ・)ﾉ'
     [ "${_hostname}" = "kou-Ace" ] && FACE='(σ ･∀ ･)σ '
-    [ "${_hostname}" = "kou-MAir" ] && FACE='･_･)φ_'
+    [ "${_hostname}" = "kou-MAir.local" ] && FACE='･_･)φ_'
 	PS1_TIT='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a'
 	PS1_CHROOT='${debian_chroot:+($debian_chroot)}'
 	PS1_HOST='\[\033[1;107;31m\]\h\[\033[0;107m\]:'
