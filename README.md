@@ -1,8 +1,14 @@
 # dotfiles(chezmoi)
 
-```
+```bash
 sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-trium-144
 ```
+
+## MSYS2
+* HOMEを C:\Users\ユーザー名 にする
+* chezmoiインストール前に`pacman -S unzip`
+* `mklink /j \msys64\home\ユーザー名 \Users\ユーザー名`も必要
+* gitconfigに core.fileMode=false
 
 ## bash
 * ubuntuのデフォルトbashrcベース
