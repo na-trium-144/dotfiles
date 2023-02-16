@@ -1,6 +1,6 @@
-alias snano="sudo $(which nano) -f $HOME/.nanorc"
-alias smicro="sudo MICRO_CONFIG_HOME=$HOME/.config/micro $(which micro)"
-alias sgit="sudo PATH=\"${PATH}\" $(which git)"
+type nano 1>/dev/null 2>&1 && alias snano="sudo $(which nano) -f $HOME/.nanorc"
+type micro 1>/dev/null 2>&1 && alias smicro="sudo MICRO_CONFIG_HOME=$HOME/.config/micro $(which micro)"
+type git 1>/dev/null 2>&1 && alias sgit="sudo PATH=\"${PATH}\" $(which git)"
 
 alias gcc="gcc -std=c99 -Wall -Wextra"
 alias g++="g++ -std=c++17 -Wall -Wextra -Wconversion -pedantic"
