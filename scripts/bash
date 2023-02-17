@@ -8,7 +8,7 @@ alias cbash="LANG=C bash"
 alias eagle='export LIBGL_ALWAYS_SOFTWARE=1 && QTWEBENGINE_CHROMIUM_FLAGS="--ignore-gpu-blacklist" LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libxcb-dri3.so.0 /usr/local/eagle-9.6.2/eagle'
 alias exa="exa --git --group-directories-first --color=auto"
 
-if [ `hostname` = "kou-MAir" ]; then
+if [ "${_hostname}" = "kou-MAir" ]; then
     # alias ibrew="arch -x86_64 /usr/local/bin/brew"
     # alias ipip3="arch -x86_64 /usr/local/bin/pip3"
     # alias ipython3="arch -x86_64 /usr/local/bin/python3"
@@ -35,3 +35,4 @@ cdroot() {
     [ -n "$dir" ] && cd "$dir" 
     unset dir
 }
+

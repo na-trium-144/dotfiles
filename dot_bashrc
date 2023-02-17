@@ -8,6 +8,15 @@ case $- in
       *) return;;
 esac
 
+# automatically start tmux
+if [[ $- =~ i ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_TTY" ]]; then
+	tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+fi
+
+_hostname=$(hostname)
+_uname=$(uname)
+# Darwin, Linux, MINGW64_NT_*
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -102,9 +111,7 @@ fi
 export PATH="${PATH}:${HOME}/.robotech/bin"
 export PATH="${HOME}/.local/bin:${PATH}"
 
-_hostname=$(hostname)
-
-if uname | grep Darwin 1>/dev/null 2>&1; then
+if [ "${_uname}" = "Darwin" ]; then
     export PATH="/opt/homebrew/bin:$PATH"
     export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
     [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
@@ -189,7 +196,7 @@ else
     esac
 fi
 
-chezmoi_bash="$(chezmoi source-path 2>/dev/null)/scripts/bash"
+chezmoi_bash="${HOME}/.local/share/chezmoi/scripts/bash"
 if [ -f "$chezmoi_bash" ]; then
     . "$chezmoi_bash"
 fi
