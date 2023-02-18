@@ -8,14 +8,23 @@ case $- in
       *) return;;
 esac
 
-# automatically start tmux
-if [[ $- =~ i ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_TTY" ]]; then
-	tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
-fi
+export PATH="${PATH}:${HOME}/.robotech/bin"
+export PATH="${HOME}/.local/bin:${PATH}"
 
 _hostname=$(hostname)
 _uname=$(uname)
 # Darwin, Linux, MINGW64_NT_*
+
+if [ "${_uname}" = "Darwin" ]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+    export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+    export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+fi
+
+# automatically start tmux
+if [[ $- =~ i ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_TTY" ]]; then
+	tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+fi
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -108,15 +117,10 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-export PATH="${PATH}:${HOME}/.robotech/bin"
-export PATH="${HOME}/.local/bin:${PATH}"
 
 if [ "${_uname}" = "Darwin" ]; then
-    export PATH="/opt/homebrew/bin:$PATH"
-    export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
     [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
     source /opt/homebrew/etc/bash_completion.d/*
-    export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 fi
 [ -e ~/.git-prompt.sh ] && source ~/.git-prompt.sh
 [ -e ~/.git-completion.bash ] && source ~/.git-completion.bash
