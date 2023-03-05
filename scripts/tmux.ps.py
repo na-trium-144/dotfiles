@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+import io, sys
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+
 try:
     import psutil
 except:
@@ -13,4 +16,5 @@ except psutil.NoSuchProcess:
     p = psutil.Process(pid=int(pid))
 c1 = len(p.children())
 c2 = len(p.children(recursive=True))
-print(sys.argv[2] + str(c1) + sys.argv[3] + str(c2))
+#print(sys.argv[2] + str(c1) + sys.argv[3] + str(c2))
+print("jobs " + str(c1) + " #[fg=colour105]#[bg=colour105,fg=colour228]ps " + str(c2))
