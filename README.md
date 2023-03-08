@@ -12,7 +12,7 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 * gitconfigに core.fileMode=false
 * msys2の起動コマンド例:
 ```
-C:\Windows\System32\cmd.exe /c "set MSYSTEM=MINGW64&& set MSYS=winsymlinks:nativestrict&& set MSYS2_PATH_TYPE=inherit&& C:\msys64\ucrt64.exe"
+C:\Windows\System32\cmd.exe /c "set MSYSTEM=MINGW64&& set MSYS2_PATH_TYPE=inherit&& C:\msys64\ucrt64.exe"
 ```
 これを呼び出すショートカットをAppData\Roaming\Microsoft\Windows\Start Menu\Programs\MSYS2とかに追加
 
