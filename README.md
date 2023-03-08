@@ -7,10 +7,14 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 ```
 
 ## MSYS2の場合は
-* HOMEを C:\Users\ユーザー名 にする
 * chezmoiインストール前に`pacman -S unzip`
-* `mklink /j \msys64\home\ユーザー名 \Users\ユーザー名`も必要
+* `mklink /j \msys64\home\ユーザー名 \Users\ユーザー名`が必要
 * gitconfigに core.fileMode=false
+* msys2の起動コマンド例:
+```
+C:\Windows\System32\cmd.exe /c "set MSYSTEM=MINGW64&& set MSYS=winsymlinks:nativestrict&& set MSYS2_PATH_TYPE=inherit&& C:\msys64\ucrt64.exe"
+```
+これを呼び出すショートカットをAppData\Roaming\Microsoft\Windows\Start Menu\Programs\MSYS2とかに追加
 
 ## Contents
 ### bash
@@ -61,7 +65,7 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 	* npmで js-beautify, prettier
 * chsh.sh: mac用 デフォルトシェルをbrewのbashに変更
 * msys2.sh: MSYS2用
-	* git, mc, tmux, fzf, tpm, git-prompt
+	* git, mc, tmux, fzf, micro, winpty, tpm, git-prompt
 
 ### その他
 * micro, peco, fd, sublime, poetryの設定とか
