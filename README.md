@@ -65,7 +65,7 @@ C:\Windows\System32\cmd.exe /c "set MSYSTEM=MINGW64&& set MSYS2_PATH_TYPE=inheri
 	* npmで js-beautify, prettier
 * chsh.sh: mac用 デフォルトシェルをbrewのbashに変更
 * msys2.sh: MSYS2用
-	* git, mc, tmux, fzf, micro, winpty, tpm, git-prompt
+	* git, mc, tmux, fzf, fd, micro, winpty, tpm, git-prompt
 
 ### その他
 * micro, peco, fd, sublime, poetryの設定とか
