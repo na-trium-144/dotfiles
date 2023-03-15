@@ -8,13 +8,10 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 
 ## MSYS2の場合は
 * chezmoiインストール前に`pacman -S unzip`
+* `pacman -S git`または[git-for-windowsをインストール](https://github.com/git-for-windows/git/wiki/Install-inside-MSYS2-proper)
 * `mklink /j \msys64\home\ユーザー名 \Users\ユーザー名`が必要
-* gitconfigに core.fileMode=false
-* msys2の起動コマンド例:
-```
-C:\Windows\System32\cmd.exe /c "set MSYSTEM=MINGW64&& set MSYS2_PATH_TYPE=inherit&& C:\msys64\ucrt64.exe"
-```
-これを呼び出すショートカットをAppData\Roaming\Microsoft\Windows\Start Menu\Programs\MSYS2とかに追加
+* .gitconfig.localに core.fileMode=false
+* 環境変数にMSYS2_PATH_TYPE=inheritを設定
 
 ## Contents
 ### bash
