@@ -23,7 +23,7 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 * ps1(プロンプト)の変更
 	* hostnameごとに顔文字を追加
 	* pushdした数を表示
-* aliasはscripts/bashを参照
+* aliasはscripts/bashに記述
 
 ### tmux
 * prefixはctrl-j
@@ -62,7 +62,9 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 	* npmで js-beautify, prettier
 * chsh.sh: mac用 デフォルトシェルをbrewのbashに変更
 * msys2.sh: MSYS2用
-	* git, mc, tmux, fzf, fd, micro, winpty, tpm, git-prompt
+	* git, mc, tmux, fzf, fd, winpty, tpm, git-prompt
+	* chocoが入っていればchoco経由でmicro, peco
+		* pecoはmsys2で使えないけど...
 
 ### その他
 * micro, peco, fd, sublime, poetryの設定とか

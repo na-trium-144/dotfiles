@@ -4,9 +4,11 @@ type git 1>/dev/null 2>&1 && alias sgit="sudo PATH=\"${PATH}\" $(which git)"
 
 alias gcc="gcc -std=c99 -Wall -Wextra"
 alias g++="g++ -std=c++17 -Wall -Wextra -Wconversion -pedantic"
-alias cbash="LANG=C bash"
 alias eagle='export LIBGL_ALWAYS_SOFTWARE=1 && QTWEBENGINE_CHROMIUM_FLAGS="--ignore-gpu-blacklist" LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libxcb-dri3.so.0 /usr/local/eagle-9.6.2/eagle'
 alias exa="exa --git --group-directories-first --color=auto"
+
+# linuxのコンソール用 絵文字プロンプトを無効にし言語も英語にする
+alias cbash="LANG=C bash"
 
 if [ "${_uname}" = "Darwin" ]; then
     # alias ibrew="arch -x86_64 /usr/local/bin/brew"
@@ -19,6 +21,7 @@ fi
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
+# cdpeco/pdpeco: fdしてpecoしてcdかpushdするコマンド
 fdpeco() { 
     dir="$(fd -Lt d -d 5 . "${2:-./}" | peco)"
     [ -n "$dir" ] && $1 "$dir"
@@ -27,9 +30,11 @@ fdpeco() {
 alias cdpeco="fdpeco cd"
 alias pdpeco="fdpeco pushd"
 
+# diffl a b > c でaとbをマージしたものをcに出力
 diffl() {
     diff --old-line-format "<%L" --new-line-format ">%L" "$1" "$2"
 }
+# gitのルートディレクトリにcd
 cdroot() {
     dir="$(git rev-parse --show-superproject-working-tree --show-toplevel | head -1)"
     [ -n "$dir" ] && cd "$dir" 
@@ -42,4 +47,9 @@ if echo "${_uname}" | grep "MINGW64_NT" >/dev/null; then
 	# 	script -q -c "tmux $@" /dev/null
 	# }
 	alias micro="winpty micro"
+	
+	# administrator do (windows用)
+	function ado(){
+		powershell -command start-process /c/Windows/System32/cmd -argumentlist '"/c '$@' & pause"' -verb runas
+	}
 fi
