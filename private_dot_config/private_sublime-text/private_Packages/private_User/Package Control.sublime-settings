@@ -17,5 +17,6 @@
 		"SublimeLinter-cppcheck",
 		"SublimeLinter-eslint",
 		"SublimeLinter-pylint",
+		"TOML",
 	],
 }
