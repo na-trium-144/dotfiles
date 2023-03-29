@@ -127,8 +127,8 @@ fi
 
 export PATH="${HOME}/.pyenv/bin:$PATH"
 if type pyenv >/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
+    eval "$(pyenv init --path)"
+    # eval "$(pyenv virtualenv-init -)"
 fi
 # export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/usr/include/python3.8/"
 
