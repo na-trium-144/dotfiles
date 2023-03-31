@@ -16,4 +16,7 @@
 	"highlight_line": true,
 	"caret_style": "smooth",
 	"font_size": 17,
+	"hot_exit": "disabled",
+	"hot_exit_projects": false,
+	"remember_workspace": false,
 }
