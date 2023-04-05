@@ -22,8 +22,10 @@ bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
 # cdpeco/pdpeco: fdしてpecoしてcdかpushdするコマンド
-fdpeco() { 
-    dir="$(fd -Lt d -d 5 . "${2:-./}" | peco)"
+fdpeco() {
+	pushd "${2:-./}" >/dev/null
+    dir="$(fd -Lt d -d 5 | sed 's,^\(.*\)/$,\1$,' | peco | sed 's,^\(.*\)\$$,\1/,')"
+    popd >/dev/null
     [ -n "$dir" ] && $1 "$dir"
     unset dir
 }
