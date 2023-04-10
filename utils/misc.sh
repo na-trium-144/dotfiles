@@ -1,8 +1,13 @@
 #!/bin/sh
 # pip, cargo > apt, pacman, brew > install script
 if type apt-get; then
-	sudo apt-get update
-	sudo apt-get install -y micro peco mc tmux fzf
+	if type sudo; then
+		sudo apt-get update
+		sudo apt-get install -y micro peco mc tmux fzf
+	else
+		apt-get update
+		apt-get install -y micro peco mc tmux fzf
+	fi
 elif type pacman; then
 	# pacmanはインストール済みのも再インストールしてしまうので、いちいち確認する
 	type hostname || sudo pacman -S inetutils
