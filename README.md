@@ -7,11 +7,13 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 ```
 
 ## MSYS2の場合は
-* chezmoiインストール前に`pacman -S unzip`
-* `pacman -S git`または[git-for-windowsをインストール](https://github.com/git-for-windows/git/wiki/Install-inside-MSYS2-proper)
-* `mklink /j \msys64\home\ユーザー名 \Users\ユーザー名`が必要
-* .gitconfig.localに core.fileMode=false
-* 環境変数にMSYS2_PATH_TYPE=inheritを設定
+* chezmoiインストール前に
+	* `pacman -S unzip`
+	* `pacman -S git`または[git-for-windowsをインストール](https://github.com/git-for-windows/git/wiki/Install-inside-MSYS2-proper)
+	* `mklink /j \msys64\home\ユーザー名 \Users\ユーザー名`が必要
+	* 環境変数にMSYS2_PATH_TYPE=inheritを設定
+	* .gitconfig.localに core.fileMode=false
+* chocoをいれるとよい(しかしutils/msys2.shがそのへん不完全)
 
 ## Contents
 ### bash
