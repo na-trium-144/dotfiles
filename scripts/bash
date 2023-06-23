@@ -43,7 +43,7 @@ cdroot() {
     unset dir
 }
 
-if echo "${_uname}" | grep "MINGW64_NT" >/dev/null; then
+if [ "${_uname}" = "MINGW64_NT" ]; then
 	# workaround https://github.com/microsoft/terminal/issues/5132
 	# function tmux(){
 	# 	script -q -c "tmux $@" /dev/null

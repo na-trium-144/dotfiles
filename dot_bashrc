@@ -13,12 +13,17 @@ export PATH="${HOME}/.local/bin:${PATH}"
 
 _hostname=$(hostname)
 _uname=$(uname)
-# Darwin, Linux, MINGW64_NT_*
+echo "${_uname}" | grep "MINGW64_NT" >/dev/null && _uname="MINGW64_NT"
+# Darwin, Linux, MINGW64_NT
 
 if [ "${_uname}" = "Darwin" ]; then
     export PATH="/opt/homebrew/bin:$PATH"
     export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
     export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+fi
+
+if [ "${_uname}" = "MINGW64_NT" ]; then
+	export PATH="$PATH:/c/Program Files/Sublime Text"
 fi
 
 # automatically start tmux
