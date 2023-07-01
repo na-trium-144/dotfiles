@@ -143,6 +143,11 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
 
+if [ -d "$HOME/.asdf" ]; then
+	. "$HOME/.asdf/asdf.sh"
+	. "$HOME/.asdf/completions/asdf.bash"
+fi
+
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUPSTREAM="verbose"
