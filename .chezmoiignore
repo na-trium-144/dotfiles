@@ -1,6 +1,12 @@
 {{ if ne .chezmoi.os "darwin" }}
 Library
 {{ end }}
+{{ if ne .chezmoi.os "windows" }}
+AppData
+{{ end }}
+{{ if eq .chezmoi.os "windows" }}
+.gitconfig
+{{ end }}
 README.md
 scripts
-utils
+util
