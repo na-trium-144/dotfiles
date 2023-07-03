@@ -161,6 +161,12 @@ function _set_code(){
 	_code=$?
 	[[ $_code = 0 ]] && _code=
 }
+function __git_ps1_async(){
+	sleep 0.5 & local tp=$!
+	__git_ps1 >/dev/shm/git && kill -9 $tp &
+	wait $tp
+	cat /dev/shm/git
+}
 export PROMPT_COMMAND=_set_code # 他のps1のコマンドより先に実行しないといけない
 
 export LANG=${LANG:-"C.utf8"}
@@ -175,7 +181,7 @@ if [ $LANG != C ]; then
 	PS1_HOST='\[\033[1;107;31m\]\h\[\033[0;107m\]:'
 	PS1_DIR='\[\033[1;107;36m\]\w'
 	PS1_DIRS='\[\033[0;107;36m\]$(_dirs_state)'
-	PS1_GIT='\[\033[0;107;32m\]$(__git_ps1) '
+	PS1_GIT='\[\033[0;107;32m\]$(__git_ps1_async) '
 	PS1_FACE='\[\033[0;107;33m\]'${FACE}
 	PS1_END='\[\033[0;107;31m\]${_code}\[\033[0;107;32m\] #\#\[\033[0;97m\]\[\033[0m\] '
 	if [ "${_hostname}" = "kou-RPi3" ]; then
