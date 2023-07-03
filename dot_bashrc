@@ -13,17 +13,12 @@ export PATH="${HOME}/.local/bin:${PATH}"
 
 _hostname=$(hostname)
 _uname=$(uname)
-echo "${_uname}" | grep "MINGW64_NT" >/dev/null && _uname="MINGW64_NT"
-# Darwin, Linux, MINGW64_NT
+# Darwin, Linux, MINGW64_NT_*
 
 if [ "${_uname}" = "Darwin" ]; then
     export PATH="/opt/homebrew/bin:$PATH"
     export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
     export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
-fi
-
-if [ "${_uname}" = "MINGW64_NT" ]; then
-	export PATH="$PATH:/c/Program Files/Sublime Text"
 fi
 
 # automatically start tmux
@@ -158,12 +153,15 @@ GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUPSTREAM="verbose"
 
 function _dirs_state(){
-	_dirs_c=$(($(dirs -p | wc -l) - 1))
-	if [ $_dirs_c != 0 ]; then
-		echo "^${_dirs_c}"
-	fi
-	unset _dirs_c
+	local _dirs_c=$(($(dirs -p | wc -l) - 1))
+	[[ $_dirs_c != 0 ]] && echo "^${_dirs_c}"
 }
+_code=
+function _set_code(){
+	_code=$?
+	[[ $_code = 0 ]] && _code=
+}
+export PROMPT_COMMAND=_set_code # 他のps1のコマンドより先に実行しないといけない
 
 export LANG=${LANG:-"C.utf8"}
 if [ $LANG != C ]; then
@@ -179,7 +177,7 @@ if [ $LANG != C ]; then
 	PS1_DIRS='\[\033[0;107;36m\]$(_dirs_state)'
 	PS1_GIT='\[\033[0;107;32m\]$(__git_ps1) '
 	PS1_FACE='\[\033[0;107;33m\]'${FACE}
-	PS1_END='\[\033[0;97m\]\[\033[0m\] '
+	PS1_END='\[\033[0;107;31m\]${_code}\[\033[0;107m\] #\#\[\033[0;97m\]\[\033[0m\] '
 	if [ "${_hostname}" = "kou-RPi3" ]; then
         FACE='kou- '
         PS1_TIT='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a\]'
