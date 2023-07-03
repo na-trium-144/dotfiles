@@ -161,11 +161,18 @@ function _set_code(){
 	_code=$?
 	[[ $_code = 0 ]] && _code=
 }
+if [ -d /dev/shm ]; then
+    __git_ps1_file=/dev/shm/kou-git
+elif [ -d /tmp ]; then
+    __git_ps1_file=/tmp/kou-git
+else
+    __git_ps1_file="$HOME/.kou-git"
+fi
 function __git_ps1_async(){
 	sleep 0.5 & local tp=$!
-	__git_ps1 >/dev/shm/git && kill -9 $tp &
+	__git_ps1 >$__git_ps1_file && kill -9 $tp &
 	wait $tp
-	cat /dev/shm/git
+	cat $__git_ps1_file
 }
 export PROMPT_COMMAND=_set_code # 他のps1のコマンドより先に実行しないといけない
 
