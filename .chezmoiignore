@@ -9,4 +9,4 @@ AppData
 {{ end }}
 README.md
 scripts
-util
+utils
