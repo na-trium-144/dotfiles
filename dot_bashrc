@@ -14,6 +14,7 @@ export PATH="${HOME}/.local/bin:${PATH}"
 _hostname=$(hostname)
 _uname=$(uname)
 # Darwin, Linux, MINGW64_NT_*
+echo "${_uname}" | grep MINGW64 >/dev/null && _uname=MINGW64_NT
 
 if [ "${_uname}" = "Darwin" ]; then
     export PATH="/opt/homebrew/bin:$PATH"
@@ -179,7 +180,8 @@ export PROMPT_COMMAND=_set_code # 他のps1のコマンドより先に実行し�
 export LANG=${LANG:-"C.utf8"}
 if [ $LANG != C ]; then
     FACE=
-    [ "${_hostname}" = "kou-CelKn" ] && FACE='ε=ヾ(・∀ ・)ﾉ'
+    [ "${_hostname}" = "kou-CeLu" ] && FACE='ε=ヾ(・∀ ・)ﾉ'
+    [ "${_hostname}" = "kou-Cel10" ] && FACE='(9 ･ω･)9 ' # あとでかえる?
     [ "${_hostname}" = "kou-Ace" ] && FACE='(σ ･∀ ･)σ '
     [ "${_hostname}" = "kou-MAir.local" ] && FACE='･_･)φ_'
     [ "${_hostname}" = "kou-Surf" ] && FACE='(9 ･ω･)9 '
