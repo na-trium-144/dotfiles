@@ -1,3 +1,5 @@
+[include]
+	path = ~/.gitconfig.local
 [http]
 	sslVerify = False
 [credential "https://git-codecommit.ap-northeast-1.amazonaws.com"]
@@ -18,5 +20,3 @@
 	side-by-side = true
 	line-numbers = true
 	light = true
-[include]
-	path = ~/.gitconfig.local

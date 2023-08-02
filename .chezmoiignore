@@ -4,9 +4,9 @@ Library
 {{ if ne .chezmoi.os "windows" }}
 AppData
 {{ end }}
-{{ if eq .chezmoi.os "windows" }}
-.gitconfig
-{{ end }}
+#{{ if eq .chezmoi.os "windows" }}
+#.gitconfig
+#{{ end }}
 README.md
 scripts
 utils

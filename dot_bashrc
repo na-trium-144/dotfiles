@@ -170,9 +170,12 @@ else
     __git_ps1_file="$HOME/.kou-git"
 fi
 function __git_ps1_async(){
+	#local git_old=`cat $__git_ps1_file`
 	sleep 0.5 & local tp=$!
-	__git_ps1 >$__git_ps1_file && kill -9 $tp &
+	(__git_ps1 >$__git_ps1_file && kill -9 $tp 2>/dev/null) &
 	wait $tp
+	#local git_new=`cat $__git_ps1_file`
+	#echo ${git_new:-"${git_old}"}
 	cat $__git_ps1_file
 }
 export PROMPT_COMMAND=_set_code # 他のps1のコマンドより先に実行しないといけない
