@@ -31,8 +31,8 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 * .bash_aliasesはchezmoi管理しないので環境特有の設定を置く
 
 ### tmux
-* prefixはctrl-j
-	* ssh内、docker内はctrl-b	
+* prefixはctrl-j, alt-/
+	* ssh内、docker内はctrl-b
 * `$TERM`は`xterm-256color`なのでvimとかはバグるかも?
 * [tpm](https://github.com/tmux-plugins/tpm)
 	* [extrakto](https://github.com/laktak/extrakto)
@@ -42,6 +42,7 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 	* y: capture-pane → デフォルトのbuffer & clipboard
 	* u: save-buffer
 	* Tab: extrakto (画面右上)
+		* msysだとバグる...
 * copy-mode
 	* Ctrl-z: begin-selection
 	* Meta-left/right: previous/next-word
