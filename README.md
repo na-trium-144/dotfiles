@@ -66,7 +66,7 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 	* その他 pyenv, ~~pipenv~~, poetry
 * misc3.sh: メインの開発環境用
 	* システムに cppcheck, tidy
-	* pipで black, pylint, cmakelint, clang-format
+	* pipで black, pylint, cmakelint, clang-format, mypy
 	* npmで js-beautify, prettier
 * chsh.sh: mac用 デフォルトシェルをbrewのbashに変更
 * msys2.sh: MSYS2用
