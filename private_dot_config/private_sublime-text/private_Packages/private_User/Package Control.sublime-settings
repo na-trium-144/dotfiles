@@ -17,6 +17,7 @@
 		"SublimeLinter-contrib-cmakelint",
 		"SublimeLinter-cppcheck",
 		"SublimeLinter-eslint",
+		"SublimeLinter-flake8",
 		"SublimeLinter-mypy",
 		"SublimeLinter-pylint",
 		"TOML",
