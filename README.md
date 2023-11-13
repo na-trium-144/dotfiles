@@ -41,6 +41,7 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 * prefix +
 	* y: capture-pane → デフォルトのbuffer & clipboard
 	* u: save-buffer
+	* N: new-session
 	* Tab: extrakto (画面右上)
 		* msysだとバグる...
 * copy-mode
