@@ -18,8 +18,13 @@ if [ "${_uname}" = "Darwin" ]; then
 fi
 
 #入力中に上下キーでhistoryから検索
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
+bind '"\e[A": history-search-backward' #alt-up
+bind '"\e[B": history-search-forward'  #alt-down
+
+#linuxなら標準であるはずだけど
+bind '"\e\e[D": backward-word' #alt-left
+bind '"\e\e[C": forward-word'  #alt-right
+bind '"\e[3~": kill-word'    #alt-delete
 
 # cdpeco/pdpeco: fdしてpecoしてcdかpushdするコマンド
 fdpeco() {
