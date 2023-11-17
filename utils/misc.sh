@@ -17,7 +17,7 @@ elif type pacman; then
 	type tmux || sudo pacman -S tmux
 	type fzf || sudo pacman -S fzf
 elif type brew; then
-	brew install micro peco mc tmux fzf
+	brew install micro peco mc tmux fzf exa
 fi
 # aarch64のubuntuでcargoをaptで入れると古いので、公式のインストールスクリプトにした
 #  https://doc.rust-lang.org/cargo/getting-started/installation.html
