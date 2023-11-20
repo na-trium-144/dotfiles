@@ -24,7 +24,7 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 * macの場合homebrewのパス, sublime textのパス, bash_completionの設定など
 * git_ps1
 	* dirtystate, stashstate, upstreamがオン
-	* 0.5秒のタイムアウト機能付き
+	* 2秒のタイムアウト機能付き
 		* __git_ps1の結果を一時的に/dev/shmや/tmpに置くが他の場所にしたい場合`__git_ps1_file`を変更
 * ps1(プロンプト)の変更
 	* hostnameごとに顔文字を追加
