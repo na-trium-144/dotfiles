@@ -170,13 +170,16 @@ elif [ -d /tmp ]; then
 else
     __git_ps1_file="$HOME/.kou-git"
 fi
+__git_ps1_timeout=2
 function __git_ps1_async(){
-	sleep 0.5 & local tp=$!
-	(__git_ps1 >$__git_ps1_file && kill -9 $tp) >/dev/null 2>&1 &
-	#local tp2=$!
-	wait $tp
-	cat $__git_ps1_file
-	#kill -2 $tp2 2>/dev/null &
+	if [[ "$__git_ps1_timeout" != "0" ]]; then
+		sleep $__git_ps1_timeout & local tp=$!
+		(__git_ps1 >$__git_ps1_file && kill -9 $tp) >/dev/null 2>&1 &
+		#local tp2=$!
+		wait $tp
+		cat $__git_ps1_file
+		#kill -2 $tp2 2>/dev/null &
+	fi
 }
 export PROMPT_COMMAND=_set_code # 他のps1のコマンドより先に実行しないといけない
 
