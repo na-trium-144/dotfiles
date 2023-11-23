@@ -1,7 +1,7 @@
 #!/bin/sh
 type pyenv || curl https://pyenv.run | bash
-pip3 install pipenv
-type poetry || curl -sSL https://install.python-poetry.org | python3 -
+# pip3 install pipenv
+curl -sSL https://install.python-poetry.org | python3 -
 unset NVM_DIR
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"

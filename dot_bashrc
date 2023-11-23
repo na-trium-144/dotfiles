@@ -174,7 +174,7 @@ __git_ps1_timeout=2
 function __git_ps1_async(){
 	if [[ "$__git_ps1_timeout" != "0" ]]; then
 		sleep $__git_ps1_timeout & local tp=$!
-		(__git_ps1 >$__git_ps1_file && kill -9 $tp) >/dev/null 2>&1 &
+		(__git_ps1 >$__git_ps1_file ; kill -9 $tp) >/dev/null 2>&1 &
 		#local tp2=$!
 		wait $tp
 		cat $__git_ps1_file
