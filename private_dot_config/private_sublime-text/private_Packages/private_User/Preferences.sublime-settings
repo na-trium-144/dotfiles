@@ -15,8 +15,9 @@
 	"theme": "ayu-light.sublime-theme",
 	"highlight_line": true,
 	"caret_style": "smooth",
-	"font_size": 17,
+	"font_size": 16,
 	"hot_exit": "disabled",
 	"hot_exit_projects": false,
 	"remember_workspace": false,
+	"index_exclude_gitignore": false,
 }
