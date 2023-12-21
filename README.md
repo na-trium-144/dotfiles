@@ -57,6 +57,12 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 * bash: bashのalias, functionなど
 	* `cbash` LANG=Cにし、nerd fontのプロンプトなどをオフにする
 	* `cdpeco`, `pdpeco` fdでディレクトリを列挙→pecoで選択→cdまたはpushd
+	* `diffl a b > c` aとbをマージしたファイルを生成 
+	* MSYS2環境で
+		* `syspath (command...)` PATHからmsysを消してコマンドを実行
+		* `vsdevcmd` VisualStudio2022のDeveloper Command Promptをひらく
+		* `lnj` フォルダのシンボリックリンクを作成(`mklink /j`)
+		* `open (path)` ファイルorフォルダを(パスを変換して)explorerで開く
 * tmux.ps.py: tmuxのステータスで使用 現在のjob数とプロセス数を表示
 
 ### utils

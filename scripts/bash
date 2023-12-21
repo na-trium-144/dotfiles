@@ -55,6 +55,14 @@ if [ "${_uname}" = "MINGW64_NT" ]; then
 	alias micro="winpty micro"
 	alias vsdevcmd="$HOME/.local/share/chezmoi/scripts/vsdevcmd.bat"
 	alias syspath='PATH="$ORIGINAL_PATH"'
+	
+	# lnj a b で mklink /j b a をする
+	function lnj() {
+		echo "mklink /j $(cygpath -w $2) $(cygpath -w $1)&& exit" | cmd
+	}
+	function open() {
+		explorer $(cygpath -w $1)
+	}
 fi
 
 
