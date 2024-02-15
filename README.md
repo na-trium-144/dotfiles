@@ -60,7 +60,8 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 	* `diffl a b > c` aとbをマージしたファイルを生成 
 	* MSYS2環境で
 		* `syspath (command...)` PATHからmsysを消してコマンドを実行
-		* `vsdevcmd` VisualStudio2022のDeveloper Command Promptをひらく
+		* `vsdevcmd22` VisualStudio2022のDeveloper Command Promptをひらく
+		* `vsdevcmd19` VisualStudio2019
 		* `lnj` フォルダのシンボリックリンクを作成(`mklink /j`)
 		* `open (path)` ファイルorフォルダを(パスを変換して)explorerで開く
 * tmux.ps.py: tmuxのステータスで使用 現在のjob数とプロセス数を表示
