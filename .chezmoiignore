@@ -3,10 +3,8 @@ Library
 {{ end }}
 {{ if ne .chezmoi.os "windows" }}
 AppData
+.minttyrc
 {{ end }}
-#{{ if eq .chezmoi.os "windows" }}
-#.gitconfig
-#{{ end }}
 README.md
 scripts
 utils
