@@ -1,16 +1,13 @@
 [http]
 	sslVerify = False
-[credential "https://git-codecommit.ap-northeast-1.amazonaws.com"]
-	helper = !aws --region ap-northeast-1 codecommit credential-helper --profile default $@
-	UseHttpPath = true
 [credential]
 	helper = cache
 [push]
 	default = simple
 	recurseSubmodules = check
 [core]
-	editor = micro
-	pager = delta
+	editor = nano
+	pager = less
 [pull]
 	rebase = false
 [delta]
