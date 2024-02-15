@@ -18,5 +18,6 @@
 	{ "keys": ["alt+delete"], "command": "delete_word", "args": { "forward": true } },
 	{ "keys": ["alt+shift+delete"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete to Hard EOL.sublime-macro"} },
 	{ "keys": ["ctrl+\\"], "command": "show_panel", "args": {"panel": "console", "toggle": true} },
-	{ "keys": ["ctrl+e"], "command": "sublime_linter_line_report" }
+	{ "keys": ["ctrl+e"], "command": "sublime_linter_line_report" },
+	{ "keys": ["ctrl+^"], "command": "increase_font_size" }
 ]
