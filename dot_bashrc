@@ -186,8 +186,8 @@ export PROMPT_COMMAND=_set_code # 他のps1のコマンドより先に実行し�
 export LANG=${LANG:-"C.utf8"}
 if [ $LANG != C ]; then
     FACE=
-    [ "${_hostname}" = "kou-CeLu" ] && FACE='ε=ヾ(・∀ ・)ﾉ'
-    [ "${_hostname}" = "kou-Cel10" ] && FACE='(9 ･ω･)9 ' # あとでかえる?
+    [ "${_hostname}" = "kou-RockLM" ] && FACE='ε=ヾ(・∀ ・)ﾉ'
+    [ "${_hostname}" = "kou-Rock11" ] && FACE='(9 ･ω･)9 ' # あとでかえる?
     [ "${_hostname}" = "kou-Ace" ] && FACE='(σ ･∀ ･)σ '
     [ "${_hostname}" = "kou-MAir.local" ] && FACE='･_･)φ_'
     [ "${_hostname}" = "kou-Surf" ] && FACE='(9 ･ω･)9 '
