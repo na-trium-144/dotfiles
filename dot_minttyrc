@@ -17,3 +17,4 @@ ScrollbackLines=0
 Scrollbar=none
 CursorType=block
 CursorColour=82,82,82
+BoldAsFont=yes
