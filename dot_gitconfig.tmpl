@@ -8,6 +8,10 @@
 [core]
 	editor = nano
 	pager = less
+{{ if eq .chezmoi.os "windows" }}
+	autocrlf = input
+	filemode = false
+{{ end }}
 [pull]
 	rebase = false
 [delta]
