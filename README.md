@@ -10,11 +10,7 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 	* chezmoiインストール前に
 		* `pacman -S unzip`
 		* `pacman -S git`または[git-for-windowsをインストール](https://github.com/git-for-windows/git/wiki/Install-inside-MSYS2-proper)
-		* `mklink /j \msys64\home\ユーザー名 \Users\ユーザー名`が必要
-			* MSYS2アンインストール時に\msys64\home\ユーザー名が消されるのでその前にリンク解除する
-		* 環境変数にMSYS2_PATH_TYPE=inheritを設定
-		* (.gitconfig.localに core.fileMode=false)
-	* chocoをいれるとよい(しかしutils/msys2.shがそのへん不完全)
+		* 環境変数にMSYS2_PATH_TYPE=inherit, HOME=C:\Users\ユーザー名
 * Macでは`brew install bash`で新しいbashが必要
 
 ## Contents
@@ -30,11 +26,11 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 	* hostnameごとに顔文字を追加
 	* pushdした数を表示
 * 共通のaliasはscripts/bashに記述
-* .bash_aliasesはchezmoi管理しないので環境特有の設定を置く
+* .bash_aliasesはchezmoi管理しないので環境特有の設定を置く(aliasではない)
 
 ### tmux
 * prefixはctrl-j, alt-/
-	* ssh内、docker内はctrl-b
+	* ssh内、docker内、環境変数`__is_vm`がある場合はctrl-b
 * `$TERM`は`xterm-256color`なのでvimとかはバグるかも?
 * [tpm](https://github.com/tmux-plugins/tpm)
 	* [extrakto](https://github.com/laktak/extrakto)
