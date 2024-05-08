@@ -2,6 +2,7 @@
 	"bootstrapped": true,
 	"in_process_packages":
 	[
+		"SublimeLinter",
 	],
 	"installed_packages":
 	[
@@ -13,6 +14,8 @@
 		"MarkdownPreview",
 		"Package Control",
 		"Prisma",
+		"Rust Enhanced",
+		"RustFmt",
 		"SublimeLinter",
 		"SublimeLinter-contrib-cmakelint",
 		"SublimeLinter-cppcheck",

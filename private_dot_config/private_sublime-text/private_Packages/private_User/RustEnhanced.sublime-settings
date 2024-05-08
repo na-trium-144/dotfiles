@@ -1,0 +1,6 @@
+{
+    "rust_phantom_style": "none",
+    "rust_region_style": "squiggly_underline",
+    "rust_gutter_style": "circle",
+    "rust_message_status_bar": true
+}
