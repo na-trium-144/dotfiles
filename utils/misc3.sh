@@ -1,6 +1,6 @@
 #!/bin/sh
 if type apt-get; then
-	sudo apt install cppcheck tidy
+	sudo apt-get install -y cppcheck tidy
 elif type brew; then
 	brew install cppcheck
 fi
