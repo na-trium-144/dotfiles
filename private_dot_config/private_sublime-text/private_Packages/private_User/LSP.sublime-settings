@@ -1,0 +1,8 @@
+// Settings in here override those in "LSP/LSP.sublime-settings"
+{
+    "diagnostics_gutter_marker": "dot",
+    "show_code_actions": "",
+    "document_highlight_style": "",
+    "link_highlight_style": "disabled",
+    "inhibit_word_completions": false,
+}
