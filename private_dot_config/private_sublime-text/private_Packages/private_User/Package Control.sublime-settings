@@ -15,6 +15,7 @@
 		"LSP-clangd",
 		"LSP-rust-analyzer",
 		"LSP-typescript",
+		"LSP-yaml",
 		"MarkdownPreview",
 		"Package Control",
 		"Prisma",
