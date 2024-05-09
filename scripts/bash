@@ -10,13 +10,6 @@ alias exa="exa --git --group-directories-first --color=auto"
 # linuxのコンソール用 絵文字プロンプトを無効にし言語も英語にする
 alias cbash="LANG=C bash"
 
-if [ "${_uname}" = "Darwin" ]; then
-    # alias ibrew="arch -x86_64 /usr/local/bin/brew"
-    # alias ipip3="arch -x86_64 /usr/local/bin/pip3"
-    # alias ipython3="arch -x86_64 /usr/local/bin/python3"
-    alias ls=exa #macのデフォルトのlsが無能なので
-fi
-
 #入力中に上下キーでhistoryから検索
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'

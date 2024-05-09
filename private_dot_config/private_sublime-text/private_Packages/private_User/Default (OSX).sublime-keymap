@@ -1,32 +1,188 @@
-[
-	{ "keys": ["super+left"], "command": "prev_view" },
-	{ "keys": ["super+right"], "command": "next_view" },
-	{ "keys": ["super+r"], "command": "show_panel", "args": {"panel": "replace", "reverse": false} },
-	{ "keys": ["super+d"], "command": "duplicate_line" },
-	{ "keys": ["super+l"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
-	{ "keys": ["super+t"], "command": "new_file" },
-	{ "keys": ["super+n"], "command": "find_next" },
-	{ "keys": ["super+shift+n"], "command": "find_prev" },
-	{ "keys": ["alt+up"], "command": "swap_line_up" },
-	{ "keys": ["alt+down"], "command": "swap_line_down" },
-	{ "keys": ["home"], "command": "move_to", "args": {"to": "bol"} },
-	{ "keys": ["end"], "command": "move_to", "args": {"to": "eol"} },
-	{ "keys": ["shift+end"], "command": "move_to", "args": {"to": "eol", "extend": true} },
-	{ "keys": ["shift+home"], "command": "move_to", "args": {"to": "bol", "extend": true } },
-	{ "keys": ["super+shift+forward_slash"], "command": "toggle_comment", "args": { "block": true } },
-	{ "keys": ["super+pagedown"], "command": "goto_definition" },
-	{ "keys": ["super+pageup"], "command": "goto_reference" },
-	{ "keys": ["super+home"], "command": "jump_back" },
-	{ "keys": ["super+end"], "command": "jump_forward" },
-	{ "keys": ["super+_"], "command": "show_panel", "args": {"panel": "console", "toggle": true} },
-	{ "keys": ["super+k", "super+l"], "command": "sublime_linter_lint" },
-	{ "keys": ["super+k", "super+a"], "command": "sublime_linter_panel_toggle" },
-	{ "keys": ["super+e"], "command": "sublime_linter_line_report" },
-	{ "keys": ["super+k", "super+n"], "command": "sublime_linter_goto_error",
-	  "args": { "direction": "next" }
-	},
-	{ "keys": ["super+k", "super+p"], "command": "sublime_linter_goto_error",
-	  "args": { "direction": "previous" }
-	},
-	{ "keys": ["super+option+p"], "command": "prompt_select_workspace" },
+[{
+        "keys": ["super+left"],
+        "command": "prev_view"
+    },
+    {
+        "keys": ["super+right"],
+        "command": "next_view"
+    },
+    {
+        "keys": ["super+r"],
+        "command": "show_panel",
+        "args": {
+            "panel": "replace",
+            "reverse": false
+        }
+    },
+    {
+        "keys": ["super+d"],
+        "command": "duplicate_line"
+    },
+    {
+        "keys": ["super+l"],
+        "command": "run_macro_file",
+        "args": {
+            "file": "res://Packages/Default/Delete Line.sublime-macro"
+        }
+    },
+    {
+        "keys": ["super+t"],
+        "command": "new_file"
+    },
+    {
+        "keys": ["super+n"],
+        "command": "find_next"
+    },
+    {
+        "keys": ["super+shift+n"],
+        "command": "find_prev"
+    },
+    {
+        "keys": ["alt+up"],
+        "command": "swap_line_up"
+    },
+    {
+        "keys": ["alt+down"],
+        "command": "swap_line_down"
+    },
+    {
+        "keys": ["home"],
+        "command": "move_to",
+        "args": {
+            "to": "bol"
+        }
+    },
+    {
+        "keys": ["end"],
+        "command": "move_to",
+        "args": {
+            "to": "eol"
+        }
+    },
+    {
+        "keys": ["shift+end"],
+        "command": "move_to",
+        "args": {
+            "to": "eol",
+            "extend": true
+        }
+    },
+    {
+        "keys": ["shift+home"],
+        "command": "move_to",
+        "args": {
+            "to": "bol",
+            "extend": true
+        }
+    },
+    {
+        "keys": ["super+shift+forward_slash"],
+        "command": "toggle_comment",
+        "args": {
+            "block": true
+        }
+    },
+    {
+        "keys": ["super+pagedown"],
+        "command": "goto_definition"
+    },
+    {
+        "keys": ["super+pageup"],
+        "command": "goto_reference"
+    },
+    {
+        "keys": ["super+home"],
+        "command": "jump_back"
+    },
+    {
+        "keys": ["super+end"],
+        "command": "jump_forward"
+    },
+    {
+        "keys": ["super+_"],
+        "command": "show_panel",
+        "args": {
+            "panel": "console",
+            "toggle": true
+        }
+    },
+    {
+        "keys": ["super+k", "super+l"],
+        "command": "sublime_linter_lint"
+    },
+    {
+        "keys": ["super+k", "super+a"],
+        "command": "sublime_linter_panel_toggle"
+    },
+    {
+        "keys": ["super+e"],
+        "command": "sublime_linter_line_report"
+    },
+    {
+        "keys": ["super+k", "super+n"],
+        "command": "sublime_linter_goto_error",
+        "args": {
+            "direction": "next"
+        }
+    },
+    {
+        "keys": ["super+k", "super+p"],
+        "command": "sublime_linter_goto_error",
+        "args": {
+            "direction": "previous"
+        }
+    },
+    {
+        "keys": ["super+^"],
+        "command": "increase_font_size"
+    },
+    {
+        "keys": ["super+shift+e"],
+        "command": "lsp_goto_diagnostic",
+        "args": {
+            "uri": "$view_uri"
+        }
+    },
+    {
+        "keys": ["super+pagedown"],
+        "command": "lsp_symbol_definition",
+        "args": {
+            "side_by_side": false,
+            "force_group": true,
+            "fallback": false,
+            "group": -1
+        },
+        "context": [{
+                "key": "lsp.session_with_capability",
+                "operand": "definitionProvider"
+            },
+            {
+                "key": "auto_complete_visible",
+                "operand": false
+            }
+        ]
+    },
+    {
+        "keys": ["super+pageup"],
+        "command": "lsp_symbol_references",
+        "args": {
+            "side_by_side": false,
+            "force_group": true,
+            "fallback": false,
+            "group": -1,
+            "include_declaration": false
+        },
+        "context": [{
+            "key": "lsp.session_with_capability",
+            "operand": "referencesProvider"
+        }]
+    },
+    {
+        "keys": ["super+shift+a"],
+        "command": "lsp_code_actions",
+        "context": [{
+            "key": "lsp.session_with_capability",
+            "operand": "codeActionProvider"
+        }]
+    },
 ]
