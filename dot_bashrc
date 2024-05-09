@@ -229,8 +229,8 @@ else
 fi
 
 chezmoi_bash="${HOME}/.local/share/chezmoi/scripts/bash"
-[ -f "$chezmoi_bash" ] || chezmoi_bash="/c/Users/*/.local/share/chezmoi/scripts/bash"
-if [ -f "$chezmoi_bash" ]; then
+[ -f $chezmoi_bash ] || chezmoi_bash="/c/Users/*/.local/share/chezmoi/scripts/bash"
+if [ -f $chezmoi_bash ]; then
     . "$chezmoi_bash"
 fi
 
