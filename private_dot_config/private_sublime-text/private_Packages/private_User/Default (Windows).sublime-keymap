@@ -1,22 +1,158 @@
-[
-	{ "keys": ["ctrl+left"], "command": "prev_view" },
-	{ "keys": ["ctrl+right"], "command": "next_view" },
-	{ "keys": ["ctrl+r"], "command": "show_panel", "args": {"panel": "replace", "reverse": false} },
-	{ "keys": ["ctrl+d"], "command": "duplicate_line" },
-	{ "keys": ["ctrl+l"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
-	{ "keys": ["ctrl+t"], "command": "new_file" },
-	{ "keys": ["ctrl+n"], "command": "find_next" },
-	{ "keys": ["ctrl+shift+n"], "command": "find_prev" },
-	{ "keys": ["alt+up"], "command": "swap_line_up" },
-	{ "keys": ["alt+down"], "command": "swap_line_down" },
-	{ "keys": ["ctrl+pagedown"], "command": "goto_definition" },
-	{ "keys": ["ctrl+pageup"], "command": "goto_reference" },
-	{ "keys": ["ctrl+home"], "command": "jump_back" },
-	{ "keys": ["ctrl+end"], "command": "jump_forward" },
-	{ "keys": ["alt+backspace"], "command": "delete_word", "args": { "forward": false } },
-	{ "keys": ["alt+shift+backspace"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete to Hard BOL.sublime-macro"} },
-	{ "keys": ["alt+delete"], "command": "delete_word", "args": { "forward": true } },
-	{ "keys": ["alt+shift+delete"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete to Hard EOL.sublime-macro"} },
-	{ "keys": ["ctrl+\\"], "command": "show_panel", "args": {"panel": "console", "toggle": true} },
-	{ "keys": ["ctrl+e"], "command": "sublime_linter_line_report" }
+// Linuxのコピペ
+[{
+        "keys": ["ctrl+left"],
+        "command": "prev_view"
+    },
+    {
+        "keys": ["ctrl+right"],
+        "command": "next_view"
+    },
+    {
+        "keys": ["ctrl+r"],
+        "command": "show_panel",
+        "args": {
+            "panel": "replace",
+            "reverse": false
+        }
+    },
+    {
+        "keys": ["ctrl+d"],
+        "command": "duplicate_line"
+    },
+    {
+        "keys": ["ctrl+l"],
+        "command": "run_macro_file",
+        "args": {
+            "file": "res://Packages/Default/Delete Line.sublime-macro"
+        }
+    },
+    {
+        "keys": ["ctrl+t"],
+        "command": "new_file"
+    },
+    {
+        "keys": ["ctrl+n"],
+        "command": "find_next"
+    },
+    {
+        "keys": ["ctrl+shift+n"],
+        "command": "find_prev"
+    },
+    {
+        "keys": ["alt+up"],
+        "command": "swap_line_up"
+    },
+    {
+        "keys": ["alt+down"],
+        "command": "swap_line_down"
+    },
+    {
+        "keys": ["ctrl+pagedown"],
+        "command": "goto_definition"
+    },
+    {
+        "keys": ["ctrl+pageup"],
+        "command": "goto_reference"
+    },
+    {
+        "keys": ["ctrl+home"],
+        "command": "jump_back"
+    },
+    {
+        "keys": ["ctrl+end"],
+        "command": "jump_forward"
+    },
+    {
+        "keys": ["alt+backspace"],
+        "command": "delete_word",
+        "args": {
+            "forward": false
+        }
+    },
+    {
+        "keys": ["alt+shift+backspace"],
+        "command": "run_macro_file",
+        "args": {
+            "file": "res://Packages/Default/Delete to Hard BOL.sublime-macro"
+        }
+    },
+    {
+        "keys": ["alt+delete"],
+        "command": "delete_word",
+        "args": {
+            "forward": true
+        }
+    },
+    {
+        "keys": ["alt+shift+delete"],
+        "command": "run_macro_file",
+        "args": {
+            "file": "res://Packages/Default/Delete to Hard EOL.sublime-macro"
+        }
+    },
+    {
+        "keys": ["ctrl+\\"],
+        "command": "show_panel",
+        "args": {
+            "panel": "console",
+            "toggle": true
+        }
+    },
+    {
+        "keys": ["ctrl+e"],
+        "command": "sublime_linter_line_report"
+    },
+    {
+        "keys": ["ctrl+^"],
+        "command": "increase_font_size"
+    },
+    {
+        "keys": ["ctrl+shift+e"],
+        "command": "lsp_goto_diagnostic",
+        "args": {
+            "uri": "$view_uri"
+        }
+    },
+    {
+        "keys": ["ctrl+pagedown"],
+        "command": "lsp_symbol_definition",
+        "args": {
+            "side_by_side": false,
+            "force_group": true,
+            "fallback": false,
+            "group": -1
+        },
+        "context": [{
+                "key": "lsp.session_with_capability",
+                "operand": "definitionProvider"
+            },
+            {
+                "key": "auto_complete_visible",
+                "operand": false
+            }
+        ]
+    },
+    {
+        "keys": ["ctrl+pageup"],
+        "command": "lsp_symbol_references",
+        "args": {
+            "side_by_side": false,
+            "force_group": true,
+            "fallback": false,
+            "group": -1,
+            "include_declaration": false
+        },
+        "context": [{
+            "key": "lsp.session_with_capability",
+            "operand": "referencesProvider"
+        }]
+    },
+    {
+        "keys": ["ctrl+shift+a"],
+        "command": "lsp_code_actions",
+        "context": [{
+            "key": "lsp.session_with_capability",
+            "operand": "codeActionProvider"
+        }]
+    },
 ]
