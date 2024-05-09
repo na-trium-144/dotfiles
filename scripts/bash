@@ -59,7 +59,9 @@ if [ "${_uname}" = "MINGW64_NT" ]; then
 	
 	# lnj a b で mklink /j b a をする
 	function lnj() {
-		echo "mklink /j $(cygpath -w $2) $(cygpath -w $1)&& exit" | cmd
+		local p2=$(cygpath -w "$2")
+		local p1=$(cygpath -w "$1")
+		echo "mklink /j \"$p2\" \"$p1\"&& exit" | cmd
 	}
 	function open() {
 		explorer $(cygpath -w $1)
