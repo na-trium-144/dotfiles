@@ -2,7 +2,6 @@
 Library
 {{ end }}
 {{ if ne .chezmoi.os "windows" }}
-AppData
 .minttyrc
 {{ end }}
 README.md

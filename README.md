@@ -3,14 +3,16 @@
 for Ubuntu, Arch Linux, MacOS, Windows(MSYS2)
 
 ```bash
-sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-trium-144
+sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-trium-144 --destination $HOME
 ```
 
 * MSYS2の場合は
 	* chezmoiインストール前に
 		* `pacman -S unzip`
 		* `pacman -S git`または[git-for-windowsをインストール](https://github.com/git-for-windows/git/wiki/Install-inside-MSYS2-proper)
-		* 環境変数にMSYS2_PATH_TYPE=inherit, HOME=C:\Users\ユーザー名
+		* 環境変数にMSYS2_PATH_TYPE=inherit
+	* HOMEはmsys側においてもいいが、それでもchezmoiのファイルは/c/Users側に置かれてしまう?
+	* sublimeの設定ファイル `lnj ~/.config/sublime-text/Packages/User '/c/Users/ユーザー名/AppData/Roaming/Sublime Text/Packages/User'`
 * Macでは`brew install bash`で新しいbashが必要
 
 ## Contents
