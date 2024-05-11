@@ -2,7 +2,6 @@
 	"bootstrapped": true,
 	"in_process_packages":
 	[
-		"SublimeLinter",
 	],
 	"installed_packages":
 	[
@@ -26,6 +25,7 @@
 		"SublimeLinter-flake8",
 		"SublimeLinter-mypy",
 		"SublimeLinter-pylint",
+		"SublimeLinter-ruby",
 		"TOML",
 	],
 }
