@@ -1,7 +1,7 @@
 #!/bin/sh
 # clangdはインストールしない
 if type apt-get; then
-	sudo apt-get install -y cppcheck tidy ruby
+	sudo apt-get install -y cppcheck tidy ruby python3-venv
 elif type brew; then
 	brew install cppcheck ruby
 fi

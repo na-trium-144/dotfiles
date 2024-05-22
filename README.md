@@ -15,6 +15,9 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 	* sublimeの設定ファイル `lnj ~/.config/sublime-text/Packages/User '/c/Users/ユーザー名/AppData/Roaming/Sublime Text/Packages/User'`
 * Macでは`brew install bash`で新しいbashが必要
 
+## ToDo
+* pipではなくできるだけapt/brewを使うようにしたほうがいいのでは...
+
 ## Contents
 ### bash
 * ubuntuのデフォルトbashrcベース
@@ -73,7 +76,7 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 	* nvm, npm, [git-user](https://github.com/geongeorge/Git-User-Switch)
 	* その他 pyenv, ~~pipenv~~, poetry
 * misc3.sh: メインの開発環境用
-	* システムに cppcheck, tidy
+	* システムに cppcheck, tidy, python3-venv
 	* pipで black, pylint, cmakelint, clang-format, mypy
 	* npmで js-beautify, prettier
 * chsh.sh: mac用 デフォルトシェルをbrewのbashに変更
