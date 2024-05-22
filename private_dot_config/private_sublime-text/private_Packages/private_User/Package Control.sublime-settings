@@ -12,6 +12,7 @@
 		"Formatter",
 		"LSP",
 		"LSP-clangd",
+		"LSP-pylsp",
 		"LSP-rust-analyzer",
 		"LSP-typescript",
 		"LSP-yaml",
