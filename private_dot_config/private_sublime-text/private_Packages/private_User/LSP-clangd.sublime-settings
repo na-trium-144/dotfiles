@@ -1,0 +1,8 @@
+// Settings in here override those in "LSP-clangd/LSP-clangd.sublime-settings"
+{
+    "initializationOptions": {
+        "clangd.completion-style": "bundled",
+        "clangd.function-arg-placeholders": false,
+        "clangd.header-insertion": "never",
+    }
+}
