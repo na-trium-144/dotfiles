@@ -7,6 +7,8 @@ alias g++="g++ -std=c++17 -Wall -Wextra -Wconversion -pedantic"
 alias eagle='export LIBGL_ALWAYS_SOFTWARE=1 && QTWEBENGINE_CHROMIUM_FLAGS="--ignore-gpu-blacklist" LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libxcb-dri3.so.0 /usr/local/eagle-9.6.2/eagle'
 alias exa="exa --git --group-directories-first --color=auto"
 
+alias no-pyenv="export PATH=$(echo $PATH | sed 's!/[^:]*/.pyenv/[^:]*:!!g')"
+
 # linuxのコンソール用 絵文字プロンプトを無効にし言語も英語にする
 alias cbash="LANG=C bash"
 
