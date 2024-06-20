@@ -227,6 +227,8 @@ else
     esac
 fi
 
+echo ${_hostname} | grep kou- >/dev/null 2>&1 || export __is_vm=1
+
 chezmoi_bash="${HOME}/.local/share/chezmoi/scripts/bash"
 [ -f $chezmoi_bash ] || chezmoi_bash=$(echo /c/Users/*/.local/share/chezmoi/scripts/bash)
 if [ -f $chezmoi_bash ]; then
