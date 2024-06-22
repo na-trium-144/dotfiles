@@ -157,18 +157,31 @@ function _dirs_state(){
 	local _dirs_c=$(($(dirs -p | wc -l) - 1))
 	[[ $_dirs_c != 0 ]] && echo "^${_dirs_c}"
 }
-_code=
-function _set_code(){
-	_code=$?
-	[[ $_code = 0 ]] && _code=
-}
 if [ -d /dev/shm ]; then
+    __prompt_time_file=/dev/shm/kou-pt
     __git_ps1_file=/dev/shm/kou-git
 elif [ -d /tmp ]; then
+    __prompt_time_file=/tmp/kou-pt
     __git_ps1_file=/tmp/kou-git
 else
+    __prompt_time_file="$HOME/.kou-pt"
     __git_ps1_file="$HOME/.kou-git"
 fi
+function _start_timer() {
+	[[ -s $__prompt_time_file ]] || date +%s >$__prompt_time_file
+}
+_code=
+_time=
+function _set_code(){
+	local _code_num=$?
+	_code=
+	[[ $_code_num = 0 ]] || _code=" ${_code_num} "
+	local _time_s=0
+	[[ -e $__prompt_time_file ]] && _time_s=$(($(date +%s) - $(cat $__prompt_time_file)))
+	_time=
+	[[ $_time_s > 5 ]] && _time=" ${_time_s}s "
+	true >$__prompt_time_file
+}
 __git_ps1_timeout=2
 function __git_ps1_async(){
 	if [[ "$__git_ps1_timeout" != "0" ]]; then
@@ -181,6 +194,7 @@ function __git_ps1_async(){
 	fi
 }
 export PROMPT_COMMAND=_set_code # 他のps1のコマンドより先に実行しないといけない
+trap '_start_timer' DEBUG # コマンド実行前に実行
 
 export LANG=${LANG:-"C.utf8"}
 if [ $LANG != C ]; then
@@ -197,7 +211,7 @@ if [ $LANG != C ]; then
 	PS1_DIRS='\[\033[0;107;36m\]$(_dirs_state)'
 	PS1_GIT='\[\033[0;107;32m\]$(__git_ps1_async) '
 	PS1_FACE='\[\033[0;107;33m\]'${FACE}
-	PS1_NUM='\[\033[0;107;31m\]${_code}\[\033[0;107;32m\] #\#'
+	PS1_NUM='\[\033[0;107;31m\] ${_code}${_time}\[\033[0;107;32m\]#\#'
 	PS1_END='\[\033[0;97m\]\[\033[0m\] '
 	if [ "${_hostname}" = "kou-RPi3" ]; then
         FACE='kou- '
@@ -209,7 +223,7 @@ if [ $LANG != C ]; then
 		PS1_END='\[\033[0m\] '
 		PS1_DIR='\[\033[1;107;36m\]\W'
     fi
-	PS1="$PS1_TIT$PS1_CHROOT$PS1_HOST$PS1_DIR$PS1_DIRS$PS1_GIT$PS1_FACE$PS1_END"
+	PS1="$PS1_TIT$PS1_CHROOT$PS1_HOST$PS1_DIR$PS1_DIRS$PS1_GIT$PS1_FACE$PS1_NUM$PS1_END"
 else
     if [ "$color_prompt" = yes ]; then
         # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[1;31m\]$(__git_ps1)\[\033[00m\]\$ '

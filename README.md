@@ -6,6 +6,7 @@ for Ubuntu, Arch Linux, MacOS, Windows(MSYS2)
 sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-trium-144 --destination $HOME
 ```
 
+* bashが使う一時ファイルの場所を変えたい場合は`__git_ps1_file`と`__prompt_time_file`を変更
 * MSYS2の場合は
 	* chezmoiインストール前に
 		* `pacman -S unzip`
@@ -26,7 +27,6 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 * git_ps1
 	* dirtystate, stashstate, upstreamがオン
 	* 2秒のタイムアウト機能付き
-		* __git_ps1の結果を一時的に/dev/shmや/tmpに置くが他の場所にしたい場合`__git_ps1_file`を変更
 * ps1(プロンプト)の変更
 	* hostnameごとに顔文字を追加
 	* pushdした数を表示
