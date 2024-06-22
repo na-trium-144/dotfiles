@@ -35,7 +35,7 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 
 ### tmux
 * prefixはctrl-j, alt-/
-	* ssh内、docker内、環境変数`__is_vm`がある場合はctrl-b
+	* ssh内または環境変数`__is_vm`が1の場合はctrl-b
 * `$TERM`は`xterm-256color`なのでvimとかはバグるかも?
 * [tpm](https://github.com/tmux-plugins/tpm)
 	* [extrakto](https://github.com/laktak/extrakto)
