@@ -6,7 +6,7 @@ for Ubuntu, Arch Linux, MacOS, Windows(MSYS2)
 sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-trium-144 --destination $HOME
 ```
 
-* bashが使う一時ファイルの場所を変えたい場合は`__git_ps1_file`と`__prompt_time_file`を変更
+* bashが使う一時ファイルの場所を変えたい場合は`__git_ps1_file`を変更(.bash_aliasesに書く)
 * MSYS2の場合は
 	* chezmoiインストール前に
 		* `pacman -S unzip`

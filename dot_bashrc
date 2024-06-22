@@ -158,29 +158,27 @@ function _dirs_state(){
 	[[ $_dirs_c != 0 ]] && echo "^${_dirs_c}"
 }
 if [ -d /dev/shm ]; then
-    __prompt_time_file=/dev/shm/kou-pt
     __git_ps1_file=/dev/shm/kou-git
 elif [ -d /tmp ]; then
-    __prompt_time_file=/tmp/kou-pt
     __git_ps1_file=/tmp/kou-git
 else
-    __prompt_time_file="$HOME/.kou-pt"
     __git_ps1_file="$HOME/.kou-git"
 fi
-function _start_timer() {
-	[[ -s $__prompt_time_file$$ ]] || date +%s >$__prompt_time_file$$
-}
 _code=
 _time=
+_time_start=
+function _start_timer() {
+	[[ "$_time_start" = "" ]] && _time_start=$(date +%s)
+}
 function _set_code(){
 	local _code_num=$?
 	_code=
 	[[ $_code_num = 0 ]] || _code=" ${_code_num} "
 	local _time_s=0
-	[[ -s $__prompt_time_file$$ ]] && _time_s=$(($(date +%s) - $(cat $__prompt_time_file$$)))
+	[[ "$_time_start" = "" ]] || _time_s=$(($(date +%s) - $_time_start))
 	_time=
 	(( $_time_s > 5 )) && _time=" ${_time_s}s "
-	true >$__prompt_time_file$$
+	_time_start=
 }
 __git_ps1_timeout=2
 function __git_ps1_async(){
