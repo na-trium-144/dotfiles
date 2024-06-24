@@ -153,46 +153,52 @@ GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUPSTREAM="verbose"
 
-function _dirs_state(){
+function __dirs_state(){
 	local _dirs_c=$(($(dirs -p | wc -l) - 1))
 	[[ $_dirs_c != 0 ]] && echo "^${_dirs_c}"
 }
 if [ -d /dev/shm ]; then
-    __git_ps1_file=/dev/shm/kou-git
+	_tmp=/dev/shm
 elif [ -d /tmp ]; then
-    __git_ps1_file=/tmp/kou-git
+	_tmp=/tmp
 else
-    __git_ps1_file="$HOME/.kou-git"
+	_tmp="$HOME"
 fi
+function __prompt_time_file(){ echo ${__prompt_time_file:-$_tmp/.kou-tp$$}; }
+function __git_ps1_file(){ echo ${__git_ps1_file:-$_tmp/.kou-git}; }
 _code=
 _time=
-_time_start=
-function _start_timer() {
-	[[ "$_time_start" = "" ]] && _time_start=$(date +%s)
+function __start_timer() {
+	local _prompt_time_file=$(__prompt_time_file)
+	[[ -s $_prompt_time_file ]] || date +%s >$_prompt_time_file
 }
-function _set_code(){
+function __set_code(){
 	local _code_num=$?
 	_code=
 	[[ $_code_num = 0 ]] || _code=" ${_code_num} "
 	local _time_s=0
-	[[ "$_time_start" = "" ]] || _time_s=$(($(date +%s) - $_time_start))
+	local _prompt_time_file=$(__prompt_time_file)
+	[[ -s $_prompt_time_file ]] && _time_s=$(($(date +%s) - $(cat $_prompt_time_file)))
 	_time=
 	(( $_time_s > 5 )) && _time=" ${_time_s}s "
-	_time_start=
+}
+function __clear_timer(){
+	true >$(__prompt_time_file)
 }
 __git_ps1_timeout=2
 function __git_ps1_async(){
 	if [[ "$__git_ps1_timeout" != "0" ]]; then
 		sleep $__git_ps1_timeout & local tp=$!
-		(__git_ps1 | sed "s/(\\(.*\\))/(\\1 @$(git config user.name))/" >$__git_ps1_file; kill -9 $tp) >/dev/null 2>&1 &
+		local _git_ps1_file=$(__git_ps1_file)
+		(__git_ps1 | sed "s/(\\(.*\\))/(\\1 @$(git config user.name))/" >$_git_ps1_file; kill -9 $tp) >/dev/null 2>&1 &
 		#local tp2=$!
 		wait $tp
-		cat $__git_ps1_file
+		cat $_git_ps1_file
 		#kill -2 $tp2 2>/dev/null &
 	fi
 }
-export PROMPT_COMMAND=_set_code # 他のps1のコマンドより先に実行しないといけない
-trap '_start_timer' DEBUG # コマンド実行前に実行
+export PROMPT_COMMAND="__set_code" # 他のps1のコマンドより先に実行しないといけない
+trap '__start_timer' DEBUG # コマンド実行前に実行
 
 export LANG=${LANG:-"C.utf8"}
 if [ $LANG != C ]; then
@@ -206,10 +212,10 @@ if [ $LANG != C ]; then
 	PS1_CHROOT='${debian_chroot:+($debian_chroot)}'
 	PS1_HOST='\[\033[1;107;31m\]\h\[\033[0;107m\]:'
 	PS1_DIR='\[\033[1;107;36m\]\w'
-	PS1_DIRS='\[\033[0;107;36m\]$(_dirs_state)'
+	PS1_DIRS='\[\033[0;107;36m\]$(__dirs_state)'
 	PS1_GIT='\[\033[0;107;32m\]$(__git_ps1_async) '
 	PS1_FACE='\[\033[0;107;33m\]'${FACE}
-	PS1_NUM='\[\033[0;107;31m\] ${_code}${_time}\[\033[0;107;32m\]#\#'
+	PS1_NUM='\[\033[0;107;31m\] ${_code}${_time}$(__clear_timer)\[\033[0;107;32m\]#\#'
 	PS1_END='\[\033[0;97m\]\[\033[0m\] '
 	if [ "${_hostname}" = "kou-RPi3" ]; then
         FACE='kou- '
@@ -217,7 +223,7 @@ if [ $LANG != C ]; then
         PS1_HOST='\[\033[1;107;31m\]'${FACE}'\[\033[0;107m\]:'
     fi
     if [ -n "$MC_SID" ]; then
-		PS1_HOST='\033[0;107m󰖔 \[\033[1;107;31m\]\h\[\033[0;107m\]:'
+		PS1_HOST='\[\033[0;107m\]󰖔 \[\033[1;107;31m\]\h\[\033[0;107m\]:'
 		# PS1_END='\[\033[0m\] '
 		# PS1_DIR='\[\033[1;107;36m\]\W'
     fi
