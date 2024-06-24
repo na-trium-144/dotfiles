@@ -6,7 +6,7 @@ for Ubuntu, Arch Linux, MacOS, Windows(MSYS2)
 sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-trium-144 --destination $HOME
 ```
 
-* bashが使う一時ファイルの場所を変えたい場合は`__tmp=$HOME`などとする(.bash_aliasesに書く)
+* bashが使う一時ファイルの場所を変えたい場合は`_tmp=$HOME`などとする(.bash_aliasesに書く)
 * MSYS2の場合は
 	* chezmoiインストール前に
 		* `pacman -S unzip`
@@ -30,8 +30,11 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 * ps1(プロンプト)の変更
 	* hostnameごとに顔文字を追加
 	* pushdした数を表示
+	* 直前のコマンドの終了コードを表示(0でない場合)
+	* 直前のコマンドの実行時間を表示(5秒以上の場合)
+	* .bashrcを読み込んだときにこのdotfilesのコミット数を表示
 * 共通のaliasはscripts/bashに記述
-* .bash_aliasesはchezmoi管理しないので環境特有の設定を置く(aliasではない)
+* .bash_aliasesはchezmoi管理しないので環境特有の設定を置く(aliasではないものも含む)
 
 ### tmux
 * prefixはctrl-j, alt-/
@@ -42,8 +45,8 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 	* [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect)
 	* [tmux-continuum](https://github.com/tmux-plugins/tmux-continuum)
 * prefix +
-	* y: capture-pane → デフォルトのbuffer & clipboard
-	* u: save-buffer
+	* y: capture-pane → デフォルトのbuffer & OSのclipboard
+	* u: save-buffer to file
 	* N: new-session
 	* Tab: extrakto (画面右上)
 		* msysだとバグる...
@@ -59,6 +62,9 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 	* `cbash` LANG=Cにし、nerd fontのプロンプトなどをオフにする
 	* `cdpeco`, `pdpeco` fdでディレクトリを列挙→pecoで選択→cdまたはpushd
 	* `diffl a b > c` aとbをマージしたファイルを生成 
+	* `pd`=`pushd`
+		* popdはpopd
+	* `tb 文字列` でtmuxのバッファとOSのクリップボードにコピー、`tb` でバッファの内容を出力
 	* MSYS2環境で
 		* `syspath (command...)` PATHからmsysを消してコマンドを実行
 		* `vsdevcmd22` VisualStudio2022のDeveloper Command Promptをひらく
