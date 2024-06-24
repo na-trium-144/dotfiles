@@ -58,10 +58,10 @@ alias pd=pushd
 # tmuxのバッファにコピー/読み込み
 function tb(){
 	if [[ $# > 0 ]]; then
-		echo "$@" | tmux load-buffer -
 		[[ "${_uname}" = "Linux" ]] && echo "$@" | xclip -selection clipboard -i
 		[[ "${_uname}" = "Darwin" ]] && echo "$@" | pbcopy
 		[[ "${_uname}" = "MINGW64_NT" ]] && echo "$@" | sh -c "iconv -f utf-8 -t cp932 | clip"
+		echo "$@" | tmux load-buffer -
 	else
 		tmux save-buffer -
 	fi
