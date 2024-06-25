@@ -1,17 +1,3 @@
-echo -e -n '\033[0;107m  '
-echo -e -n '\033[0;107;32m '
-pushd `dirname "${BASH_SOURCE[0]}"` >/dev/null
-echo    -n `git log --oneline | wc -l`
-if [ -e "$HOME/.utils" ]; then
-	echo -e -n '\033[0;107m  '
-	echo -e -n '\033[0;107;31m󰍁  '
-	echo -e -n '\033[0;107;35m '
-	cd "$HOME/.utils"
-	echo    -n `git log --oneline | wc -l`
-fi
-popd >/dev/null
-echo -e '\033[K\033[0m'
-
 type nano 1>/dev/null 2>&1 && alias snano="sudo $(which nano) -f $HOME/.nanorc"
 type micro 1>/dev/null 2>&1 && alias smicro="sudo MICRO_CONFIG_HOME=$HOME/.config/micro $(which micro)"
 type git 1>/dev/null 2>&1 && alias sgit="sudo PATH=\"${PATH}\" HOME=\"$HOME\" $(which git)"

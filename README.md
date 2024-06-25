@@ -24,17 +24,9 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 * ubuntuのデフォルトbashrcベース
 * pathの設定(.local/bin, pyenv, nvm, fzf(使ってないけど), cargo, ruby)
 * macの場合homebrewのパス, sublime textのパス, bash_completionの設定など
-* git_ps1
-	* dirtystate, stashstate, upstreamがオン
-	* 2秒のタイムアウト機能付き
-* ps1(プロンプト)の変更
-	* hostnameごとに顔文字を追加
-	* pushdした数を表示
-	* 直前のコマンドの終了コードを表示(0でない場合)
-	* 直前のコマンドの実行時間を表示(5秒以上の場合)
-	* .bashrcを読み込んだときにこのdotfilesのコミット数を表示
-* 共通のaliasはscripts/bashに記述
-* .bash_aliasesはchezmoi管理しないので環境特有の設定を置く(aliasではないものも含む)
+* 共通のaliasは scripts/aliases.sh に記述
+* PS1は scripts/ps1.sh
+* .bash_aliases はchezmoi管理しないので環境特有の設定を置く(aliasではないものも含む)
 
 ### tmux
 * prefixはctrl-j, alt-/
@@ -58,7 +50,7 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 	* nerd fontが必要
 
 ### scripts
-* bash: bashのalias, functionなど
+* aliases.sh: bashのalias, functionなど
 	* `cbash` LANG=Cにし、nerd fontのプロンプトなどをオフにする
 	* `cdpeco`, `pdpeco` fdでディレクトリを列挙→pecoで選択→cdまたはpushd
 	* `diffl a b > c` aとbをマージしたファイルを生成 
@@ -71,6 +63,16 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 		* `vsdevcmd19` VisualStudio2019
 		* `lnj` フォルダのシンボリックリンクを作成(`mklink /j`)
 		* `open (path)` ファイルorフォルダを(パスを変換して)explorerで開く
+* ps1.sh
+	* git_ps1
+		* dirtystate, stashstate, upstreamがオン
+		* 2秒のタイムアウト機能付き
+	* ps1(プロンプト)の変更
+		* hostnameごとに顔文字を追加
+		* pushdした数を表示
+		* 直前のコマンドの終了コードを表示(0でない場合)
+		* 直前のコマンドの実行時間を表示(5秒以上の場合)
+		* .bashrcを読み込んだときにこのdotfilesのコミット数を表示
 * tmux.ps.py: tmuxのステータスで使用 現在のjob数とプロセス数を表示
 
 ### utils

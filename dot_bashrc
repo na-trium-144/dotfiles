@@ -8,18 +8,38 @@ case $- in
       *) return;;
 esac
 
+# env check
+_hostname=$(hostname)
+_uname=$(uname) # Darwin, Linux, MINGW64_NT_*
+echo "${_uname}" | grep MINGW64 >/dev/null && _uname=MINGW64_NT
+export LANG=${LANG:-"C.utf8"} # "C" or "C.utf8" or other
+_chezmoi_root="${HOME}/.local/share/chezmoi"
+[[ -f $_chezmoi_root ]] || _chezmoi_root=$(echo /c/Users/*/.local/share/chezmoi)
+[[ -f $_chezmoi_root ]] || echo "chezmoi root not found!"
+
+# PATH
 export PATH="${PATH}:${HOME}/.robotech/bin"
 export PATH="${HOME}/.local/bin:${PATH}"
-
-_hostname=$(hostname)
-_uname=$(uname)
-# Darwin, Linux, MINGW64_NT_*
-echo "${_uname}" | grep MINGW64 >/dev/null && _uname=MINGW64_NT
-
-if [ "${_uname}" = "Darwin" ]; then
+if [[ "${_uname}" = "Darwin" ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
-    export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
     export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+fi
+export PATH="${HOME}/.pyenv/bin:$PATH"
+if type pyenv >/dev/null 2>&1; then
+    eval "$(pyenv init --path)"
+    # eval "$(pyenv virtualenv-init -)"
+fi
+export PIPENV_VENV_IN_PROJECT=1
+[[ -d "$HOME/.nvm" ]] && export NVM_DIR="$HOME/.nvm"
+[[ -d "$XDG_CONFIG_HOME/nvm" ]] && export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+[[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
+if [ -d "$HOME/.asdf" ]; then
+    . "$HOME/.asdf/asdf.sh"
+    . "$HOME/.asdf/completions/asdf.bash"
 fi
 
 # automatically start tmux
@@ -76,8 +96,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+# if [ -x /usr/bin/dircolors ]; then
+    # test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+if [ "$color_prompt" = yes ]; then
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
@@ -91,13 +112,13 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+# alias ll='ls -alF'
+# alias la='ls -A'
+# alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+# alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -119,115 +140,15 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ "${_uname}" = "Darwin" ]; then
+if [[ "${_uname}" = "Darwin" ]]; then
     [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
     source /opt/homebrew/etc/bash_completion.d/*
 fi
-[ -e ~/.git-prompt.sh ] && source ~/.git-prompt.sh
-[ -e ~/.git-completion.bash ] && source ~/.git-completion.bash
+[[ -e ~/.git-prompt.sh ]] && source ~/.git-prompt.sh
+[[ -e ~/.git-completion.bash ]] && source ~/.git-completion.bash
 
-export PATH="${HOME}/.pyenv/bin:$PATH"
-if type pyenv >/dev/null 2>&1; then
-    eval "$(pyenv init --path)"
-    # eval "$(pyenv virtualenv-init -)"
-fi
-
-export PIPENV_VENV_IN_PROJECT=1
-
-[ -d "$HOME/.nvm" ] && export NVM_DIR="$HOME/.nvm"
-[ -d "$XDG_CONFIG_HOME/nvm" ] && export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
-
-if [ -d "$HOME/.asdf" ]; then
-	. "$HOME/.asdf/asdf.sh"
-	. "$HOME/.asdf/completions/asdf.bash"
-fi
-
-GIT_PS1_SHOWDIRTYSTATE=true
-GIT_PS1_SHOWSTASHSTATE=true
-GIT_PS1_SHOWUPSTREAM="verbose"
-
-function __dirs_state(){
-	local _dirs_c=$(($(dirs -p | wc -l) - 1))
-	[[ $_dirs_c != 0 ]] && echo "^${_dirs_c}"
-}
-if [ -d /dev/shm ]; then
-	_tmp=/dev/shm
-elif [ -d /tmp ]; then
-	_tmp=/tmp
-else
-	_tmp="$HOME"
-fi
-function __prompt_time_file(){ echo ${__prompt_time_file:-$_tmp/.kou-tp$$}; }
-function __git_ps1_file(){ echo ${__git_ps1_file:-$_tmp/.kou-git}; }
-_code=
-_time=
-function __start_timer() {
-	local _prompt_time_file=$(__prompt_time_file)
-	[[ -s $_prompt_time_file ]] || date +%s >$_prompt_time_file
-}
-function __set_code(){
-	local _code_num=$?
-	_code=
-	[[ $_code_num = 0 ]] || _code=" ${_code_num} "
-	local _time_s=0
-	local _prompt_time_file=$(__prompt_time_file)
-	[[ -s $_prompt_time_file ]] && _time_s=$(($(date +%s) - $(cat $_prompt_time_file)))
-	_time=
-	(( $_time_s > 5 )) && _time=" ${_time_s}s "
-}
-function __clear_timer(){
-	true >$(__prompt_time_file)
-}
-__git_ps1_timeout=2
-function __git_ps1_async(){
-	if [[ "$__git_ps1_timeout" != "0" ]]; then
-		sleep $__git_ps1_timeout & local tp=$!
-		local _git_ps1_file=$(__git_ps1_file)
-		(__git_ps1 | sed "s/(\\(.*\\))/(\\1 @$(git config user.name))/" >$_git_ps1_file; kill -9 $tp) >/dev/null 2>&1 &
-		#local tp2=$!
-		wait $tp
-		cat $_git_ps1_file
-		#kill -2 $tp2 2>/dev/null &
-	fi
-}
-export PROMPT_COMMAND="__set_code" # 他のps1のコマンドより先に実行しないといけない
-trap '__start_timer' DEBUG # コマンド実行前に実行
-
-export LANG=${LANG:-"C.utf8"}
-if [ $LANG != C ]; then
-    FACE=
-    [ "${_hostname}" = "kou-RockLM" ] && FACE='ε=ヾ(・∀ ・)ﾉ'
-    [ "${_hostname}" = "kou-Rock11" ] && FACE='(9 ･ω･)9 ' # あとでかえる?
-    [ "${_hostname}" = "kou-Ace" ] && FACE='(σ ･∀ ･)σ '
-    [ "${_hostname}" = "kou-MAir.local" ] && FACE='･_･)φ_'
-    [ "${_hostname}" = "kou-Surf" ] && FACE='(9 ･ω･)9 '
-	PS1_TIT='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a\]'
-	PS1_CHROOT='${debian_chroot:+($debian_chroot)}'
-	PS1_HOST='\[\033[1;107;31m\]\h\[\033[0;107m\]:'
-	PS1_DIR='\[\033[1;107;36m\]\w'
-	PS1_DIRS='\[\033[0;107;36m\]$(__dirs_state)'
-	PS1_GIT='\[\033[0;107;32m\]$(__git_ps1_async) '
-	PS1_FACE='\[\033[0;107;33m\]'${FACE}
-	PS1_NUM='\[\033[0;107;31m\] ${_code}${_time}$(__clear_timer)\[\033[0;107;32m\]#\#'
-	PS1_END='\[\033[0;97m\]\[\033[0m\] '
-	if [ "${_hostname}" = "kou-RPi3" ]; then
-        FACE='kou- '
-        PS1_TIT='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a\]'
-        PS1_HOST='\[\033[1;107;31m\]'${FACE}'\[\033[0;107m\]:'
-    fi
-    if [ -n "$MC_SID" ]; then
-		PS1_HOST='\[\033[0;107m\]󰖔 \[\033[1;107;31m\]\h\[\033[0;107m\]:'
-		# PS1_END='\[\033[0m\] '
-		# PS1_DIR='\[\033[1;107;36m\]\W'
-    fi
-	PS1="$PS1_TIT$PS1_CHROOT$PS1_HOST$PS1_DIR$PS1_DIRS$PS1_GIT$PS1_FACE$PS1_NUM$PS1_END"
+if [[ $LANG != C && -f "$_chezmoi_root/scripts/ps1.sh" ]]; then
+    source "$_chezmoi_root/scripts/ps1.sh"
 else
     if [ "$color_prompt" = yes ]; then
         # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[1;31m\]$(__git_ps1)\[\033[00m\]\$ '
@@ -247,14 +168,5 @@ else
     esac
 fi
 
-echo ${_hostname} | grep kou- >/dev/null 2>&1 || export __is_vm=1
-
-chezmoi_bash="${HOME}/.local/share/chezmoi/scripts/bash"
-[ -f $chezmoi_bash ] || chezmoi_bash=$(echo /c/Users/*/.local/share/chezmoi/scripts/bash)
-if [ -f $chezmoi_bash ]; then
-    . "$chezmoi_bash"
-fi
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+[[ -f "$_chezmoi_root/scripts/aliases.sh" ]] && source "$_chezmoi_root/scripts/aliases.sh"
+[[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
