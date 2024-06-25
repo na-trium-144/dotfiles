@@ -14,8 +14,8 @@ _uname=$(uname) # Darwin, Linux, MINGW64_NT_*
 echo "${_uname}" | grep MINGW64 >/dev/null && _uname=MINGW64_NT
 export LANG=${LANG:-"C.utf8"} # "C" or "C.utf8" or other
 _chezmoi_root="${HOME}/.local/share/chezmoi"
-[[ -f $_chezmoi_root ]] || _chezmoi_root=$(echo /c/Users/*/.local/share/chezmoi)
-[[ -f $_chezmoi_root ]] || echo "chezmoi root not found!"
+[[ -d $_chezmoi_root ]] || _chezmoi_root=$(echo /c/Users/*/.local/share/chezmoi)
+[[ -d $_chezmoi_root ]] || echo "chezmoi root not found!"
 
 # PATH
 export PATH="${PATH}:${HOME}/.robotech/bin"
