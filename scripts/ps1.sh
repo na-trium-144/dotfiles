@@ -32,7 +32,7 @@ fi
 function __prompt_time_file(){ echo ${__prompt_time_file:-$_tmp/.kou-tp$$}; }
 function __git_ps1_file(){ echo ${__git_ps1_file:-$_tmp/.kou-git}; }
 for f in $_tmp/.kou-tp*; do
-	ps -q $(echo $f | sed 's/^.*[^0-9]\([0-9]*\)$/\1/') >/dev/null 2>&1 || rm $f
+	ps -p $(echo $f | sed 's/^.*[^0-9]\([0-9]*\)$/\1/') >/dev/null 2>&1 || rm $f
 done
 _code=
 _time=
