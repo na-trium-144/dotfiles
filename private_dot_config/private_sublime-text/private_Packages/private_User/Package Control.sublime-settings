@@ -28,6 +28,7 @@
 		"SublimeLinter-mypy",
 		"SublimeLinter-pylint",
 		"SublimeLinter-ruby",
+		"SublimeLinter-shellcheck",
 		"TOML",
 	],
 }
