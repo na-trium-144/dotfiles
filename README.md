@@ -29,8 +29,8 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 * .bash_aliases はchezmoi管理しないので環境特有の設定を置く(aliasではないものも含む)
 
 ### tmux
-* prefixはctrl-j, alt-/
-	* ssh内または環境変数`__is_vm`が1の場合はctrl-b
+* prefixは ctrl-j, alt-/
+	* ssh内または環境変数`__is_vm`が1の場合は ctrl-b, alt-.
 * `$TERM`は`xterm-256color`なのでvimとかはバグるかも?
 * [tpm](https://github.com/tmux-plugins/tpm)
 	* [extrakto](https://github.com/laktak/extrakto)
