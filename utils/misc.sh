@@ -23,7 +23,4 @@ fi
 #  https://doc.rust-lang.org/cargo/getting-started/installation.html
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 cargo install fd-find git-delta hexyl
-if ! [ -d ~/.tmux/plugins/tpm ]; then
-	mkdir -p ~/.tmux/plugins
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
+./tpm.sh

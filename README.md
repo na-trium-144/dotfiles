@@ -78,8 +78,8 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 ### utils
 * misc.sh: いろいろインストールする
 	* システムにインストール inetutils, micro, [peco](https://github.com/peco/peco), mc, tmux, fzf, cargo
-	* cargoで入れる [fd-find](https://github.com/sharkdp/fd), [git-delta](https://github.com/dandavison/delta), [hexyl](https://github.com/sharkdp/hexyl)
-	* tpm
+	* cargoで入れる [fd-find](https://github.com/sharkdp/fd), [git-delta](https://github.com/dandavison/delta), [hexyl](https://github.com/sharkdp/
+* tpm.sh
 * misc2.sh
 	* nvm, npm, [git-user](https://github.com/geongeorge/Git-User-Switch)
 	* その他 pyenv, ~~pipenv~~, poetry
