@@ -14,7 +14,7 @@
     "theme": "ayu-light.sublime-theme",
     "highlight_line": true,
     "caret_style": "smooth",
-    "font_size": 16,
+    "font_size": 15,
     "hot_exit": "disabled",
     "hot_exit_projects": false,
     "remember_workspace": false,
@@ -28,4 +28,5 @@
     "show_tab_close_buttons": false,
     "open_tabs_after_current": false,
     "show_definitions": false,
+    "console_max_history_lines": 3000,
 }
