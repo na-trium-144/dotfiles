@@ -42,6 +42,7 @@ if [ -d "$HOME/.asdf" ]; then
     . "$HOME/.asdf/completions/asdf.bash"
 fi
 [[ "${_uname}" = "MINGW64_NT" ]] && export MC_XDG_OPEN="$_chezmoi_root/scripts/win_open.sh"
+type ninja 1>/dev/null 2>&1 && export CMAKE_GENERATOR=Ninja
 
 # automatically start tmux
 if [[ $- =~ i ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_TTY" ]]; then
