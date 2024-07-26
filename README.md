@@ -73,6 +73,9 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 		* 直前のコマンドの終了コードを表示(0でない場合)
 		* 直前のコマンドの実行時間を表示(5秒以上の場合)
 		* .bashrcを読み込んだときにこのdotfilesのコミット数を表示
+* win_open.sh: パスをWindows用に変換してexplorerで開く
+	* MSYS2時に`open`コマンドとしてエイリアスを貼ってある
+	* 環境変数`MC_XDG_OPEN`にも設定されているので、mcでファイルを開けばexplorer(→関連付けられたアプリ)で開いてくれる
 * tmux.ps.py: tmuxのステータスで使用 現在のjob数とプロセス数を表示
 
 ### utils

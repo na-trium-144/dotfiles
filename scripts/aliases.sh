@@ -69,9 +69,7 @@ if [ "${_uname}" = "MINGW64_NT" ]; then
 		local p1=$(cygpath -w "$1")
 		echo "mklink /j \"$p2\" \"$p1\"&& exit" | cmd
 	}
-	function open() {
-		explorer $(cygpath -w $1)
-	}
+	alias open="sh $(dirname "${BASH_SOURCE[0]}")/win_open.sh"
 fi
 
 
