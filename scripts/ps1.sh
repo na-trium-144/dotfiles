@@ -70,10 +70,10 @@ trap '__start_timer' DEBUG # コマンド実行前に実行
 
 FACE=
 [[ "${_hostname}" = "kou-RockLM" ]] && FACE='ε=ヾ(・∀ ・)ﾉ'
-[[ "${_hostname}" = "kou-Rock11" ]] && FACE='(9 ･ω･)9 ' # あとでかえる?
+[[ "${_hostname}" = "kou-Rock11" ]] && FACE='d(* ¯∇¯) '
 [[ "${_hostname}" = "kou-Ace" ]] && FACE='(σ ･∀ ･)σ '
-[[ "${_hostname}" = "kou-MAir.local" ]] && FACE='･_･)φ_'
 [[ "${_hostname}" = "kou-Surf" ]] && FACE='(9 ･ω･)9 '
+[[ "${_hostname}" = "kou-MAir.local" ]] && FACE='･_･)φ_'
 PS1_TIT='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a\]'
 PS1_CHROOT='${debian_chroot:+($debian_chroot)}'
 PS1_HOST='\[\033[1;107;31m\]\h\[\033[0;107m\]:'
@@ -89,7 +89,7 @@ if [[ "${_hostname}" = "kou-RPi3" ]]; then
     PS1_HOST='\[\033[1;107;31m\]'${FACE}'\[\033[0;107m\]:'
 fi
 if [[ -n "$MC_SID" ]]; then
-    PS1_HOST='\[\033[0;107m\]󰖔 \[\033[1;107;31m\]\h\[\033[0;107m\]:'
+    PS1_HOST='\[\033[0;107m\][mc]\[\033[1;107;31m\]\h\[\033[0;107m\]:'
     # PS1_END='\[\033[0m\] '
     # PS1_DIR='\[\033[1;107;36m\]\W'
 fi
