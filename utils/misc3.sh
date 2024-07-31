@@ -5,5 +5,5 @@ if type apt-get; then
 elif type brew; then
 	brew install cppcheck ruby shellcheck
 fi
-pip3 install black pylint cmakelint clang-format mypy flake8
+pip3 install --user -U black pylint cmakelint clang-format clang-tidy mypy flake8
 cd ~/.config/sublime-text/Packages/User/formatter.assets/javascript && npm install
