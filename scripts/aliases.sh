@@ -52,6 +52,9 @@ function tb(){
 		tmux save-buffer -
 	fi
 }
+function tw(){
+	tmux new-window -c '#{pane_current_path}' "bash -c \" $* ; echo; read -p 'press enter to exit'\""
+}
 
 if [ "${_uname}" = "MINGW64_NT" ]; then
 	# workaround https://github.com/microsoft/terminal/issues/5132

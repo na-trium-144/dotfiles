@@ -57,6 +57,7 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 	* `pd`=`pushd`
 		* popdはpopd
 	* `tb 文字列` でtmuxのバッファとOSのクリップボードにコピー、`tb` でバッファの内容を出力
+	* `tw コマンド` でtmuxの新しいwindowを開いて現在のディレクトリでコマンドを実行
 	* MSYS2環境で
 		* `syspath (command...)` PATHからmsysを消してコマンドを実行
 		* `vsdevcmd22` VisualStudio2022のDeveloper Command Promptをひらく
