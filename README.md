@@ -37,6 +37,9 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 	* y: capture-pane → デフォルトのbuffer & OSのclipboard
 	* u: save-buffer to file
 	* N: new-session
+	* left/right = previous/next-window
+	* home = new-window
+	* v: OSのclipboardの内容をbufferにコピーしたうえでpaste-bufferする
 	* Tab: extrakto (画面右上)
 		* msysだとバグる...
 * copy-mode
@@ -73,7 +76,7 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 * win_open.sh: パスをWindows用に変換してexplorerで開く
 	* MSYS2時に`open`コマンドとしてエイリアスを貼ってある
 	* 環境変数`MC_XDG_OPEN`にも設定されているので、mcでファイルを開けばexplorer(→関連付けられたアプリ)で開いてくれる
-* tmux.ps.py: tmuxのステータスで使用 現在のjob数とプロセス数を表示
+<!-- * tmux.ps.py: tmuxのステータスで使用 現在のjob数とプロセス数を表示 -->
 
 ### utils
 * misc.sh: いろいろインストールする
