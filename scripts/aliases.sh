@@ -26,7 +26,9 @@ fdpeco() {
     unset dir
 }
 alias cdpeco="fdpeco cd"
+alias cdp="fdpeco cd"
 alias pdpeco="fdpeco pushd"
+alias pdp="fdpeco pushd"
 
 # diffl a b > c でaとbをマージしたものをcに出力
 diffl() {
