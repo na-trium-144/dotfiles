@@ -1,0 +1,52 @@
+shell_patterns=0
+
+##############################################################################
+#   %%  The % character
+#   %f  The current file (if non-local vfs, file will be copied locally and
+#                         %f will be full path to it)
+#   %p  The current file
+#   %d  The current working directory
+#   %s  "Selected files"; the tagged files if any, otherwise the current file
+#   %t  Tagged files
+#   %u  Tagged files (and they are untagged on return from expand_format)
+#   %view Runs the commands and pipes standard output to the view command
+#   If %view is immediately followed by '{', recognize keywords
+#   ascii, hex, nroff and unform
+#
+#   If the format letter is in uppercase, it refers to the other panel
+#
+#   With a number followed the % character you can turn quoting on (default)
+#   and off. For example:
+#   %f    quote expanded macro
+#   %1f   ditto
+#   %0f   don't quote expanded macro
+##############################################################################
+
+1       Create today's directory
+        mkdir $(date +%%Y%%m%%d)
+
+l       Create symlink for current files to other panel
+        if type grealpath >/dev/null 2>&1; then
+            reldir=$(grealpath --relative-to=%D %d)
+        else
+            reldir=$(realpath --relative-to=%D %d)
+        fi
+        for i in %s; do
+            ln -s "$reldir/$i" %D/"$i"
+        done
+
+g       Compress current files (tar.gz)
+        echo
+        echo -n "Name of the compressed file (without extension) : "
+        read tar
+        [ -n "$tar" ] && \
+        tar cf - %s | gzip -f9 > "$tar.tar.gz" && \
+        echo "$tar.tar.gz created."
+
+z       Compress current files (zip)
+        echo
+        echo -n "Name of the compressed file (without extension) : "
+        read tar
+        [ -n "$tar" ] && \
+        zip --symlinks -r "$tar.zip" %s && \
+        echo "$tar.zip created."
