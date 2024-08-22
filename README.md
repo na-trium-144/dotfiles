@@ -82,7 +82,8 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 ### utils
 * misc.sh: いろいろインストールする
 	* システムにインストール inetutils, micro, [peco](https://github.com/peco/peco), mc, tmux, fzf, cargo
-	* cargoで入れる [fd-find](https://github.com/sharkdp/fd), [git-delta](https://github.com/dandavison/delta), [hexyl](https://github.com/sharkdp/
+	* cargoで入れる [fd-find](https://github.com/sharkdp/fd), [git-delta](https://github.com/dandavison/delta), [hexyl](https://github.com/sharkdp/hexyl)
+		* 引数になにか渡すと省略 (ビルドが重いラズパイなど)
 * tpm.sh
 * misc2.sh
 	* pyenvで python3.12
