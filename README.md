@@ -85,11 +85,14 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 	* cargoで入れる [fd-find](https://github.com/sharkdp/fd), [git-delta](https://github.com/dandavison/delta), [hexyl](https://github.com/sharkdp/
 * tpm.sh
 * misc2.sh
-	* nvm, npm, [git-user](https://github.com/geongeorge/Git-User-Switch)
-	* その他 pyenv, ~~pipenv~~, poetry
+	* pyenvで python3.12
+		* pipで pipx
+		* pipxで poetry
+	* nvmでlts
+		* [git-user](https://github.com/geongeorge/Git-User-Switch)
 * misc3.sh: メインの開発環境用
-	* システムに cppcheck, ruby, tidy, python3-venv, shellcheck
-	* pipで black, pylint, cmakelint, clang-format, clang-tidy, mypy, flake8
+	* システムに cppcheck, ruby, tidy, shellcheck
+	* pipxで black, pylint, cmakelint, clang-format, clang-tidy, mypy, flake8
 	* npmで js-beautify, prettier
 * chsh.sh: mac用 デフォルトシェルをbrewのbashに変更
 * msys2.sh: MSYS2用
