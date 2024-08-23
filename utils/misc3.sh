@@ -8,7 +8,8 @@ if type apt-get; then
 elif type brew; then
 	brew install cppcheck ruby shellcheck
 fi
-pipx install black pylint cmakelint clang-format clang-tidy mypy flake8
+pipx install black pylint cmakelint clang-format mypy flake8
+# clang-tidy はarm64のlinuxでエラー
 
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" # This loads nvm
 nvm use --lts
