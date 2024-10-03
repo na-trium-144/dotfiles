@@ -6,4 +6,10 @@
         "clangd.header-insertion": "never",
     },
     "binary": "auto",
+    "disabled_capabilities": {
+        "signatureHelpProvider": {
+            "triggerCharacters": true,
+            "retriggerCharacters": true
+        }
+    }
 }

@@ -1,0 +1,10 @@
+// Settings in here override those in "LSP-typescript/LSP-typescript.sublime-settings"
+
+{
+    "disabled_capabilities": {
+        "signatureHelpProvider": {
+            "triggerCharacters": true,
+            "retriggerCharacters": true
+        }
+    }
+}
