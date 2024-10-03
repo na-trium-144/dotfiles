@@ -9,7 +9,8 @@ elif type brew; then
 	brew install cppcheck ruby shellcheck
 fi
 pipx install black cmakelint clang-format flake8
-pipx uninstall mypy pylint
+pipx uninstall mypy
+pipx uninstall pylint
 pip install mypy pylint
 # clang-tidy はarm64のlinuxでエラー
 
