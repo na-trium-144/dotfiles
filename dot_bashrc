@@ -18,8 +18,6 @@ _chezmoi_root="${HOME}/.local/share/chezmoi"
 [[ -d $_chezmoi_root ]] || echo "chezmoi root not found!"
 
 # PATH
-export PATH="${PATH}:${HOME}/.robotech/bin"
-export PATH="${HOME}/.local/bin:${PATH}"
 if [[ "${_uname}" = "Darwin" ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
     export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
@@ -44,6 +42,10 @@ fi
 [[ "${_uname}" = "MINGW64_NT" ]] && export MC_XDG_OPEN="$_chezmoi_root/scripts/win_open.sh"
 [[ "${_uname}" = "Darwin" ]] && export MC_XDG_OPEN="open"
 type ninja 1>/dev/null 2>&1 && export CMAKE_GENERATOR=Ninja
+export PATH="/opt/webcface/bin:${PATH}"
+export PATH="/opt/mujoco/bin:${PATH}"
+export PATH="${PATH}:${HOME}/.robotech/bin"
+export PATH="${HOME}/.local/bin:${PATH}"
 
 # automatically start tmux
 if [[ $- =~ i ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_TTY" ]]; then
