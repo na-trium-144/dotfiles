@@ -13,6 +13,7 @@
 		"Formatter",
 		"LSP",
 		"LSP-clangd",
+		"LSP-copilot",
 		"LSP-pylsp",
 		"LSP-rust-analyzer",
 		"LSP-typescript",
