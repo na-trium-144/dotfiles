@@ -1,0 +1,6 @@
+[submodule "utils/doxygen"]
+	path = utils/doxygen
+	url = https://github.com/doxygen/doxygen.git
+[submodule "utils/json-tui"]
+	path = utils/json-tui
+	url = https://github.com/na-trium-144/json-tui

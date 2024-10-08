@@ -8,7 +8,7 @@ if type apt-get; then
 elif type brew; then
 	brew install cppcheck ruby shellcheck
 fi
-pipx install black cmakelint clang-format flake8
+pipx install black cmakelint clang-format flake8 remarshal
 pipx uninstall mypy
 pipx uninstall pylint
 pip install mypy pylint

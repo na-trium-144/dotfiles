@@ -1,6 +1,6 @@
 # dotfiles(chezmoi)
 
-for Ubuntu, Arch Linux, MacOS, Windows(MSYS2)
+for Ubuntu, (Arch Linux,) MacOS, Windows(MSYS2)
 
 ```bash
 sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-trium-144 --destination $HOME
@@ -82,24 +82,25 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 ### utils
 * misc.sh: いろいろインストールする
 	* システムにインストール inetutils, micro, [peco](https://github.com/peco/peco), mc, tmux, fzf, cargo
+	* 引数になにか渡すとsource_build.shを省略 (ビルドが重いラズパイなど)
+* source_build.sh
 	* cargoで入れる [fd-find](https://github.com/sharkdp/fd), [git-delta](https://github.com/dandavison/delta), [hexyl](https://github.com/sharkdp/hexyl)
-		* 引数になにか渡すと省略 (ビルドが重いラズパイなど)
+	* doxygen 1.9.7, json-tui をソースからビルド
 * tpm.sh
 * misc2.sh
+	* todo: MSYS2非対応
 	* pyenvで python3.12
 		* pipで pipx
 		* pipxで poetry
 	* nvmでlts
 		* [git-user](https://github.com/geongeorge/Git-User-Switch)
 * misc3.sh: メインの開発環境用
+	* todo: MSYS2非対応
 	* システムに cppcheck, ruby, tidy, shellcheck
 	* pipxで black, pylint, cmakelint, clang-format, clang-tidy, mypy, flake8
 	* npmで js-beautify, prettier
+* git.sh: git-prompt.sh をダウンロードする MacとMSYS2用
 * chsh.sh: mac用 デフォルトシェルをbrewのbashに変更
-* msys2.sh: MSYS2用
-	* git, mc, tmux, fzf, fd, winpty, tpm, git-prompt
-	* chocoが入っていればchoco経由でmicro, peco
-		* pecoはmsys2で使えないけど...
 
 ### その他
 * micro, peco, fd, sublime, poetryの設定とか
