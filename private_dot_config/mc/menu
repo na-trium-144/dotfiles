@@ -25,6 +25,9 @@ shell_patterns=0
 1       Create today's directory
         mkdir $(date +%%Y%%m%%d)
 
+2       Copy current file path
+		bash $HOME/.local/share/chezmoi/scripts/tb.sh "%d/%p"
+        
 l       Create symlink for current files to other panel
         if type grealpath >/dev/null 2>&1; then
             reldir=$(grealpath --relative-to=%D %d)

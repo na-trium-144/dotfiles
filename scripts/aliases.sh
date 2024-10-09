@@ -44,16 +44,8 @@ cdroot() {
 alias pd=pushd
 
 # tmuxのバッファにコピー/読み込み
-function tb(){
-	if [[ $# > 0 ]]; then
-		[[ "${_uname}" = "Linux" ]] && echo "$@" | xclip -selection clipboard -i
-		[[ "${_uname}" = "Darwin" ]] && echo "$@" | pbcopy
-		[[ "${_uname}" = "MINGW64_NT" ]] && echo "$@" | sh -c "iconv -f utf-8 -t cp932 | clip"
-		echo "$@" | tmux load-buffer -
-	else
-		tmux save-buffer -
-	fi
-}
+alias tb="bash $(dirname "${BASH_SOURCE[0]}")/tb.sh"
+
 function tw(){
 	tmux new-window -c '#{pane_current_path}' "bash -c \" $* ; echo; read -p 'press enter to exit'\""
 }
