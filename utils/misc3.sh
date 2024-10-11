@@ -8,11 +8,16 @@ if type apt-get; then
 elif type brew; then
 	brew install cppcheck ruby shellcheck
 fi
-pipx install black cmakelint clang-format flake8 remarshal
-pipx uninstall mypy
-pipx uninstall pylint
-pip install mypy pylint
+pipx install black
+pipx install cmakelint
+pipx install clang-format
+pipx install flake8
+pipx install remarshal
+pipx uninstall mypy || true
+pipx uninstall pylint || true
+pip install -U mypy pylint
 # clang-tidy はarm64のlinuxでエラー
+pipx upgrade-all
 
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" # This loads nvm
 nvm use --lts
