@@ -14,6 +14,9 @@ elif type pacman; then
 		type mc || pacman -S --noconfirm mc
 		type tmux || pacman -S --noconfirm tmux
 		type winpty || pacman -S --noconfirm winpty
+		# for doxygen
+		type flex || pacman -S --noconfirm flex
+		type bison || pacman -S --noconfirm bison
 	else
 		# arch? 最近動作確認してないので動くか知らない
 		type hostname || sudo pacman -S inetutils

@@ -18,6 +18,9 @@ cmake --build build --target install
 popd
 
 pushd $(dirname $0)/json-tui
-cmake -Bbuild -DCMAKE_INSTALL_PREFIX=$HOME/.local
+if uname | grep MINGW64 >/dev/null; then
+    flags='-DCMAKE_CXX_FLAGS="-Wa,-mbig-obj"'
+fi
+cmake -Bbuild -DCMAKE_INSTALL_PREFIX=$HOME/.local $flags
 cmake --build build --target install
 popd
