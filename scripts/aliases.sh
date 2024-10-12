@@ -4,7 +4,7 @@ type git 1>/dev/null 2>&1 && alias sgit="sudo PATH=\"${PATH}\" HOME=\"$HOME\" $(
 
 alias exa="exa --git --group-directories-first --color=auto"
 
-alias no-pyenv="export PATH=$(echo $PATH | sed 's!/[^:]*/.pyenv/[^:]*:!!g')"
+alias no-pyenv='export PATH="$(echo $PATH | sed 's!/[^:]*/.pyenv/[^:]*:!!g')"'
 
 # linuxのコンソール用 絵文字プロンプトを無効にし言語も英語にする
 alias cbash="LANG=C bash"
