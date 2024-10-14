@@ -76,7 +76,7 @@ FACE=
 [[ "${_hostname}" = "kou-MAir.local" ]] && FACE='･_･)φ_'
 PS1_TIT='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a\]'
 PS1_CHROOT='${debian_chroot:+($debian_chroot)}'
-PS1_HOST='\[\033[1;107;31m\]\h\[\033[0;107;31m\]${DISPLAY}\[\033[0;107m\]:'
+PS1_HOST='\[\033[1;107;31m\]\h\[\033[0;107;31m\]${DISPLAY//*\//\/}\[\033[0;107m\]:'
 PS1_DIR='\[\033[1;107;36m\]\w'
 PS1_DIRS='\[\033[0;107;36m\]$(__dirs_state)'
 PS1_GIT='\[\033[0;107;32m\]$(__git_ps1_async) '
@@ -86,7 +86,7 @@ PS1_END='\[\033[0;97m\]\[\033[0m\] '
 if [[ "${_hostname}" = "kou-RPi3" ]]; then
     FACE='kou- '
     PS1_TIT='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a\]'
-    PS1_HOST='\[\033[1;107;31m\]'${FACE}'\[\033[0;107;31m\]${DISPLAY}\[\033[0;107m\]:'
+    PS1_HOST='\[\033[1;107;31m\]'${FACE}'\[\033[0;107;31m\]${DISPLAY//*\//\/}\[\033[0;107m\]:'
 fi
 if [[ -n "$MC_SID" ]]; then
     PS1_HOST='\[\033[0;107m\][mc]'"$PS1_HOST"
