@@ -16,22 +16,31 @@ export LANG=${LANG:-"C.utf8"} # "C" or "C.utf8" or other
 _chezmoi_root="${HOME}/.local/share/chezmoi"
 [[ -d $_chezmoi_root ]] || _chezmoi_root=$(echo /c/Users/*/.local/share/chezmoi)
 [[ -d $_chezmoi_root ]] || echo "chezmoi root not found!"
+_winhome="/c/Users/$(basename ${HOME})"
 
 # PATH
 if [[ "${_uname}" = "Darwin" ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
     export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 fi
-export PATH="${HOME}/.pyenv/bin:$PATH"
-if type pyenv >/dev/null 2>&1; then
-    eval "$(pyenv init --path)"
-    # eval "$(pyenv virtualenv-init -)"
+if [[ "${_uname}" = MINGW64_NT ]]; then
+    export PATH="${_winhome}/.local/bin:$PATH"
+    export PATH="${_winhome}/.pyenv/pyenv-win/bin:${_winhome}/.pyenv/pyenv-win/shims:$PATH"
+    export NVM_HOME="C:\ProgramData\nvm"
+    export NVM_SYMLINK="C:\Program Files\nodejs"
+    export PATH="$(cygpath -u "$NVM_HOME"):$(cygpath -u "$NVM_SYMLINK"):$PATH"
+else
+    export PATH="${HOME}/.pyenv/bin:$PATH"
+    if type pyenv >/dev/null 2>&1; then
+        eval "$(pyenv init --path)"
+        # eval "$(pyenv virtualenv-init -)"
+    fi
+    [[ -d "$HOME/.nvm" ]] && export NVM_DIR="$HOME/.nvm"
+    [[ -d "$XDG_CONFIG_HOME/nvm" ]] && export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+    [[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
 export PIPENV_VENV_IN_PROJECT=1
-[[ -d "$HOME/.nvm" ]] && export NVM_DIR="$HOME/.nvm"
-[[ -d "$XDG_CONFIG_HOME/nvm" ]] && export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-[[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
