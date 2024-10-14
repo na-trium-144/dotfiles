@@ -186,7 +186,7 @@
         }]
     },
     {
-        "keys": ["super+tab"],
+        "keys": ["alt+tab"],
         "command": "copilot_accept_completion",
     },
 ]
