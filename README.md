@@ -82,18 +82,22 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 
 ### utils
 * misc.sh: いろいろインストールする
-	* システムにインストール inetutils, micro, [peco](https://github.com/peco/peco), mc, tmux, fzf, cargo
-	* 引数になにか渡すとsource_build.shを省略 (ビルドが重いラズパイなど)
-* source_build.sh
-	* cargoで入れる [fd-find](https://github.com/sharkdp/fd), [git-delta](https://github.com/dandavison/delta), [hexyl](https://github.com/sharkdp/hexyl)
-	* doxygen 1.9.7, json-tui をソースからビルド
+	* システムにインストール inetutils, git, curl, build-essential, micro, [peco](https://github.com/peco/peco), mc, tmux, fzf
+	* 引数になにか渡すとcargo.shとsource_buildsを省略 (ビルドが重いラズパイなど)
+* cargo.sh
+	* [fd-find](https://github.com/sharkdp/fd), [git-delta](https://github.com/dandavison/delta), [hexyl](https://github.com/sharkdp/hexyl)
+* source_builds/
+	* doxygen 1.9.7
+	* json-tui
+	* mc (misc.shからは呼ばれない)
+	* tmux (misc.shからは呼ばれない)
+	* todo: micro, fzf, ...?
 * tpm.sh
 * misc2.sh
-	* todo: MSYS2非対応
-	* pyenvで python3.12
+	* pyenv or pyenv-win で python3.12.5
 		* pipで pipx
 		* pipxで poetry
-	* nvmでlts
+	* nvm or nvm-windows でlts
 		* [git-user](https://github.com/geongeorge/Git-User-Switch)
 * misc3.sh: メインの開発環境用
 	* todo: MSYS2非対応
@@ -102,6 +106,9 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 	* npmで js-beautify, prettier
 * git.sh: git-prompt.sh をダウンロードする MacとMSYS2用
 * chsh.sh: mac用 デフォルトシェルをbrewのbashに変更
+* chsh_docker.sh
+* rtc.sh: dualboot環境で時刻がずれるのを修正するやつだった気がする
+* sublime.sh: sublime textをいんすとーるする (Ubuntu)
 
 ### その他
 * micro, peco, fd, sublime, poetryの設定とか

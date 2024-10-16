@@ -5,8 +5,17 @@ set -e
 # pip, cargo > apt, pacman, brew > install script
 if type apt-get; then
 	type sudo && sudo=sudo
-	$sudo apt-get update
-	$sudo apt-get install -y micro peco mc tmux fzf git
+	# sudoが使えるかチェック
+	if [[ `$sudo id -u` = 0 ]]; then
+		$sudo apt-get update
+		$sudo apt-get install -y git curl build-essential cmake
+		$sudo apt-get install -y mc || true
+		$sudo apt-get install -y tmux || true
+		$sudo apt-get install -y peco || true
+		$sudo apt-get install -y fzf || true
+	else
+		echo "sudo unavailable, skipping apt installs"
+	fi
 elif type pacman; then
 	if uname | grep MINGW64 >/dev/null; then
 		# windows
@@ -27,9 +36,12 @@ elif type brew; then
 	brew install micro peco mc tmux fzf coreutils
 	# exa
 fi
+
 if [ -z "$1" ]; then
-	bash $(dirname $0)/source_builds.sh
+	bash $(dirname $0)/cargo.sh
+	bash $(dirname $0)/source_builds/doxygen.sh
+	bash $(dirname $0)/source_builds/json-tui.sh
 else
-	echo "skip source_builds.sh"
+	echo "skip source_builds"
 fi
 bash $(dirname $0)/tpm.sh
