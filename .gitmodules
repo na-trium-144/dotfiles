@@ -1,8 +1,0 @@
-[submodule "utils/doxygen"]
-	path = utils/source_builds/doxygen
-	url = https://github.com/doxygen/doxygen.git
-	shallow = true
-[submodule "utils/json-tui"]
-	path = utils/source_builds/json-tui
-	url = https://github.com/na-trium-144/json-tui
-	shallow = true

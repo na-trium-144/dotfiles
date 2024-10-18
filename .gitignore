@@ -1,3 +1,2 @@
-utils/source_builds/workdir/*
-!utils/source_builds/workdir/.gitkeep
+utils/source_builds/workdir
 
