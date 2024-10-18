@@ -51,7 +51,9 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 	* nerd fontが必要
 
 ### scripts
+
 * aliases.sh: bashのalias, functionなど
+	* `no-pyenv` PATHからpyenvのshimを消す
 	* `cbash` LANG=Cにし、nerd fontのプロンプトなどをオフにする
 	* `cdpeco`, `pdpeco` fdでディレクトリを列挙→pecoで選択→cdまたはpushd
 	* `diffl a b > c` aとbをマージしたファイルを生成 
@@ -81,6 +83,10 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 <!-- * tmux.ps.py: tmuxのステータスで使用 現在のjob数とプロセス数を表示 -->
 
 ### utils
+
+* brew_local.sh: linuxbrewを ~/.brew にインストールする (misc1より先に実行すること)
+	* aptと干渉するのを避けるため、デフォルトではPATHを通していない
+	* `brew-activate` でそのシェル内だけパスが通る
 * misc.sh: いろいろインストールする
 	* システムにインストール inetutils, git, curl, build-essential, micro, [peco](https://github.com/peco/peco), mc, tmux, fzf
 	* 引数になにか渡すとcargo.shとsource_buildsを省略 (ビルドが重いラズパイなど)

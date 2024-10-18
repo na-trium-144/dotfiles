@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 set -e
+shopt -s expand_aliases
+source $_chezmoi_root/scripts/brew_local_aliases.sh
 
 # clangdはインストールしない
-if type apt-get; then
+if type brew; then
+	brew install cppcheck ruby shellcheck
+elif type apt-get; then
 	type sudo && sudo=sudo
 	$sudo apt-get install -y cppcheck tidy ruby shellcheck
-elif type brew; then
-	brew install cppcheck ruby shellcheck
 fi
 pipx install black
 pipx install cmakelint

@@ -9,16 +9,17 @@ case $- in
 esac
 
 # env check
-_hostname=$(hostname)
-_uname=$(uname) # Darwin, Linux, MINGW64_NT_*
+export _hostname=$(hostname)
+export _uname=$(uname) # Darwin, Linux, MINGW64_NT_*
 echo "${_uname}" | grep MINGW64 >/dev/null && _uname=MINGW64_NT
 export LANG=${LANG:-"C.utf8"} # "C" or "C.utf8" or other
-_chezmoi_root="${HOME}/.local/share/chezmoi"
+export _chezmoi_root="${HOME}/.local/share/chezmoi"
 [[ -d $_chezmoi_root ]] || _chezmoi_root=$(echo /c/Users/*/.local/share/chezmoi)
 [[ -d $_chezmoi_root ]] || echo "chezmoi root not found!"
-_winhome="/c/Users/$(basename ${HOME})"
+export _winhome="/c/Users/$(basename ${HOME})"
 
 # PATH
+source ${_chezmoi_root}/scripts/brew_local_aliases.sh
 if [[ "${_uname}" = "Darwin" ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
     export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"

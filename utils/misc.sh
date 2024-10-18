@@ -1,23 +1,27 @@
 #!/usr/bin/env bash
 set -e
+shopt -s expand_aliases
+source $_chezmoi_root/scripts/brew_local_aliases.sh
 
 # $1が空じゃなければrustのビルドをスキップ
 # pip, cargo > apt, pacman, brew > install script
-if type apt-get; then
-	type sudo && sudo=sudo
-	# sudoが使えるかチェック
-	if [[ `$sudo id -u` = 0 ]]; then
-		$sudo apt-get update
-		$sudo apt-get install -y git curl build-essential cmake
-		$sudo apt-get install -y mc || true
-		$sudo apt-get install -y tmux || true
-		$sudo apt-get install -y peco || true
-		$sudo apt-get install -y fzf || true
-	else
-		echo "sudo unavailable, skipping apt installs"
+
+if type brew; then
+	brew install micro peco mc tmux fzf
+	if [[ ${_uname} = Darwin ]]; then
+		brew install coreutils
 	fi
+	# exa
+elif type apt-get; then
+	type sudo && sudo=sudo
+	$sudo apt-get update
+	$sudo apt-get install -y git curl build-essential cmake
+	$sudo apt-get install -y mc || true
+	$sudo apt-get install -y tmux || true
+	$sudo apt-get install -y peco || true
+	$sudo apt-get install -y fzf || true
 elif type pacman; then
-	if uname | grep MINGW64 >/dev/null; then
+	if [[ ${_uname} = MINGW64_NT ]]; then
 		# windows
 		type git || pacman -S --noconfirm git
 		type mc || pacman -S --noconfirm mc
@@ -32,9 +36,6 @@ elif type pacman; then
 		type tmux || sudo pacman -S tmux
 		type fzf || sudo pacman -S fzf
 	fi
-elif type brew; then
-	brew install micro peco mc tmux fzf coreutils
-	# exa
 fi
 
 if [ -z "$1" ]; then
