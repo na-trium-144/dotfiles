@@ -7,9 +7,17 @@ source $_chezmoi_root/scripts/brew_local_aliases.sh
 # pip, cargo > apt, pacman, brew > install script
 
 if type brew; then
-	brew install micro peco mc tmux fzf
 	if [[ ${_uname} = Darwin ]]; then
+		brew install micro peco mc tmux fzf
 		brew install coreutils
+	else
+		brew install gcc || brew install gcc
+		brew link -f binutils  # brewのgccを使う場合にはbrewのPATHを通した上でこれ
+		brew install micro peco mc tmux fzf
+		# なんかいくつかrbファイルを手動でダウンロードしていじらなきゃいけなかったやつがある...
+		# openssl@3, dbus → テスト削除
+		# mc→ LDFLAGS=-m
+		# krb5→ LDFLAGS=-lresolv
 	fi
 	# exa
 elif type apt-get; then

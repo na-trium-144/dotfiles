@@ -4,7 +4,7 @@ if [[ -d $HOME/.brew/bin ]]; then
         brew \
         micro peco mc tmux fzf
     do
-        alias $cmd="$HOME/.brew/bin/$cmd"
+        [[ -e "$HOME/.brew/bin/$cmd" ]] && alias $cmd="$HOME/.brew/bin/$cmd"
     done
     alias brew-activate='eval "$($HOME/.brew/bin/brew shellenv)"'
 fi
