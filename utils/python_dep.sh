@@ -1,5 +1,8 @@
 #!/bin/sh
 set -e
+
+# no linuxbrew here
+
 # https://devguide.python.org/getting-started/setup-building/index.html#linux
 if type brew; then
     brew install tcl-tk readline ncurses

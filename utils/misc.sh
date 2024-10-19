@@ -18,6 +18,11 @@ if type brew; then
 		# openssl@3, dbus → テスト削除
 		# mc→ LDFLAGS=-m
 		# krb5→ LDFLAGS=-lresolv
+
+		# すくなくともtmuxはaliasではなくパス上にないとバグる https://github.com/tmux-plugins/tpm/issues/189
+	    for cmd in micro peco mc tmux fzf; do
+	        [[ -e "$HOME/.brew/bin/$cmd" ]] && ln -sf $HOME/.brew/bin/$cmd $HOME/.local/bin/
+	    done
 	fi
 	# exa
 elif type apt-get; then

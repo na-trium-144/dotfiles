@@ -11,7 +11,8 @@ if [[ ${_uname} = MINGW64_NT ]]; then
     type flex || pacman -S --noconfirm flex
     type bison || pacman -S --noconfirm bison
 elif type brew; then
-    brew install bison m4
+    brew install bison m4 cmake
+    brew-activate || true
     export PATH="$(brew --prefix bison)/bin:$(brew --prefix m4)/bin:$PATH"
 fi
 mkdir -p $(dirname $0)/workdir
