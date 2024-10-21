@@ -55,7 +55,6 @@ if [ "${_uname}" = "MINGW64_NT" ]; then
 	# function tmux(){
 	# 	script -q -c "tmux $@" /dev/null
 	# }
-	alias micro="winpty micro"
 	alias vsdevcmd22="cmd //k 'C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\VsDevCmd.bat'"
 	alias vsdevcmd19="cmd //k 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat'"
 	alias syspath='PATH="$ORIGINAL_PATH"'

@@ -10,10 +10,15 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 * MSYS2の場合は
 	* chezmoiインストール前に
 		* `pacman -S unzip`
-		* `pacman -S git`または[git-for-windowsをインストール](https://github.com/git-for-windows/git/wiki/Install-inside-MSYS2-proper)
+		* `pacman -S git` <del>または[git-for-windowsをインストール](https://github.com/git-for-windows/git/wiki/Install-inside-MSYS2-proper)</del>
+			* git-for-windowsのほうだと勝手にcredential managerを入れたり、コンソールへの出力の色がおかしかったりする
 		* 環境変数にMSYS2_PATH_TYPE=inherit
 	* <del>HOMEはmsys側においてもいいが、それでもchezmoiのファイルは/c/Users側に置かれてしまう?</del>
-	* HOMEは C:\msys64\home\ユーザー名 のまま
+	* HOMEは C:\msys64\home\ユーザー名 のまま使う
+	* /etc/fstab を編集し、noaclを消す
+	* `mkdir /c/Users/ユーザー名/.cache`
+	* `lnj /c/Users/ユーザー名/.cache .cache`
+	* sshの鍵は msys64/home/.ssh のほうに置く
 	* sublimeの設定ファイル `lnj ~/.config/sublime-text/Packages/User '/c/Users/ユーザー名/AppData/Roaming/Sublime Text/Packages/User'`
 * Macでは`brew install bash`で新しいbashが必要
 

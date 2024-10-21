@@ -43,7 +43,7 @@ else
 fi
 export PIPENV_VENV_IN_PROJECT=1
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$_winhome/.cargo/bin:$PATH"
 export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
 if [ -d "$HOME/.asdf" ]; then
     . "$HOME/.asdf/asdf.sh"

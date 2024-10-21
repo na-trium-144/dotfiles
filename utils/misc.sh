@@ -40,6 +40,16 @@ elif type pacman; then
 		type mc || pacman -S --noconfirm mc
 		type tmux || pacman -S --noconfirm tmux
 		type winpty || pacman -S --noconfirm winpty
+		type pacboy || pacman -S --noconfirm pactoys
+		if [[ $(which micro) != /usr/bin/micro ]]; then
+			type micro || sudo choco uninstall micro
+			pacboy -S --noconfirm micro:p
+			# なんで/usr/binなんだろう?
+		fi
+		type fzf || pacboy -S --noconfirm fzf:p
+		[[ $(which cmake) = /ucrt64/bin/cmake ]] || pacboy -S --noconfirm cmake:p
+		[[ $(which ninja) = /ucrt64/bin/ninja ]] || pacboy -S --noconfirm ninja:p
+		[[ $(which gcc) = /ucrt64/bin/gcc ]] || pacboy -S --noconfirm gcc:p
 	else
 		# arch? 最近動作確認してないので動くか知らない
 		type hostname || sudo pacman -S inetutils
