@@ -57,6 +57,11 @@ export PATH="/opt/mujoco/bin:${PATH}"
 export PATH="${PATH}:${HOME}/.robotech/bin"
 export PATH="${HOME}/.local/bin:${PATH}"
 
+if [[ "${_uname}" = "MINGW64_NT" ]] && [[ -z "$(ps -ef | grep git-core)" ]] && [[ -d "$HOME/.cache/git/credential" ]]; then
+    echo "git-core not running - removing git credential cache"
+    rm -vrf "$HOME/.cache/git/credential"
+fi
+
 # automatically start tmux
 if which tmux >/dev/null; then
 	if tmux -V | grep "tmux 3" >/dev/null; then
