@@ -14,7 +14,7 @@ export _uname=$(uname) # Darwin, Linux, MINGW64_NT_*
 echo "${_uname}" | grep MINGW64 >/dev/null && export _uname=MINGW64_NT
 export LANG=${LANG:-"C.UTF-8"} # "C" or "C.UTF-8" or other
 export _chezmoi_root="${HOME}/.local/share/chezmoi"
-[[ -d $_chezmoi_root ]] || _chezmoi_root=$(echo /c/Users/*/.local/share/chezmoi)
+[[ -d $_chezmoi_root ]] || export _chezmoi_root=$(echo /c/Users/*/.local/share/chezmoi)
 [[ -d $_chezmoi_root ]] || echo "chezmoi root not found!"
 export _winhome="/c/Users/$(basename ${HOME})"
 
@@ -24,23 +24,8 @@ if [[ "${_uname}" = "Darwin" ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
     export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 fi
-if [[ "${_uname}" = MINGW64_NT ]]; then
-    export PATH="${_winhome}/.local/bin:$PATH"
-    export PATH="${_winhome}/.pyenv/pyenv-win/bin:${_winhome}/.pyenv/pyenv-win/shims:$PATH"
-    export NVM_HOME="C:\ProgramData\nvm"
-    export NVM_SYMLINK="C:\Program Files\nodejs"
-    export PATH="$(cygpath -u "$NVM_HOME"):$(cygpath -u "$NVM_SYMLINK"):$PATH"
-else
-    export PATH="${HOME}/.pyenv/bin:$PATH"
-    if type pyenv >/dev/null 2>&1; then
-        eval "$(pyenv init --path)"
-        # eval "$(pyenv virtualenv-init -)"
-    fi
-    [[ -d "$HOME/.nvm" ]] && export NVM_DIR="$HOME/.nvm"
-    [[ -d "$XDG_CONFIG_HOME/nvm" ]] && export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-    [[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-fi
+source ${_chezmoi_root}/scripts/load_pyenv.sh
+source ${_chezmoi_root}/scripts/load_nvm.sh
 export PIPENV_VENV_IN_PROJECT=1
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 export PATH="$HOME/.cargo/bin:$_winhome/.cargo/bin:$PATH"
