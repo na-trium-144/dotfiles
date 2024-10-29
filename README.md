@@ -28,6 +28,11 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 * 共通のaliasは scripts/aliases.sh に記述
 * PS1は scripts/ps1.sh
 * .bash_aliases はchezmoi管理しないので環境特有の設定を置く(aliasではないものも含む)
+* 環境変数 (各種スクリプトで使う)
+	* `$_hostname`: ホスト名
+	* `$_uname`: uname (ただしWindowsの場合末尾のバージョン番号を削除して`MINGW64_NT`に置き換えられる)
+	* `$_chezmoi_root`: ~/.local/share/chezmoi
+	* `$_winhome`: /c/Users/ユーザー名
 
 ### tmux
 * prefixは ctrl-j, alt-/

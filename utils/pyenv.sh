@@ -11,15 +11,11 @@ if uname | grep MINGW64 >/dev/null; then
     # pyenv-win
     powershell 'Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1" -OutFile "./install-pyenv-win.ps1"; Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process; .\install-pyenv-win.ps1'
     rm install-pyenv-win.ps1
-    if ! type pyenv >/dev/null; then
-        echo "pyenv-win not found in path, please update path and rerun misc2.sh"
-        exit 1
-    fi
 else
     type pyenv || curl https://pyenv.run | bash
     $(dirname $0)/python_dep.sh || true
-    eval "$(pyenv init --path)"
 fi
+source $_chezmoi_root/scripts/load_pyenv.sh
 pyenv update
 
 if [ -e $HOME/.pyenv/versions/3.12.5 ]; then
@@ -27,7 +23,7 @@ if [ -e $HOME/.pyenv/versions/3.12.5 ]; then
     if uname | grep MINGW64 >/dev/null; then
         rm -rf $_winhome/pipx  # pipxのvenv,shared libraries を消す
     else
-        # todo
+        rm -rf $HOME/.local/share/pipx
     fi
     pyenv uninstall 3.12.5
 fi

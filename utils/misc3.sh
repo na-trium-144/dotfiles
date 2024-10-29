@@ -2,6 +2,8 @@
 set -e
 shopt -s expand_aliases
 source $_chezmoi_root/scripts/brew_local_aliases.sh
+source $_chezmoi_root/scripts/load_nvm.sh
+source $_chezmoi_root/scripts/load_pyenv.sh
 
 # clangdはインストールしない
 if type brew; then
@@ -21,6 +23,5 @@ pip install -U mypy pylint
 # clang-tidy はarm64のlinuxでエラー
 pipx upgrade-all
 
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" # This loads nvm
 nvm use --lts
 cd ~/.config/sublime-text/Packages/User/formatter.assets/javascript && npm install
