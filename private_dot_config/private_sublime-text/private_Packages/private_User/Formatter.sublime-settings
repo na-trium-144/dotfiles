@@ -11,7 +11,7 @@
         ],
         "GEM_PATH": ["${packages}/User/formatter.assets/ruby"],
         "PYTHONPATH": [
-            "~/.pyenv/versions/3.12.5/lib/python3.12/site-packages/",
+            "~/.pyenv/versions/3.12.6/lib/python3.12/site-packages/",
         ]
     },
     "formatters": {

@@ -2,7 +2,7 @@
 set -e
 unset CC
 unset CXX
-py_version=3.12.5
+py_version=3.12.6
 
 if uname | grep MINGW64 >/dev/null; then
     if ! type pyenv >/dev/null; then
@@ -21,6 +21,17 @@ else
     eval "$(pyenv init --path)"
 fi
 pyenv update
+
+if [ -e $HOME/.pyenv/versions/3.12.5 ]; then
+    pipx uninstall-all
+    if uname | grep MINGW64 >/dev/null; then
+        rm -rf $_winhome/pipx  # pipxのvenv,shared libraries を消す
+    else
+        # todo
+    fi
+    pyenv uninstall 3.12.5
+fi
+
 [ -e $HOME/.pyenv/versions/$py_version ] || pyenv install $py_version
 pyenv global $py_version
 

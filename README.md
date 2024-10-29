@@ -103,7 +103,7 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 	* todo: micro, fzf, ...?
 * tpm.sh
 * misc2.sh
-	* pyenv or pyenv-win で python3.12.5
+	* pyenv or pyenv-win で python3.12.6
 		* pipで pipx
 		* pipxで poetry
 	* nvm or nvm-windows でlts
