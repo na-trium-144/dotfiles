@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -e
 shopt -s expand_aliases
+source $(dirname $0)/../scripts/init_env.sh
 source $_chezmoi_root/scripts/brew_local_aliases.sh
 source $_chezmoi_root/scripts/load_nvm.sh
 source $_chezmoi_root/scripts/load_pyenv.sh
