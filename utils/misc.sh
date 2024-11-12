@@ -30,6 +30,7 @@ elif type apt-get; then
 	type sudo && sudo=sudo
 	$sudo apt-get update
 	$sudo apt-get install -y git curl build-essential cmake
+	$sudo apt-get install -y micro || true
 	$sudo apt-get install -y mc || true
 	$sudo apt-get install -y tmux || true
 	$sudo apt-get install -y peco || true
