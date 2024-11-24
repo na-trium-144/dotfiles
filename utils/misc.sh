@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -e
 shopt -s expand_aliases
+source $(dirname $0)/../scripts/init_env.sh
 source $_chezmoi_root/scripts/brew_local_aliases.sh
 
 # $1が空じゃなければrustのビルドをスキップ
@@ -29,6 +30,7 @@ elif type apt-get; then
 	type sudo && sudo=sudo
 	$sudo apt-get update
 	$sudo apt-get install -y git curl build-essential cmake
+	$sudo apt-get install -y micro || true
 	$sudo apt-get install -y mc || true
 	$sudo apt-get install -y tmux || true
 	$sudo apt-get install -y peco || true
