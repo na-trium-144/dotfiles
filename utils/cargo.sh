@@ -2,6 +2,7 @@
 set -e
 unset CC
 unset CXX
+export PATH="$HOME/.cargo/bin:$_winhome/.cargo/bin:$PATH"
 
 if uname | grep MINGW64 >/dev/null; then
     type cargo || pacman -S --noconfirm mingw-w64-ucrt-x86_64-rust
