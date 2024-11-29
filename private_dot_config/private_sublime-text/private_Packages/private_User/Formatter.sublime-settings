@@ -15,64 +15,35 @@
         ]
     },
     "formatters": {
-        /*"beautysh": {
-            "disable": false,
-            "format_on_save": false,
-            "syntaxes": ["bash"],
-            "executable_path": "${packages}/User/formatter.assets/python/bin/beautysh",
-            "config_path": {
-                "default": "${packages}/User/formatter.assets/config/beautyshrc.json"
-            }
-        },*/
         "black": {
-            "disable": false,
+            "enable": true,
             "format_on_save": false,
             "syntaxes": ["python"],
-            // "executable_path": "/opt/homebrew/bin/black",
             "config_path": {
                 "default": "${packages}/User/formatter.assets/config/blackrc.toml"
             }
         },
         "clangformat": {
-            "disable": false,
+            "enable": true,
             "format_on_save": false,
-            "syntaxes": ["c", "c++", "objc", "objc++", "js", "java", "proto"],
+            "syntaxes": ["c", "c++", "objc", "objc++", "proto"],
             // "executable_path": "/opt/homebrew/opt/llvm/bin/clang-format",
             "config_path": {
                 // "default": "${packages}/User/formatter.assets/config/clangformatrc.yaml"
                 // "default": "~/.clang-format"
             }
         },
-        /*"csscomb": {
-            "disable": false,
-            "format_on_save": false,
-            "syntaxes": ["css", "scss", "sass", "less"],
-            "executable_path": "${packages}/User/formatter.assets/javascript/node_modules/.bin/csscomb",
-            "config_path": {
-                "default": "${packages}/User/formatter.assets/config/csscombrc.json"
-            }
-        },*/
-        "eslint": {
-            "disable": false,
-            "format_on_save": false,
-            "syntaxes": ["js"],
-            // "executable_path": "${packages}/User/formatter.assets/javascript/node_modules/.bin/eslint",
-            // "config_path": {
-            //     "default": "${packages}/User/formatter.assets/config/eslintrc.json"
-            // }
-        },
         "htmltidy": {
-            "disable": false,
+            "enable": true,
             "format_on_save": false,
             "syntaxes": ["html", "xml"],
-            // "executable_path": "/usr/bin/tidy",
             "config_path": {
                 "html": "${packages}/User/formatter.assets/config/htmltidyrc_html.cfg",
                 "xml": "${packages}/User/formatter.assets/config/htmltidyrc_xml.cfg"
             }
         },
         "jsbeautifier": {
-            "disable": false,
+            "enable": true,
             "format_on_save": false,
             "syntaxes": ["js", "ts", "css", "html", "json"],
             "executable_path": "${packages}/User/formatter.assets/javascript/node_modules/.bin/js-beautify",
@@ -80,34 +51,8 @@
             //     "default": "${packages}/User/formatter.assets/config/jsbeautifyrc.json"
             // }
         },
-        /*"jsonmax": {
-            "disable": false,
-            "format_on_save": false,
-            "syntaxes": ["json"],
-            "config_path": {
-                "default": "${packages}/User/formatter.assets/config/jsonmaxrc.json"
-            }
-        },*/
-        /*"perltidy": {
-            "disable": false,
-            "format_on_save": false,
-            "syntaxes": ["perl"],
-            "executable_path": "${packages}/User/formatter.assets/bin/perltidy",
-            "config_path": {
-                "default": "${packages}/User/formatter.assets/config/perltidyrc.cfg"
-            }
-        },*/
-        /*"phpcsfixer": {
-            "disable": false,
-            "format_on_save": false,
-            "syntaxes": ["php"],
-            "executable_path": "${packages}/User/formatter.assets/bin/php-cs-fixer-v2.phar",
-            "config_path": {
-                "default": "${packages}/User/formatter.assets/config/phpcsfixerrc.php"
-            }
-        },*/
         "prettier": {
-            "disable": false,
+            "enable": true,
             "format_on_save": false,
             "syntaxes": ["css", "scss", "less", "js", "jsx", "json", "html", "graphql", "markdown", "ts", "tsx", "vue", "yaml"],
             "executable_path": "${packages}/User/formatter.assets/javascript/node_modules/.bin/prettier",
@@ -115,76 +60,11 @@
             //     "default": "${packages}/User/formatter.assets/config/prettierrc.json"
             // }
         },
-        /*"rubocop": {
-            "disable": false,
-            "format_on_save": false,
-            "syntaxes": ["ruby"],
-            "executable_path": "${packages}/User/formatter.assets/ruby/bin/rubocop",
-            "config_path": {
-                "default": "${packages}/User/formatter.assets/config/rubocoprc.yml"
-            }
-        },*/
-        /*"stylelint": {
-            "disable": false,
-            "format_on_save": false,
-            "syntaxes": ["css", "scss", "sass", "less", "sss", "sugarss"],
-            "executable_path": "${packages}/User/formatter.assets/javascript/node_modules/.bin/stylelint",
-            "args": ["--config-basedir", "${packages}/User/formatter.assets/javascript/node_modules"],
-            "config_path": {
-                "default": "${packages}/User/formatter.assets/config/stylelintrc.json"
-            }
-        },*/
-        /*"uncrustify": {
-            "disable": false,
-            "format_on_save": false,
-            "syntaxes": ["c", "c++", "cs", "objc", "objc++", "d", "java", "pawn", "vala"],
-            "executable_path": "${packages}/User/formatter.assets/bin/uncrustify",
-            "config_path": {
-                "objc": "${packages}/User/formatter.assets/config/uncrustifyrc_objc.cfg",
-                "default": "${packages}/User/formatter.assets/config/uncrustifyrc.cfg"
-            }
-        },*/
-        /*"yapf": {
-            "disable": false,
-            "format_on_save": false,
-            "syntaxes": ["python"],
-            "executable_path": "${packages}/User/formatter.assets/python/bin/yapf",
-            "config_path": {
-                "default": "${packages}/User/formatter.assets/config/yapfrc.yapf"
-            }
-        },*/
-        /*"cleancss": {
-            "disable": false,
-            "format_on_save": false,
-            "syntaxes": ["css", "scss", "sass", "less"],
-            "executable_path": "${packages}/User/formatter.assets/javascript/node_modules/.bin/cleancss",
-            "config_path": {
-                "default": "${packages}/User/formatter.assets/config/cleancssrc.json"
-            }
-        },*/
-        /*"htmlminifier": {
-            "disable": false,
-            "format_on_save": false,
-            "syntaxes": ["html", "xml"],
-            "executable_path": "${packages}/User/formatter.assets/javascript/node_modules/.bin/html-minifier",
-            "config_path": {
-                "default": "${packages}/User/formatter.assets/config/htmlminifierrc.json"
-            }
-        },*/
         "jsonmin": {
-            "disable": false,
+            "enable": true,
             "format_on_save": false,
             "syntaxes": ["json"]
             /* no config */
         },
-        /*"terser": {
-            "disable": false,
-            "format_on_save": false,
-            "syntaxes": ["js"],
-            "executable_path": "${packages}/User/formatter.assets/javascript/node_modules/.bin/terser",
-            "config_path": {
-                "default": "${packages}/User/formatter.assets/config/terserrc.json"
-            }
-        }*/
     }
 }

@@ -14,6 +14,9 @@ elif type brew; then
     brew install bison m4 cmake
     brew-activate || true
     export PATH="$(brew --prefix bison)/bin:$(brew --prefix m4)/bin:$PATH"
+elif type apt-get; then
+    type sudo && sudo=sudo
+    $sudo apt-get install -y cmake flex bison
 fi
 mkdir -p $(dirname $0)/workdir
 pushd $(dirname $0)/workdir

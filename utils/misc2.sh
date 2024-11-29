@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 set -e
+source $(dirname $0)/../scripts/init_env.sh
 
-bash ./nvm.sh
-bash ./pyenv.sh
+bash $(dirname $0)/nvm.sh
+bash $(dirname $0)/pyenv.sh
+
+source $_chezmoi_root/scripts/load_nvm.sh
 
 #completion
 [ -e ~/.bash_completion ] && rm ~/.bash_completion
