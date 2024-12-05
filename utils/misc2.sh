@@ -6,6 +6,7 @@ bash $(dirname $0)/nvm.sh
 bash $(dirname $0)/pyenv.sh
 
 source $_chezmoi_root/scripts/load_nvm.sh
+export PATH="${HOME}/.local/bin:${PATH}"
 
 #completion
 [ -e ~/.bash_completion ] && rm ~/.bash_completion
