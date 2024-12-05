@@ -18,6 +18,7 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 	* /etc/fstab を編集し、noaclを消す (意味ある?)
 	* sshの鍵は msys64/home/.ssh のほうに置く
 	* sublimeの設定ファイル `lnj ~/.config/sublime-text/Packages/User '/c/Users/ユーザー名/AppData/Roaming/Sublime Text/Packages/User'`
+	* poetryの設定ファイル `lnj ~/.config/pypoetry '/c/Users/ユーザー名/AppData/Roaming/pypoetry'`
 * Macでは`brew install bash`で新しいbashが必要
 
 ## Contents
