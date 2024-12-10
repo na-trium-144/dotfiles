@@ -2,6 +2,8 @@ type nano 1>/dev/null 2>&1 && alias snano="sudo $(which nano) -f $HOME/.nanorc"
 type micro 1>/dev/null 2>&1 && alias smicro="sudo MICRO_CONFIG_HOME=$HOME/.config/micro $(which micro)"
 type git 1>/dev/null 2>&1 && alias sgit="sudo PATH=\"${PATH}\" HOME=\"$HOME\" $(which git)"
 
+[[ -e /opt/sublime_merge/sublime_merge ]] && alias subm="/opt/sublime_merge/sublime_merge"
+
 alias exa="exa --git --group-directories-first --color=auto"
 
 alias no-pyenv='export PATH="$(echo $PATH | sed 's!/[^:]*/.pyenv/[^:]*:!!g')"'
