@@ -49,7 +49,11 @@ alias pd=pushd
 alias tb="bash $(dirname "${BASH_SOURCE[0]}")/tb.sh"
 
 function tw(){
-	tmux new-window -c '#{pane_current_path}' "bash -c \" $* ; echo; read -p 'press enter to exit'\""
+	if [ -z "$1" ]; then
+		tmux new-window -c "$(pwd)"
+	else
+		tmux new-window -c "$(pwd)" "bash -c \" $* ; echo; read -p 'press enter to exit'\""
+	fi
 }
 
 if [ "${_uname}" = "MINGW64_NT" ]; then
