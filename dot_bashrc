@@ -24,6 +24,7 @@ if [[ "${_uname}" = "Darwin" ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
     export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 fi
+[[ -d /home/linuxbrew/.linuxbrew ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 source ${_chezmoi_root}/scripts/load_pyenv.sh
 source ${_chezmoi_root}/scripts/load_nvm.sh
 export PIPENV_VENV_IN_PROJECT=1
