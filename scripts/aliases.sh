@@ -2,6 +2,8 @@ type nano 1>/dev/null 2>&1 && alias snano="sudo $(which nano) -f $HOME/.nanorc"
 type micro 1>/dev/null 2>&1 && alias smicro="sudo MICRO_CONFIG_HOME=$HOME/.config/micro $(which micro)"
 type git 1>/dev/null 2>&1 && alias sgit="sudo PATH=\"${PATH}\" HOME=\"$HOME\" $(which git)"
 
+[[ -e /opt/sublime_merge/sublime_merge ]] && alias subm="/opt/sublime_merge/sublime_merge"
+
 alias exa="exa --git --group-directories-first --color=auto"
 
 alias no-pyenv='export PATH="$(echo $PATH | sed 's!/[^:]*/.pyenv/[^:]*:!!g')"'
@@ -47,7 +49,11 @@ alias pd=pushd
 alias tb="bash $(dirname "${BASH_SOURCE[0]}")/tb.sh"
 
 function tw(){
-	tmux new-window -c '#{pane_current_path}' "bash -c \" $* ; echo; read -p 'press enter to exit'\""
+	if [ -z "$1" ]; then
+		tmux new-window -c "$(pwd)"
+	else
+		tmux new-window -c "$(pwd)" "bash -c \" $* ; echo; read -p 'press enter to exit'\""
+	fi
 }
 
 if [ "${_uname}" = "MINGW64_NT" ]; then
