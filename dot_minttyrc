@@ -1,9 +1,9 @@
 ForegroundColour=0,0,0
-BackgroundColour=243,231,245
+BackgroundColour=249,244,240
 ThemeFile=luminous
-Transparency=low
+Transparency=medium
 OpaqueWhenFocused=no
-Font=FantasqueSansM Nerd Font
+Font=FantasqueSansM Nerd Font Mono
 FontHeight=9
 AllowBlinking=yes
 ClipShortcuts=no
@@ -26,4 +26,6 @@ Charset=UTF-8
 CopyOnSelect=no
 FontRender=textout
 #https://github.com/mintty/wsltty/issues/274
-
+FontChoice=CJK:5;
+#Font5=MS Gothic
+Font5=Noto Sans Mono CJK JP
