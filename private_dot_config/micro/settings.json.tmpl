@@ -1,6 +1,9 @@
 {
     "autoclose": true,
     "autosu": true,
+{{ if eq .chezmoi.os "windows" }}
+    "colorscheme": "simple",
+{{ end }}
     "comment": true,
     "diff": true,
     "eofnewline": false,
