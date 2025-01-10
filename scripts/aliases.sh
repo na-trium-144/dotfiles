@@ -3,6 +3,7 @@ type micro 1>/dev/null 2>&1 && alias smicro="sudo MICRO_CONFIG_HOME=$HOME/.confi
 type git 1>/dev/null 2>&1 && alias sgit="sudo PATH=\"${PATH}\" HOME=\"$HOME\" $(which git)"
 
 [[ -e /opt/sublime_merge/sublime_merge ]] && alias subm="/opt/sublime_merge/sublime_merge"
+[[ -e /c/Program\ Files/Sublime\ Merge/sublime_merge.exe ]] && alias subm="/c/Program\ Files/Sublime\ Merge/sublime_merge.exe"
 
 alias exa="exa --git --group-directories-first --color=auto"
 
