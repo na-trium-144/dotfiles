@@ -1,17 +1,3 @@
-echo -e -n '\033[0;107m  '
-echo -e -n '\033[0;107;32m '
-pushd `dirname "${BASH_SOURCE[0]}"` >/dev/null
-echo    -n `git log --oneline | wc -l`
-if [ -e "$HOME/.utils" ]; then
-    echo -e -n '\033[0;107m  '
-    echo -e -n '\033[0;107;31m󰍁  '
-    echo -e -n '\033[0;107;35m '
-    cd "$HOME/.utils"
-    echo    -n `git log --oneline | wc -l`
-fi
-popd >/dev/null
-echo -e '\033[K\033[0m'
-
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUPSTREAM="verbose"
@@ -29,11 +15,18 @@ elif [ -d /tmp ]; then
 else
     _tmp="$HOME"
 fi
+
 function __prompt_time_file(){ echo ${__prompt_time_file:-$_tmp/.kou-tp$$}; }
 function __git_ps1_file(){ echo ${__git_ps1_file:-$_tmp/.kou-git}; }
 for f in $_tmp/.kou-tp*; do
-	ps -p $(echo $f | sed 's/^.*[^0-9]\([0-9]*\)$/\1/') >/dev/null 2>&1 || rm $f
+    ps -p $(echo $f | sed 's/^.*[^0-9]\([0-9]*\)$/\1/') >/dev/null 2>&1 || rm $f &
+    disown $!
 done
+rm -f $_tmp/.kou-d* >/dev/null 2>&1 &
+disown $!
+
+timeout 3 bash $(dirname "${BASH_SOURCE[0]}")/dot_state.sh
+
 _code=
 _time=
 function __start_timer() {
@@ -57,8 +50,10 @@ __git_ps1_timeout=2
 function __git_ps1_async(){
     if [[ "$__git_ps1_timeout" != "0" ]]; then
         sleep $__git_ps1_timeout & local tp=$!
+        disown $tp
         local _git_ps1_file=$(__git_ps1_file)
         (__git_ps1 | sed "s/(\\(.*\\))/(\\1 @$(git config user.name))/" >$_git_ps1_file; kill -9 $tp) >/dev/null 2>&1 &
+        disown $!
         #local tp2=$!
         wait $tp
         cat $_git_ps1_file
