@@ -1,7 +1,3 @@
-GIT_PS1_SHOWDIRTYSTATE=true
-GIT_PS1_SHOWSTASHSTATE=true
-GIT_PS1_SHOWUPSTREAM="verbose"
-
 echo ${_hostname} | grep kou- >/dev/null 2>&1 || export __is_vm=1
 
 function __dirs_state(){
@@ -17,7 +13,6 @@ else
 fi
 
 function __prompt_time_file(){ echo ${__prompt_time_file:-$_tmp/.kou-tp$$}; }
-function __git_ps1_file(){ echo ${__git_ps1_file:-$_tmp/.kou-git}; }
 for f in $_tmp/.kou-tp*; do
     ps -p $(echo $f | sed 's/^.*[^0-9]\([0-9]*\)$/\1/') >/dev/null 2>&1 || rm $f &
     disown $!
@@ -49,15 +44,7 @@ function __clear_timer(){
 __git_ps1_timeout=2
 function __git_ps1_async(){
     if [[ "$__git_ps1_timeout" != "0" ]]; then
-        sleep $__git_ps1_timeout & local tp=$!
-        disown $tp
-        local _git_ps1_file=$(__git_ps1_file)
-        (__git_ps1 | sed "s/(\\(.*\\))/(\\1 @$(git config user.name))/" >$_git_ps1_file; kill -9 $tp) >/dev/null 2>&1 &
-        disown $!
-        #local tp2=$!
-        wait $tp
-        cat $_git_ps1_file
-        #kill -2 $tp2 2>/dev/null &
+        timeout $__git_ps1_timeout bash $(dirname "${BASH_SOURCE[0]}")/git_ps1.sh
     fi
 }
 function __check_brew_local(){
