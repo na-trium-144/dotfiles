@@ -17,7 +17,13 @@ else
     # https://devguide.python.org/getting-started/setup-building/index.html#linux
     # https://github.com/pyenv/pyenv/wiki#suggested-build-environment
     if type brew; then
-        brew install tcl-tk readline ncurses
+        brew install openssl readline sqlite3 xz zlib tcl-tk
+        # https://github.com/pyenv/pyenv/issues/950
+        # https://github.com/pyenv/pyenv/wiki/Common-build-problems#error-the-python-ssl-extension-was-not-compiled-missing-the-openssl-lib
+        export CONFIGURE_OPTS="--with-openssl=$(brew --prefix openssl) --with-openssl-rpath=auto"
+        export CFLAGS="-I$(brew --prefix openssl)/include $CFLAGS"
+        export CPPFLAGS="-I$(brew --prefix openssl)/include $CPPFLAGS"
+        export LDFLAGS="-L$(brew --prefix openssl)/lib -Wl,-rpath,$(brew --prefix openssl)/lib $LDFLAGS"
     elif type pacman; then
         sudo pacman -S --noconfirm --needed base-devel openssl zlib xz tk
     elif type apt-get; then

@@ -22,7 +22,7 @@ if type brew; then
 
 		# すくなくともtmuxはaliasではなくパス上にないとバグる https://github.com/tmux-plugins/tpm/issues/189
 	    for cmd in micro mc tmux fzf git curl; do
-	        [[ -e "$HOME/.brew/bin/$cmd" ]] && ln -sf $HOME/.brew/bin/$cmd $HOME/.local/bin/
+	        if [[ -e "$HOME/.brew/bin/$cmd" ]]; then ln -sf $HOME/.brew/bin/$cmd $HOME/.local/bin/; fi
 	    done
 	fi
 	# exa
