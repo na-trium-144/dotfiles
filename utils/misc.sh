@@ -64,12 +64,3 @@ elif type pacman; then
 		type fzf || sudo pacman -S --noconfirm fzf
 	fi
 fi
-
-if [ -z "$1" ]; then
-	bash $(dirname $0)/cargo.sh
-	bash $(dirname $0)/source_builds/doxygen.sh
-	bash $(dirname $0)/source_builds/json-tui.sh
-else
-	echo "skip source_builds"
-fi
-bash $(dirname $0)/tpm.sh

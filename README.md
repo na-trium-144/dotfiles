@@ -98,15 +98,12 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-
 	* `brew-activate` でそのシェル内だけパスが通る
 * misc.sh: いろいろインストールする
 	* システムにインストール inetutils, git, curl, build-essential, micro, <!-- [peco](https://github.com/peco/peco), --> mc, tmux, fzf
-	* 引数になにか渡すとcargo.shとsource_buildsを省略 (ビルドが重いラズパイなど)
+	* cargo.shとsource_buildsとtpm.shをmisc1から呼び出していたがやめた
 * cargo.sh
 	* [fd-find](https://github.com/sharkdp/fd), [git-delta](https://github.com/dandavison/delta), [hexyl](https://github.com/sharkdp/hexyl)
 * source_builds/
 	* doxygen 1.9.7
 	* json-tui
-	* mc (misc.shからは呼ばれない)
-	* tmux (misc.shからは呼ばれない)
-	* todo: micro, fzf, ...?
 * tpm.sh
 * misc2.sh
 	* pyenv or pyenv-win で python3.12.6
