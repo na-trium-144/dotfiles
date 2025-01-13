@@ -10,6 +10,7 @@
 		"BracketHighlighter",
 		"CMake",
 		"Diffable",
+		"Dockerfile Syntax Highlighting",
 		"Formatter",
 		"LSP",
 		"LSP-clangd",
