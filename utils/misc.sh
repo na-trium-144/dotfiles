@@ -53,7 +53,7 @@ elif type pacman; then
 		[[ $(which ninja) = /ucrt64/bin/ninja ]] || pacboy -S --noconfirm ninja:p
 		[[ $(which gcc) = /ucrt64/bin/gcc ]] || pacboy -S --noconfirm gcc:p
 	else
-		# arch? 最近動作確認してないので動くか知らない
+		# arch
 		type hostname || sudo pacman -S --noconfirm inetutils
 		type git || sudo pacman -S --noconfirm git
 		type curl || sudo pacman -S --noconfirm curl

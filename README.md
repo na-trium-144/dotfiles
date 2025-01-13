@@ -1,6 +1,6 @@
 # dotfiles(chezmoi)
 
-for Ubuntu, (Arch Linux,) MacOS, Windows(MSYS2)
+for Ubuntu, Arch Linux, MacOS, Windows(MSYS2)
 
 ```bash
 sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ~/.local/bin init --apply na-trium-144 --destination $HOME

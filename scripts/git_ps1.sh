@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
-[[ -e /etc/bash_completion.d/git-prompt ]] && source /etc/bash_completion.d/git-prompt
-[[ -e ~/.git-prompt.sh ]] && source ~/.git-prompt.sh
+for git_prompt_path in /usr/share/git/completion/git-prompt.sh /etc/bash_completion.d/git-prompt ~/.git-prompt.sh; do
+    if [[ -e $git_prompt_path ]]; then
+        source $git_prompt_path
+        break
+    fi
+done
 
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWSTASHSTATE=true
