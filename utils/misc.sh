@@ -9,19 +9,19 @@ source $_chezmoi_root/scripts/brew_local_aliases.sh
 
 if type brew; then
 	if [[ ${_uname} = Darwin ]]; then
-		brew install micro peco mc tmux fzf
+		brew install micro mc tmux fzf
 		brew install coreutils
 	else
 		brew install gcc || brew install gcc
 		brew link -f binutils  # brewのgccを使う場合にはbrewのPATHを通した上でこれ
-		brew install micro peco mc tmux fzf
+		brew install micro mc tmux fzf git curl
 		# なんかいくつかrbファイルを手動でダウンロードしていじらなきゃいけなかったやつがある...
 		# openssl@3, dbus → テスト削除
 		# mc→ LDFLAGS=-m
 		# krb5→ LDFLAGS=-lresolv
 
 		# すくなくともtmuxはaliasではなくパス上にないとバグる https://github.com/tmux-plugins/tpm/issues/189
-	    for cmd in micro peco mc tmux fzf; do
+	    for cmd in micro mc tmux fzf git curl; do
 	        [[ -e "$HOME/.brew/bin/$cmd" ]] && ln -sf $HOME/.brew/bin/$cmd $HOME/.local/bin/
 	    done
 	fi
@@ -33,7 +33,7 @@ elif type apt-get; then
 	$sudo apt-get install -y micro || true
 	$sudo apt-get install -y mc || true
 	$sudo apt-get install -y tmux || true
-	$sudo apt-get install -y peco || true
+	# $sudo apt-get install -y peco || true
 	$sudo apt-get install -y fzf || true
 elif type pacman; then
 	if [[ ${_uname} = MINGW64_NT ]]; then
@@ -54,12 +54,14 @@ elif type pacman; then
 		[[ $(which gcc) = /ucrt64/bin/gcc ]] || pacboy -S --noconfirm gcc:p
 	else
 		# arch? 最近動作確認してないので動くか知らない
-		type hostname || sudo pacman -S inetutils
-		type micro || sudo pacman -S micro
-		type peco || sudo pacman -S peco
-		type mc || sudo pacman -S mc
-		type tmux || sudo pacman -S tmux
-		type fzf || sudo pacman -S fzf
+		type hostname || sudo pacman -S --noconfirm inetutils
+		type git || sudo pacman -S --noconfirm git
+		type curl || sudo pacman -S --noconfirm curl
+		type micro || sudo pacman -S --noconfirm micro
+		# type peco || sudo pacman -S --noconfirm peco
+		type mc || sudo pacman -S --noconfirm mc
+		type tmux || sudo pacman -S --noconfirm tmux
+		type fzf || sudo pacman -S --noconfirm fzf
 	fi
 fi
 

@@ -21,17 +21,17 @@ bind '"\e\e[D": backward-word' #alt-left
 bind '"\e\e[C": forward-word'  #alt-right
 
 # cdpeco/pdpeco: fdしてpecoしてcdかpushdするコマンド
-fdpeco() {
-	pushd "${2:-.}" >/dev/null
-    dir="$(fd -Lt d -d 5 | sed 's,^\(.*\)/$,\1$,' | peco | sed 's,^\(.*\)\$$,\1/,')"
-    popd >/dev/null
-    [ -n "$dir" ] && $1 "${2:-.}/$dir"
-    unset dir
-}
-alias cdpeco="fdpeco cd"
-alias cdp="fdpeco cd"
-alias pdpeco="fdpeco pushd"
-alias pdp="fdpeco pushd"
+# fdpeco() {
+# 	pushd "${2:-.}" >/dev/null
+#     dir="$(fd -Lt d -d 5 | sed 's,^\(.*\)/$,\1$,' | peco | sed 's,^\(.*\)\$$,\1/,')"
+#     popd >/dev/null
+#     [ -n "$dir" ] && $1 "${2:-.}/$dir"
+#     unset dir
+# }
+# alias cdpeco="fdpeco cd"
+# alias cdp="fdpeco cd"
+# alias pdpeco="fdpeco pushd"
+# alias pdp="fdpeco pushd"
 
 # diffl a b > c でaとbをマージしたものをcに出力
 diffl() {
