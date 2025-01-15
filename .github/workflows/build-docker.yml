@@ -25,6 +25,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # https://stackoverflow.com/questions/58033366/how-to-get-the-current-branch-within-github-actions
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       
@@ -51,6 +57,7 @@ jobs:
           build-args: |
             BASE_USER=${{ env.user }}
             ARCH_IMG=${{ matrix.arch_img }}
+            CHEZMOI_BRANCH=${{ steps.extract_branch.outputs.branch }}
           platforms: linux/${{ matrix.arch }}
           push: true
           cache-to: type=registry,ref=${{ env.cache_base }}:${{ matrix.arch }},mode=max
@@ -64,6 +71,7 @@ jobs:
           build-args: |
             BASE_USER=${{ env.user }}
             ARCH_IMG=${{ matrix.arch_img }}
+            CHEZMOI_BRANCH=${{ steps.extract_branch.outputs.branch }}
           platforms: linux/${{ matrix.arch }}
           push: true
           cache-from: type=registry,ref=${{ env.cache_base }}:${{ matrix.arch }}
@@ -78,6 +86,7 @@ jobs:
           build-args: |
             BASE_USER=${{ env.user }}
             ARCH_IMG=${{ matrix.arch_img }}
+            CHEZMOI_BRANCH=${{ steps.extract_branch.outputs.branch }}
           platforms: linux/${{ matrix.arch }}
           push: true
           cache-from: type=registry,ref=${{ env.cache_base }}:${{ matrix.arch }}
@@ -91,6 +100,7 @@ jobs:
           build-args: |
             BASE_USER=${{ env.user }}
             ARCH_IMG=${{ matrix.arch_img }}
+            CHEZMOI_BRANCH=${{ steps.extract_branch.outputs.branch }}
           platforms: linux/${{ matrix.arch }}
           push: true
           cache-from: type=registry,ref=${{ env.cache_base }}:${{ matrix.arch }}

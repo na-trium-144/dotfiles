@@ -1,4 +1,5 @@
-ARG ARCH_IMG
+ARG CHEZMOI_BRANCH=main
+ARG ARCH_IMG=archlinux
 
 
 FROM ubuntu:22.04 AS base_ubuntu22
@@ -6,6 +7,7 @@ ARG BASE_UID=1000
 ARG BASE_GID=1000
 ARG BASE_USER
 ENV BASE_HOME=/home/$BASE_USER
+ARG CHEZMOI_BRANCH
 ENV DEBIAN_FRONTEND=noninteractive
 # sublime-textを使うためには ja_JP.utf-8 にし、 language-pack-ja-base, langage-pack-ja が必要
 ENV LANG=C.utf-8
@@ -27,11 +29,13 @@ ARG BASE_UID=1000
 ARG BASE_GID=1000
 ARG BASE_USER
 ENV BASE_HOME=/home/$BASE_USER
+ARG CHEZMOI_BRANCH
 ENV LANG=C.utf-8
 ENV __is_vm=1
 COPY . /tmp/
+# tar for chezmoi on arm64
 RUN pacman -Syu --noconfirm && \
-    pacman -S --noconfirm sudo curl && \
+    pacman -S --noconfirm sudo curl tar && \
     pacman -Scc --noconfirm
 RUN bash /tmp/useradd.sh
 USER $BASE_USER
@@ -48,6 +52,7 @@ ENV PATH="$BASE_HOME/.local/bin:$BASE_HOME/.cargo/bin:$PATH"
 FROM homebrew/brew AS base_brew
 # uid=1000, user=linuxbrew
 ARG BASE_USER
+ARG CHEZMOI_BRANCH
 ENV LANG=C.utf-8
 ENV __is_vm=1
 COPY . /tmp/
@@ -66,6 +71,7 @@ ARG BASE_UID=1000
 ARG BASE_GID=1000
 ARG BASE_USER
 ENV BASE_HOME=/home/$BASE_USER
+ARG CHEZMOI_BRANCH
 ENV LANG=C.utf-8
 ENV __is_vm=1
 COPY . /tmp/
@@ -81,4 +87,4 @@ ENV NIX_SHELL_PRESERVE_PROMPT=1
 ENV PATH="$BASE_HOME/.nix-profile/bin:${PATH}"
 RUN curl -L https://nixos.org/nix/install | sh && \
     nix-env -if /tmp/base144.nix && \
-    chezmoi init --apply na-trium-144
+    chezmoi init --apply na-trium-144 --branch $CHEZMOI_BRANCH

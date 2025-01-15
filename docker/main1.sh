@@ -1,6 +1,9 @@
 set -e
 sudo chown -R $USER:$USER $HOME/.local $HOME/.cargo || true
-sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b .local/bin init --apply na-trium-144
+if [[ -z $CHEZMOI_BRANCH ]]; then
+    CHEZMOI_BRANCH=main
+fi
+sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b .local/bin init --apply na-trium-144 --branch $CHEZMOI_BRANCH
 .local/share/chezmoi/utils/misc.sh
 # .local/share/chezmoi/utils/misc2.sh
 # .local/share/chezmoi/utils/misc3.sh
@@ -16,9 +19,9 @@ if ! type fd && ! type delta && ! type hexyl; then .local/share/chezmoi/utils/ca
 if ! type doxygen; then .local/share/chezmoi/utils/source_builds/doxygen.sh; fi
 if ! type json-tui; then .local/share/chezmoi/utils/source_builds/json-tui.sh; fi
 
-# .local/share/chezmoi/utils/sublime.sh || true
+if type apt-get; then .local/share/chezmoi/utils/sublime.sh; fi
 
-.local/bin/chezmoi update --force
+.local/bin/chezmoi apply --force
 
 if type apt-get; then sudo apt-get clean; fi
 if type brew; then brew cleanup -s; rm -rf $(brew --cache); fi
