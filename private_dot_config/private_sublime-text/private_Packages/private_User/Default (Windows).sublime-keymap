@@ -1,5 +1,12 @@
 // Linuxのコピペ
 [{
+        "keys": ["ctrl+s"],
+        "command": "save",
+        "args": {
+            "async": true
+        }
+    },
+    {
         "keys": ["ctrl+left"],
         "command": "prev_view"
     },

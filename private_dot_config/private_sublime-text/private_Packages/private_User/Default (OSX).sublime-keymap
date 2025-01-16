@@ -1,4 +1,11 @@
 [{
+        "keys": ["super+s"],
+        "command": "save",
+        "args": {
+            "async": true
+        }
+    },
+    {
         "keys": ["super+left"],
         "command": "prev_view"
     },
