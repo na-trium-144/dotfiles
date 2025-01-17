@@ -1,4 +1,8 @@
 set -e
+if [[ -e /tmp/artifacts ]]; then
+    sudo cp -rLv /tmp/artifacts/.* $HOME/
+    sudo rm -rf /tmp/artifacts
+fi
 sudo chown -R $USER:$USER $HOME/.local $HOME/.cargo || true
 if [[ -z $CHEZMOI_BRANCH ]]; then
     CHEZMOI_BRANCH=main
@@ -15,9 +19,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # doxygenがpythonを使う
 source .local/share/chezmoi/scripts/init_env.sh
 # source .local/share/chezmoi/scripts/load_pyenv.sh
-if ! type fd && ! type delta && ! type hexyl; then .local/share/chezmoi/utils/cargo.sh; fi
-if ! type doxygen; then .local/share/chezmoi/utils/source_builds/doxygen.sh; fi
-if ! type json-tui; then .local/share/chezmoi/utils/source_builds/json-tui.sh; fi
 
 if type apt-get; then .local/share/chezmoi/utils/sublime.sh; fi
 

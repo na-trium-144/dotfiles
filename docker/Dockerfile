@@ -20,6 +20,7 @@ RUN apt-get update && \
 RUN bash /tmp/useradd.sh
 USER $BASE_USER
 WORKDIR $BASE_HOME
+ENV USER=$BASE_USER
 RUN bash /tmp/main1.sh
 ENV PATH="$BASE_HOME/.local/bin:$BASE_HOME/.cargo/bin:$PATH"
 
@@ -40,9 +41,6 @@ RUN pacman -Syu --noconfirm && \
 RUN bash /tmp/useradd.sh
 USER $BASE_USER
 WORKDIR $BASE_HOME
-COPY --from=base_ubuntu22 /home/$BASE_USER/.cargo $BASE_HOME/.cargo
-COPY --from=base_ubuntu22 /home/$BASE_USER/.local/bin/doxygen $BASE_HOME/.local/bin/doxygen
-COPY --from=base_ubuntu22 /home/$BASE_USER/.local/bin/json-tui $BASE_HOME/.local/bin/json-tui
 # ↓なぜか要る
 ENV USER=$BASE_USER
 RUN bash /tmp/main1.sh
@@ -56,9 +54,6 @@ ARG CHEZMOI_BRANCH
 ENV LANG=C.utf-8
 ENV __is_vm=1
 COPY . /tmp/
-COPY --from=base_ubuntu22 /home/$BASE_USER/.cargo /home/linuxbrew/.cargo
-COPY --from=base_ubuntu22 /home/$BASE_USER/.local/bin/doxygen /home/linuxbrew/.local/bin/doxygen
-COPY --from=base_ubuntu22 /home/$BASE_USER/.local/bin/json-tui /home/linuxbrew/.local/bin/json-tui
 ENV USER=linuxbrew
 USER linuxbrew
 WORKDIR /home/linuxbrew

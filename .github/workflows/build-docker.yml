@@ -10,20 +10,94 @@ env:
 
 
 jobs:
+  build-source:
+    # The host should always be linux
+    runs-on: ${{matrix.runner}}
+    name: Build ${{matrix.stage}} on ${{ matrix.distro }} ${{ matrix.arch }}
+
+    # Run steps on a matrix of 4 arch/distro combinations
+    strategy:
+      matrix:
+        arch: [amd64, arm64]
+        stage: [cargo, doxygen, jsontui]
+        include:
+          - arch: amd64
+            runner: ubuntu-22.04
+          - arch: arm64
+            runner: ubuntu-22.04-arm
+          # - arch: armhf
+          #   base: '--platform=linux/arm/v7 arm32v7/ubuntu'
+    env:
+      _chezmoi_root: ${{github.workspace}}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cache artifacts
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: ${{github.workspace}}/docker/artifacts
+          key: ${{matrix.arch}}-${{matrix.stage}}-${{hashFiles('**/build-docker.yml', '**/cargo.sh', '**/doxygen.sh', '**/json-tui.sh')}}
+      - name: Build cargo packages
+        if: matrix.stage == 'cargo' && steps.cache.outputs.cache-hit != 'true'
+        run: |
+          ./utils/cargo.sh
+          mkdir -p ./docker/artifacts/.cargo
+          mv $HOME/.cargo/bin ./docker/artifacts/.cargo/
+      - name: Build doxygen
+        if: matrix.stage == 'doxygen' && steps.cache.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get update
+          ./utils/source_builds/doxygen.sh
+          mkdir -p ./docker/artifacts/.local/bin
+          mv $HOME/.local/bin/doxygen ./docker/artifacts/.local/bin/
+      - name: Build json-tui
+        if: matrix.stage == 'jsontui' && steps.cache.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get update
+          ./utils/source_builds/json-tui.sh
+          mkdir -p ./docker/artifacts/.local/bin
+          mv $HOME/.local/bin/json-tui ./docker/artifacts/.local/bin/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build-${{matrix.arch}}-${{matrix.stage}}
+          include-hidden-files: true
+          path: |
+            ${{github.workspace}}/docker/artifacts/
+
   build:
     strategy:
       matrix:
         arch: [amd64, arm64]
+        stage: [base_ubuntu22, base_arch, base_brew, base_nix]
         include:
           - arch: amd64
             arch_img: archlinux
+            runner: ubuntu-22.04
           - arch: arm64
             arch_img: lopsided/archlinux-arm64v8
+            runner: ubuntu-22.04-arm
+        exclude:
+          - arch: arm64
+            stage: base_brew
 
-    runs-on: ubuntu-22.04
+    runs-on: ${{matrix.runner}}
     name: Build
+    needs: [build-source]
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: build-${{matrix.arch}}-cargo
+          path: ${{github.workspace}}/docker/artifacts
+      - uses: actions/download-artifact@v4
+        with:
+          name: build-${{matrix.arch}}-doxygen
+          path: ${{github.workspace}}/docker/artifacts
+      - uses: actions/download-artifact@v4
+        with:
+          name: build-${{matrix.arch}}-jsontui
+          path: ${{github.workspace}}/docker/artifacts
 
       # https://stackoverflow.com/questions/58033366/how-to-get-the-current-branch-within-github-actions
       - name: Extract branch name
@@ -31,8 +105,8 @@ jobs:
         run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
         id: extract_branch
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+      # - name: Set up QEMU
+      #   uses: docker/setup-qemu-action@v3
       
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -50,7 +124,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: Build and push base_ubuntu22
+      - name: Build and push
         uses: docker/build-push-action@v6
         with:
           context: docker
@@ -60,50 +134,6 @@ jobs:
             CHEZMOI_BRANCH=${{ steps.extract_branch.outputs.branch }}
           platforms: linux/${{ matrix.arch }}
           push: true
-          cache-to: type=registry,ref=${{ env.cache_base }}:${{ matrix.arch }},mode=max
-          target: base_ubuntu22
+          target: ${{matrix.stage}}
           tags: |
-            ghcr.io/na-trium-144/dotfiles/base_ubuntu22:${{ matrix.arch }}
-      - name: Build and push base_arch
-        uses: docker/build-push-action@v6
-        with:
-          context: docker
-          build-args: |
-            BASE_USER=${{ env.user }}
-            ARCH_IMG=${{ matrix.arch_img }}
-            CHEZMOI_BRANCH=${{ steps.extract_branch.outputs.branch }}
-          platforms: linux/${{ matrix.arch }}
-          push: true
-          cache-from: type=registry,ref=${{ env.cache_base }}:${{ matrix.arch }}
-          target: base_arch
-          tags: |
-            ghcr.io/na-trium-144/dotfiles/base_arch:${{ matrix.arch }}
-      - name: Build and push base_brew
-        if: matrix.arch == 'amd64'
-        uses: docker/build-push-action@v6
-        with:
-          context: docker
-          build-args: |
-            BASE_USER=${{ env.user }}
-            ARCH_IMG=${{ matrix.arch_img }}
-            CHEZMOI_BRANCH=${{ steps.extract_branch.outputs.branch }}
-          platforms: linux/${{ matrix.arch }}
-          push: true
-          cache-from: type=registry,ref=${{ env.cache_base }}:${{ matrix.arch }}
-          target: base_brew
-          tags: |
-            ghcr.io/na-trium-144/dotfiles/base_brew:${{ matrix.arch }}
-      - name: Build and push base_nix
-        uses: docker/build-push-action@v6
-        with:
-          context: docker
-          build-args: |
-            BASE_USER=${{ env.user }}
-            ARCH_IMG=${{ matrix.arch_img }}
-            CHEZMOI_BRANCH=${{ steps.extract_branch.outputs.branch }}
-          platforms: linux/${{ matrix.arch }}
-          push: true
-          cache-from: type=registry,ref=${{ env.cache_base }}:${{ matrix.arch }}
-          target: base_nix
-          tags: |
-            ghcr.io/na-trium-144/dotfiles/base_nix:${{ matrix.arch }}
+            ghcr.io/na-trium-144/dotfiles/${{matrix.stage}}:${{ matrix.arch }}

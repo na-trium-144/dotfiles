@@ -11,6 +11,9 @@ if [[ ${_uname} = MINGW64_NT ]]; then
 elif type brew; then
     brew install cmake
     brew-activate || true
+elif type apt-get; then
+    type sudo && sudo=sudo
+    $sudo apt-get install -y build-essential cmake
 fi
 
 mkdir -p $(dirname $0)/workdir
