@@ -49,8 +49,10 @@ jobs:
             apt-get update
             apt-get install -y curl build-essential
             ./utils/cargo.sh
-            mkdir -p ./docker/artifacts/.cargo
-            mv $HOME/.cargo/bin ./docker/artifacts/.cargo/
+            mkdir -p ./docker/artifacts/.cargo/bin
+            for f in delta fd hexyl; do
+              mv $HOME/.cargo/bin/$f ./docker/artifacts/.cargo/bin/
+            done
       - name: Build doxygen
         if: matrix.stage == 'doxygen' && steps.cache.outputs.cache-hit != 'true'
         uses: addnab/docker-run-action@v3

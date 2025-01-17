@@ -1,5 +1,6 @@
 set -e
 if [[ -e /tmp/artifacts ]]; then
+    sudo chmod -R +x /tmp/artifacts
     sudo cp -rLv /tmp/artifacts/.* $HOME/
     sudo rm -rf /tmp/artifacts
 fi
