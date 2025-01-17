@@ -13,7 +13,7 @@ jobs:
   build-source:
     # The host should always be linux
     runs-on: ${{matrix.runner}}
-    name: Build ${{matrix.stage}} on ${{ matrix.distro }} ${{ matrix.arch }}
+    name: Build ${{matrix.stage}} (${{ matrix.arch }})
 
     # Run steps on a matrix of 4 arch/distro combinations
     strategy:
@@ -27,8 +27,6 @@ jobs:
             runner: ubuntu-22.04-arm
           # - arch: armhf
           #   base: '--platform=linux/arm/v7 arm32v7/ubuntu'
-    env:
-      _chezmoi_root: ${{github.workspace}}
     steps:
       - uses: actions/checkout@v4
       - name: Cache artifacts
@@ -39,24 +37,52 @@ jobs:
           key: ${{matrix.arch}}-${{matrix.stage}}-${{hashFiles('**/build-docker.yml', '**/cargo.sh', '**/doxygen.sh', '**/json-tui.sh')}}
       - name: Build cargo packages
         if: matrix.stage == 'cargo' && steps.cache.outputs.cache-hit != 'true'
-        run: |
-          ./utils/cargo.sh
-          mkdir -p ./docker/artifacts/.cargo
-          mv $HOME/.cargo/bin ./docker/artifacts/.cargo/
+        uses: addnab/docker-run-action@v3
+        with:
+          image: ubuntu:20.04
+          options: >
+            -v ${{ github.workspace }}:/workspace
+            -e _chezmoi_root=/workspace
+          run: |
+            set -e
+            cd /workspace
+            apt-get update
+            apt-get install -y curl build-essential
+            ./utils/cargo.sh
+            mkdir -p ./docker/artifacts/.cargo
+            mv $HOME/.cargo/bin ./docker/artifacts/.cargo/
       - name: Build doxygen
         if: matrix.stage == 'doxygen' && steps.cache.outputs.cache-hit != 'true'
-        run: |
-          sudo apt-get update
-          ./utils/source_builds/doxygen.sh
-          mkdir -p ./docker/artifacts/.local/bin
-          mv $HOME/.local/bin/doxygen ./docker/artifacts/.local/bin/
+        uses: addnab/docker-run-action@v3
+        with:
+          image: ubuntu:20.04
+          options: >
+            -v ${{ github.workspace }}:/workspace
+            -e _chezmoi_root=/workspace
+            -e DEBIAN_FRONTEND=noninteractive
+          run: |
+            set -e
+            cd /workspace
+            apt-get update
+            ./utils/source_builds/doxygen.sh
+            mkdir -p ./docker/artifacts/.local/bin
+            mv $HOME/.local/bin/doxygen ./docker/artifacts/.local/bin/
       - name: Build json-tui
         if: matrix.stage == 'jsontui' && steps.cache.outputs.cache-hit != 'true'
-        run: |
-          sudo apt-get update
-          ./utils/source_builds/json-tui.sh
-          mkdir -p ./docker/artifacts/.local/bin
-          mv $HOME/.local/bin/json-tui ./docker/artifacts/.local/bin/
+        uses: addnab/docker-run-action@v3
+        with:
+          image: ubuntu:20.04
+          options: >
+            -v ${{ github.workspace }}:/workspace
+            -e _chezmoi_root=/workspace
+            -e DEBIAN_FRONTEND=noninteractive
+          run: |
+            set -e
+            cd /workspace
+            apt-get update
+            ./utils/source_builds/json-tui.sh
+            mkdir -p ./docker/artifacts/.local/bin
+            mv $HOME/.local/bin/json-tui ./docker/artifacts/.local/bin/
       - uses: actions/upload-artifact@v4
         with:
           name: build-${{matrix.arch}}-${{matrix.stage}}

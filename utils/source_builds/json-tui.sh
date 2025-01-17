@@ -13,7 +13,7 @@ elif type brew; then
     brew-activate || true
 elif type apt-get; then
     type sudo && sudo=sudo
-    $sudo apt-get install -y build-essential cmake
+    $sudo apt-get install -y build-essential cmake git
 fi
 
 mkdir -p $(dirname $0)/workdir

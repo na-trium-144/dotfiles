@@ -14,7 +14,7 @@ ENV LANG=C.utf-8
 ENV __is_vm=1
 COPY . /tmp/
 RUN apt-get update && \
-    apt-get -qqy install sudo curl python3 && \
+    apt-get -qqy install sudo curl && \
     apt-get clean && \
     ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 RUN bash /tmp/useradd.sh
