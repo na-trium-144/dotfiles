@@ -16,7 +16,10 @@ elif type brew; then
     export PATH="$(brew --prefix bison)/bin:$(brew --prefix m4)/bin:$PATH"
 elif type apt-get; then
     type sudo && sudo=sudo
-    $sudo apt-get install -y cmake flex bison
+    $sudo apt-get install -y build-essential cmake flex bison git
+    if ! type python3; then
+        $sudo apt-get install -y python3
+    fi
 fi
 mkdir -p $(dirname $0)/workdir
 pushd $(dirname $0)/workdir

@@ -9,3 +9,5 @@ scripts
 utils
 .gitmodules
 .gitignore
+.github
+docker
