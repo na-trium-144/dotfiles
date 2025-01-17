@@ -23,5 +23,5 @@ if [[ ! -d json-tui ]]; then
 fi
 cd json-tui
 cmake -Bbuild -DCMAKE_INSTALL_PREFIX=$HOME/.local $flags
-cmake --build build --target install
+cmake --build build --target install -j$(nproc)
 popd

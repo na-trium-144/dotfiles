@@ -28,5 +28,5 @@ if [[ ! -d doxygen ]]; then
 fi
 cd doxygen
 cmake -Bbuild -DCMAKE_INSTALL_PREFIX=$HOME/.local $flags
-cmake --build build --target install
+cmake --build build --target install -j$(nproc)
 popd
