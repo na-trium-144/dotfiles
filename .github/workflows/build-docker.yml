@@ -163,5 +163,7 @@ jobs:
           platforms: linux/${{ matrix.arch }}
           push: true
           target: ${{matrix.stage}}
+          cache-from: type=registry,ref=ghcr.io/na-trium-144/dotfiles/${{matrix.stage}}:${{matrix.arch}}-cache
+          cache-to: type=registry,ref=ghcr.io/na-trium-144/dotfiles/${{matrix.stage}}:${{matrix.arch}}-cache,mode=max
           tags: |
-            ghcr.io/na-trium-144/dotfiles/${{matrix.stage}}:${{ matrix.arch }}
+            ghcr.io/na-trium-144/dotfiles/${{matrix.stage}}:${{matrix.arch}}
