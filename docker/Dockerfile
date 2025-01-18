@@ -21,6 +21,8 @@ WORKDIR $BASE_HOME
 ENV USER=$BASE_USER
 RUN bash /tmp/main1.sh
 ENV LANG=ja_JP.utf-8
+ENV LANGUAGE=ja_JP:ja
+ENV LC_ALL=ja_JP.utf-8
 ENV PATH="$BASE_HOME/.local/bin:$BASE_HOME/.cargo/bin:$PATH"
 
 

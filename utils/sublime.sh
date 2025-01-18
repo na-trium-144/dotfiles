@@ -8,7 +8,6 @@ if ! type subl; then
     echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
     sudo apt-get update
     sudo apt-get install -y sublime-text sublime-merge libgl1 fontconfig language-pack-ja-base language-pack-ja
-    # set LANG=ja_JP.utf-8 later
 fi
 hash -r
 type subl
