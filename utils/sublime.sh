@@ -34,6 +34,8 @@ until [[ -e "$HOME/.config/sublime-text/Installed Packages/0_package_control_loa
     pkill sublime 
     sleep $timeout
     timeout=$((timeout + 2))
+    echo Installed Packages:
+    ls $HOME/.config/sublime-text/Installed\ Packages
 done
 echo install_package_control done
 while [[ -e "$HOME/.config/sublime-text/Installed Packages/0_package_control_loader.sublime-package" ]]; do
@@ -44,10 +46,10 @@ while [[ -e "$HOME/.config/sublime-text/Installed Packages/0_package_control_loa
     ~/.local/bin/chezmoi apply --force
     remove_theme
     timeout=$((timeout + 2))
+    echo Installed Packages:
+    ls $HOME/.config/sublime-text/Installed\ Packages
 done
 echo install packages done
-echo Installed Packages:
-ls $HOME/.config/sublime-text/Installed\ Packages
 
 ~/.local/bin/chezmoi apply --force
 
