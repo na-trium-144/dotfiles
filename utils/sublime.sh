@@ -23,38 +23,28 @@ if [[ -z $DISPLAY ]]; then
     export DISPLAY=:99
 fi
 
-function remove_theme() {
-    sed -i '/"theme":/d;/"color_scheme":/d' $HOME/.config/sublime-text/Packages/User/Preferences.sublime-settings
-}
-
-remove_theme
 timeout=2
-until [[ -e "$HOME/.config/sublime-text/Installed Packages/0_package_control_loader.sublime-package" ]]; do
+pkg_count_prev=0
+pkg_count_now=$(ls $HOME/.config/sublime-text/Installed\ Packages -1 | wc -l)
+# 本当は現在27のはずだが、なぜかdocker build中どれだけ待ってもそこまでインストールされないので、条件を緩めにしている
+until (( pkg_count_now > 20 )) && (( pkg_count_now <= pkg_count_prev )); do
+    # Error loading theme のダイアログが出ている間インストールが進まないので、テーマを消す
+    sed -i '/"theme":/d;/"color_scheme":/d' $HOME/.config/sublime-text/Packages/User/Preferences.sublime-settings
     subl
     sleep $timeout
     subl --command install_package_control
     sleep $((timeout * 2))
-    pkill sublime 
-    sleep $timeout
-    timeout=$((timeout + 2))
-    echo Installed Packages:
-    ls $HOME/.config/sublime-text/Installed\ Packages
-done
-echo install_package_control done
-while [[ -e "$HOME/.config/sublime-text/Installed Packages/0_package_control_loader.sublime-package" ]]; do
-    subl
-    sleep $((timeout * 2))
     pkill sublime
     sleep $timeout
-    ~/.local/bin/chezmoi apply --force
-    remove_theme
     timeout=$((timeout + 2))
-    echo Installed Packages:
+    pkg_count_prev=$pkg_count_now
+    pkg_count_now=$(ls $HOME/.config/sublime-text/Installed\ Packages -1 | wc -l)
+    echo "Installed Packages: $pkg_count_now"
     ls $HOME/.config/sublime-text/Installed\ Packages
+    # テーマを戻す
+    ~/.local/bin/chezmoi apply --force
 done
-echo install packages done
-
-~/.local/bin/chezmoi apply --force
+echo "Install Packages done"
 
 if [[ -n $use_xdummy ]]; then
     sudo pkill Xorg
