@@ -16,7 +16,10 @@ if [[ -z $DISPLAY ]]; then
     # https://stackoverflow.com/questions/39085462/xdummy-in-docker-container
     use_xdummy=1
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y xserver-xorg-video-dummy
-    Xorg -noreset +extension GLX -config $HOME/.local/share/chezmoi/scripts/xorg.conf :99 &
+    cp $HOME/.local/share/chezmoi/scripts/xorg.conf /tmp
+    cd /tmp
+    # echo "allowed_users = anybody" | sudo tee -a /etc/X11/Xwrapper.config
+    sudo Xorg -noreset +extension GLX -config xorg.conf :99 &
     export DISPLAY=:99
 fi
 
@@ -54,6 +57,6 @@ echo install packages done
 ~/.local/bin/chezmoi apply --force
 
 if [[ -n $use_xdummy ]]; then
-    pkill Xorg
+    sudo pkill Xorg
     sudo apt-get autoremove -y xserver-xorg-video-dummy
 fi
