@@ -9,8 +9,6 @@ ARG BASE_USER
 ENV BASE_HOME=/home/$BASE_USER
 ARG CHEZMOI_BRANCH
 ENV DEBIAN_FRONTEND=noninteractive
-# sublime-textを使うためには ja_JP.utf-8 にし、 language-pack-ja-base, langage-pack-ja が必要
-ENV LANG=C.utf-8
 ENV __is_vm=1
 COPY . /tmp/
 RUN apt-get update && \
@@ -22,6 +20,9 @@ USER $BASE_USER
 WORKDIR $BASE_HOME
 ENV USER=$BASE_USER
 RUN bash /tmp/main1.sh
+ENV LANG=ja_JP.utf-8
+ENV LANGUAGE=ja_JP:ja
+ENV LC_ALL=ja_JP.utf-8
 ENV PATH="$BASE_HOME/.local/bin:$BASE_HOME/.cargo/bin:$PATH"
 
 
