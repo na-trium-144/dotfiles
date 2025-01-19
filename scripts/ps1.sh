@@ -52,6 +52,12 @@ function __check_brew_local(){
         echo -n "🍺 "
     fi
 }
+__count_ps=$(($(ps | wc -l) - 5))
+if [[ $__count_ps == 0 ]]; then
+    __count_ps=
+else
+    __count_ps="\$$__count_ps"
+fi
 export PROMPT_COMMAND="__set_code" # 他のps1のコマンドより先に実行しないといけない
 trap '__start_timer' DEBUG # コマンド実行前に実行
 
@@ -61,11 +67,13 @@ FACE=
 [[ "${_hostname}" = "kou-Ace" ]] && FACE='(σ ･∀ ･)σ '
 [[ "${_hostname}" = "kou-Surf" ]] && FACE='(9 ･ω･)9 '
 [[ "${_hostname}" = "kou-MAir.local" ]] && FACE='･_･)φ_'
+# 31=red, 32=green, 33=yellow, 34=blue, 35=magenta, 36=cyan
 PS1_TIT='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a\]'
 PS1_CHROOT='${debian_chroot:+($debian_chroot)}'
 PS1_PRE='\[\033[0;107m\]$(__check_brew_local)'
 PS1_HOST='\[\033[1;107;31m\]\h'
 PS1_DISPLAY='\[\033[0;107;31m\]${DISPLAY//*\//\/}'
+PS1_PS='\[\033[0;107;35m\]${__count_ps}'
 PS1_SEPARATOR='\[\033[0;107m\]:'
 PS1_DIR='\[\033[1;107;36m\]\w'
 PS1_DIRS='\[\033[0;107;36m\]$(__dirs_state)'
@@ -83,4 +91,4 @@ if [[ -n "$MC_SID" ]]; then
     # PS1_END='\[\033[0m\] '
     # PS1_DIR='\[\033[1;107;36m\]\W'
 fi
-PS1="$PS1_TIT$PS1_CHROOT$PS1_PRE$PS1_HOST$PS1_DISPLAY$PS1_SEPARATOR$PS1_DIR$PS1_DIRS$PS1_GIT$PS1_FACE$PS1_NUM$PS1_END"
+PS1="$PS1_TIT$PS1_CHROOT$PS1_PRE$PS1_HOST$PS1_DISPLAY$PS1_PS$PS1_SEPARATOR$PS1_DIR$PS1_DIRS$PS1_GIT$PS1_FACE$PS1_NUM$PS1_END"
