@@ -52,7 +52,7 @@ function __check_brew_local(){
         echo -n "🍺 "
     fi
 }
-__count_ps=$(($(ps | wc -l) - 5))
+__count_ps=$(($(pstree -aTp $(ps -o sid= $$) | wc -l) - 4))
 if [[ $__count_ps == 0 ]]; then
     __count_ps=
 else
