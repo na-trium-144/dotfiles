@@ -52,12 +52,33 @@ function __check_brew_local(){
         echo -n "🍺 "
     fi
 }
-__count_ps=$(($(pstree -aTp $(ps -o sid= $$) | wc -l) - 4))
+
+if [[ "${_uname}" = "MINGW64_NT" ]]; then
+    function __ps_tty(){ ps -p $1 | tail -n 1 | awk '{ print $5 }'; }
+    function __ps_ppid(){ ps -p $1 | tail -n 1 | awk '{ print $2 }'; }
+else
+    alias __ps_tty='ps -o tty= -p'
+    alias __ps_ppid='ps -o ppid= -p'
+fi
+# 同じtty内でのプロセス数(ネストしたシェル数)を取得
+parent_pid=$$
+parent_tty=$(__ps_tty $$)
+__count_ps=-1
+while
+    pid=$parent_pid
+    tty=$parent_tty
+    parent_pid=$(__ps_ppid $pid)
+    parent_tty=$(__ps_tty $parent_pid)
+    __count_ps=$((__count_ps + 1))
+    [[ $parent_tty == $tty ]]
+do :; done
+unset parent_pid parent_tty pid tty
 if [[ $__count_ps == 0 ]]; then
     __count_ps=
 else
     __count_ps="\$$__count_ps"
 fi
+
 export PROMPT_COMMAND="__set_code" # 他のps1のコマンドより先に実行しないといけない
 trap '__start_timer' DEBUG # コマンド実行前に実行
 
