@@ -27,6 +27,8 @@ fi
 [[ -d /home/linuxbrew/.linuxbrew ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 source ${_chezmoi_root}/scripts/load_pyenv.sh
 source ${_chezmoi_root}/scripts/load_nvm.sh
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 export PIPENV_VENV_IN_PROJECT=1
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 export PATH="$HOME/.cargo/bin:$_winhome/.cargo/bin:$PATH"
