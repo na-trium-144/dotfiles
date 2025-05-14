@@ -3,5 +3,6 @@
 {
     "settings": {
         "commit_completion_on_tab": false,
-    }
+    },
+    "enabled": false,
 }
