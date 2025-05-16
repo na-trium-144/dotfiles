@@ -27,7 +27,7 @@ timeout=2
 pkg_count_prev=0
 pkg_count_now=$(ls $HOME/.config/sublime-text/Installed\ Packages -1 | wc -l)
 # 本当は現在27のはずだが、なぜかdocker build中どれだけ待ってもそこまでインストールされないので、条件を緩めにしている
-until (( pkg_count_now > 20 )) && (( pkg_count_now <= pkg_count_prev )); do
+until (( pkg_count_now > 16 )) && (( pkg_count_now <= pkg_count_prev )); do
     # Error loading theme のダイアログが出ている間インストールが進まないので、テーマを消す
     sed -i '/"theme":/d;/"color_scheme":/d' $HOME/.config/sublime-text/Packages/User/Preferences.sublime-settings
     subl
