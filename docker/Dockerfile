@@ -92,11 +92,11 @@ ARG BASE_GID=1000
 ARG BASE_USER
 ENV BASE_HOME=/home/$BASE_USER
 ARG CHEZMOI_BRANCH
-ENV LANG=C.utf-8
+ENV DEBIAN_FRONTEND=noninteractive
 ENV __is_vm=1
 COPY . /tmp/
 RUN apt-get update && \
-    apt-get -qqy install sudo curl xz-utils && \
+    apt-get -qqy install sudo curl xz-utils gnupg2 && \
     apt-get clean
 # RUN nix-shell -p su --run bash ./docker_useradd.sh
 RUN bash /tmp/useradd.sh && \
@@ -107,4 +107,9 @@ ENV NIX_SHELL_PRESERVE_PROMPT=1
 ENV PATH="$BASE_HOME/.nix-profile/bin:${PATH}"
 RUN curl -L https://nixos.org/nix/install | sh && \
     nix-env -if /tmp/base144.nix && \
-    chezmoi init --apply na-trium-144 --branch $CHEZMOI_BRANCH
+    chezmoi init --apply na-trium-144 --branch $CHEZMOI_BRANCH && \
+    .local/share/chezmoi/utils/sublime.sh && \
+    chezmoi apply --force
+ENV LANG=ja_JP.utf-8
+ENV LANGUAGE=ja_JP:ja
+ENV LC_ALL=ja_JP.utf-8
