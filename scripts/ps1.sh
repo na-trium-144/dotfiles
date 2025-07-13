@@ -97,6 +97,9 @@ PS1_DISPLAY='\[\033[0;107;31m\]${DISPLAY//*\//\/}'
 PS1_PS='\[\033[0;107;35m\]${__count_ps}'
 PS1_SEPARATOR='\[\033[0;107m\]:'
 PS1_DIR='\[\033[1;107;36m\]\w'
+# if (( `tput cols` < 100 )); then
+#     PS1_DIR='\[\033[1;107;36m\]\W'
+# fi
 PS1_DIRS='\[\033[0;107;36m\]$(__dirs_state)'
 PS1_GIT='\[\033[0;107;32m\]$(__git_ps1_async) '
 PS1_FACE='\[\033[0;107;33m\]'${FACE}
@@ -108,8 +111,12 @@ if [[ "${_hostname}" = "kou-RPi3" ]]; then
     PS1_HOST='\[\033[1;107;31m\]'${FACE}
 fi
 if [[ -n "$MC_SID" ]]; then
-    PS1_PRE='\[\033[0;107m\][mc]'"$PS1_PRE"
+    PS1_PRE='\[\033[0;30;107m\][mc]'"$PS1_PRE"
     # PS1_END='\[\033[0m\] '
     # PS1_DIR='\[\033[1;107;36m\]\W'
 fi
-PS1="$PS1_TIT$PS1_CHROOT$PS1_PRE$PS1_HOST$PS1_DISPLAY$PS1_PS$PS1_SEPARATOR$PS1_DIR$PS1_DIRS$PS1_GIT$PS1_FACE$PS1_NUM$PS1_END"
+if (( `tput cols` < 100 )); then
+    PS1="$PS1_TIT$PS1_CHROOT$PS1_HOST$PS1_DISPLAY$PS1_PS$PS1_SEPARATOR$PS1_DIR$PS1_DIRS$PS1_GIT$PS1_END\n$PS1_PRE$PS1_FACE$PS1_NUM$PS1_END"
+else
+    PS1="$PS1_TIT$PS1_CHROOT$PS1_PRE$PS1_HOST$PS1_DISPLAY$PS1_PS$PS1_SEPARATOR$PS1_DIR$PS1_DIRS$PS1_GIT$PS1_FACE$PS1_NUM$PS1_END"
+fi
