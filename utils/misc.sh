@@ -44,7 +44,7 @@ elif type pacman; then
 		type winpty || pacman -S --noconfirm winpty
 		type pacboy || pacman -S --noconfirm pactoys
 		if [[ $(which micro) != /usr/bin/micro ]]; then
-			type micro || sudo choco uninstall micro
+			type micro && sudo choco uninstall micro
 			pacboy -S --noconfirm micro:p
 			# なんで/usr/binなんだろう?
 		fi
