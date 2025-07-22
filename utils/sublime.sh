@@ -26,7 +26,7 @@ fi
 timeout=2
 pkg_count_prev=0
 pkg_count_now=$(ls $HOME/.config/sublime-text/Installed\ Packages -1 | wc -l)
-# 本当は現在27のはずだが、なぜかdocker build中どれだけ待ってもそこまでインストールされないので、条件を緩めにしている
+# 本当は現在27のはずだが、なぜかdocker build中どれだけ待ってもそこまでインストールされない場合があるので、条件を緩めにしている
 until (( pkg_count_now > 20 )) && (( pkg_count_now <= pkg_count_prev )); do
     # Error loading theme のダイアログが出ている間インストールが進まないので、テーマを消す
     sed -i '/"theme":/d;/"color_scheme":/d' $HOME/.config/sublime-text/Packages/User/Preferences.sublime-settings
@@ -42,7 +42,11 @@ until (( pkg_count_now > 20 )) && (( pkg_count_now <= pkg_count_prev )); do
     echo "Installed Packages: $pkg_count_now"
     ls $HOME/.config/sublime-text/Installed\ Packages
     # テーマを戻す
-    ~/.local/bin/chezmoi apply --force
+    ~/.local/bin/chezmoi apply --force || chezmoi apply --force
+    if (( timeout > 20 )); then
+        echo "WARNING: giving up. maybe something went wrong"
+        break
+    fi
 done
 echo "Install Packages done"
 
