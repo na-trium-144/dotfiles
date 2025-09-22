@@ -96,7 +96,7 @@ jobs:
     strategy:
       matrix:
         arch: [amd64, arm64]
-        stage: [base_ubuntu20, base_ubuntu22, base_arch, base_brew, base_nix]
+        stage: [base_ubuntu20, base_ubuntu22, base_ubuntu24, base_arch, base_brew, base_nix]
         include:
           - arch: amd64
             arch_img: archlinux
