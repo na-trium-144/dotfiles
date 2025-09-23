@@ -20,7 +20,7 @@ done
 rm -f $_tmp/.kou-d* >/dev/null 2>&1 &
 disown $!
 
-timeout 3 bash $(dirname "${BASH_SOURCE[0]}")/dot_state.sh
+timeout 1 bash $(dirname "${BASH_SOURCE[0]}")/dot_state.sh
 
 _code=
 _time=

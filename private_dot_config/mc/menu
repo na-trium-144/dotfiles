@@ -53,3 +53,10 @@ z       Compress current files (zip)
         [ -n "$tar" ] && \
         zip --symlinks -r "$tar.zip" %s && \
         echo "$tar.zip created."
+
+!       Remove all files and directories older than yesterday in /tmp
+        read -p "Are you sure you want to remove all files and directories older than yesterday in /tmp? [y/N] " -n 1 -r
+        echo
+        [[ ! $REPLY =~ ^[Yy]$ ]] && echo "Aborted." && exit 1
+        find /tmp -maxdepth 1 -type f -mtime +0 -exec echo rm -f {} \; && \
+        find /tmp -maxdepth 1 -type d -mtime +0 -exec echo rm -rf {} \;
