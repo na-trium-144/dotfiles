@@ -3,6 +3,8 @@ name: Build docker image
 on:
   push:
     branches: ["main", "docker"]
+  workflow_dispatch:
+    
 
 env:
   cache_base: ghcr.io/na-trium-144/dotfiles/cache
@@ -151,7 +153,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
@@ -163,7 +165,7 @@ jobs:
           platforms: linux/${{ matrix.arch }}
           push: true
           target: ${{matrix.stage}}
-          cache-from: type=registry,ref=ghcr.io/na-trium-144/dotfiles/${{matrix.stage}}:${{matrix.arch}}-cache
+          cache-from: type=registry,ref=ghcr.io/na-trium-144/dotfiles/${{matrix.stage}}:${{matrix.arch}}-cache${{github.event_name == 'workflow_dispatch' && '-do-not-use' || ''}}
           cache-to: type=registry,ref=ghcr.io/na-trium-144/dotfiles/${{matrix.stage}}:${{matrix.arch}}-cache,mode=max
           tags: |
             ghcr.io/na-trium-144/dotfiles/${{matrix.stage}}:${{matrix.arch}}
