@@ -40,7 +40,6 @@ fi
 [[ "${_uname}" = "MINGW64_NT" ]] && export MC_XDG_OPEN="$_chezmoi_root/scripts/win_open.sh"
 [[ "${_uname}" = "Darwin" ]] && export MC_XDG_OPEN="open"
 type ninja 1>/dev/null 2>&1 && export CMAKE_GENERATOR=Ninja
-# export NINJA_STATUS=$'\033[1;30;106m%f\033[0;90;106m/%t\033[0;96m\033[0m '
 export PATH="/opt/webcface/bin:${PATH}"
 export PATH="/opt/mujoco/bin:${PATH}"
 export PATH="${PATH}:${HOME}/.robotech/bin"
