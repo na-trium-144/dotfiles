@@ -57,6 +57,19 @@ function tw(){
 	fi
 }
 
+function pninja() {
+	if ninja_version=$(ninja --version 2>/dev/null); then
+		if [[ "$(printf '%s\n' "1.12.0" "$ninja_version" | sort -V | head -n1)" = "1.12.0" ]]; then
+			NINJA_STATUS=$'\033[1;30;106m%f\033[0;90;106m/%t\033[103;96m\033[30;103m%w\033[90m~%W\033[0;93m\033[0m ' ninja "$@"
+		else
+			NINJA_STATUS=$'\033[1;30;106m%f\033[0;90;106m/%t\033[0;96m\033[0m ' ninja "$@"
+		fi
+	else
+		# command not found
+		ninja "$@"
+	fi
+}
+
 if [ "${_uname}" = "MINGW64_NT" ]; then
 	# workaround https://github.com/microsoft/terminal/issues/5132
 	# function tmux(){
