@@ -88,6 +88,9 @@ FACE=
 [[ "${_hostname}" = "kou-Ace" ]] && FACE='(σ ･∀ ･)σ '
 [[ "${_hostname}" = "kou-Surf" ]] && FACE='(9 ･ω･)9 '
 [[ "${_hostname}" = "kou-MAir.local" ]] && FACE='･_･)φ_'
+[[ "${_hostname}" = "kou-RPi3" ]] && FACE=' '
+[[ "${_hostname}" = "kou-pikachu" ]] && FACE='(⚈  ̫⚈) '
+[[ -n "$TERMUX_VERSION" ]] && FACE='[o_o]'
 # 31=red, 32=green, 33=yellow, 34=blue, 35=magenta, 36=cyan
 PS1_TIT='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a\]'
 PS1_CHROOT='${debian_chroot:+($debian_chroot)}'
@@ -105,15 +108,14 @@ PS1_GIT='\[\033[0;107;32m\]$(__git_ps1_async) '
 PS1_FACE='\[\033[0;107;33m\]'${FACE}
 PS1_NUM='\[\033[0;107;31m\] ${_code}${_time}$(__clear_timer)\[\033[0;107;32m\]#\#'
 PS1_END='\[\033[0;97m\]\[\033[0m\] '
-if [[ "${_hostname}" = "kou-RPi3" ]]; then
-    FACE='kou- '
-    PS1_TIT='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a\]'
-    PS1_HOST='\[\033[1;107;31m\]'${FACE}
-fi
 if [[ -n "$MC_SID" ]]; then
     PS1_PRE='\[\033[0;30;107m\][mc]'"$PS1_PRE"
     # PS1_END='\[\033[0m\] '
     # PS1_DIR='\[\033[1;107;36m\]\W'
+fi
+if [[ -n "$TERMUX_VERSION" && "$HOME" = "/home" ]]; then
+    # inside termux-chroot
+    PS1_PRE='\[\033[0;31;107m\]p#'"$PS1_PRE"
 fi
 if (( `tput cols` < 100 )); then
     PS1="$PS1_TIT$PS1_CHROOT$PS1_HOST$PS1_DISPLAY$PS1_PS$PS1_SEPARATOR$PS1_DIR$PS1_DIRS$PS1_GIT$PS1_END\n$PS1_PRE$PS1_FACE$PS1_NUM$PS1_END"
