@@ -89,7 +89,7 @@ FACE=
 [[ "${_hostname}" = "kou-Surf" ]] && FACE='(9 ･ω･)9 '
 [[ "${_hostname}" = "kou-MAir.local" ]] && FACE='･_･)φ_'
 [[ "${_hostname}" = "kou-RPi3" ]] && FACE=' '
-[[ "${_hostname}" = "kou-pikachu" ]] && FACE='(⚈  ̫⚈) '
+[[ "${_hostname}" = "kou-pikachu" ]] && FACE='(⚈  ̫⚈ ) '
 [[ -n "$TERMUX_VERSION" ]] && FACE='[o_o]'
 # 31=red, 32=green, 33=yellow, 34=blue, 35=magenta, 36=cyan
 PS1_TIT='\[\e]0;${debian_chroot:+($debian_chroot)}\W '${FACE}'\a\]'
