@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -e
+for remote in $(git remote); do
+	echo git push "$remote" "$@"
+	git push "$remote" "$@"
+done
