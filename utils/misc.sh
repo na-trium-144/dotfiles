@@ -4,24 +4,21 @@ shopt -s expand_aliases
 source $(dirname $0)/../scripts/init_env.sh
 source $_chezmoi_root/scripts/brew_local_aliases.sh
 
-# $1が空じゃなければrustのビルドをスキップ
-# pip, cargo > apt, pacman, brew > install script
-
 if type brew; then
 	if [[ ${_uname} = Darwin ]]; then
-		brew install micro mc tmux fzf
+		brew install micro mc tmux fzf glow
 		brew install coreutils
 	else
 		brew install gcc || brew install gcc
 		brew link -f binutils  # brewのgccを使う場合にはbrewのPATHを通した上でこれ
-		brew install micro mc tmux fzf git curl
+		brew install micro mc tmux fzf git curl glow
 		# なんかいくつかrbファイルを手動でダウンロードしていじらなきゃいけなかったやつがある...
 		# openssl@3, dbus → テスト削除
 		# mc→ LDFLAGS=-m
 		# krb5→ LDFLAGS=-lresolv
 
 		# すくなくともtmuxはaliasではなくパス上にないとバグる https://github.com/tmux-plugins/tpm/issues/189
-	    for cmd in micro mc tmux fzf git curl; do
+	    for cmd in micro mc tmux fzf git curl glow; do
 	        if [[ -e "$HOME/.brew/bin/$cmd" ]]; then ln -sf $HOME/.brew/bin/$cmd $HOME/.local/bin/; fi
 	    done
 	fi
@@ -35,6 +32,14 @@ elif type apt-get; then
 	$sudo apt-get install -y tmux || true
 	# $sudo apt-get install -y peco || true
 	$sudo apt-get install -y fzf || true
+
+	if ! type glow; then
+		$sudo mkdir -p /etc/apt/keyrings
+		curl -fsSL https://repo.charm.sh/apt/gpg.key | $sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+		echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | $sudo tee /etc/apt/sources.list.d/charm.list
+		$sudo apt-get update
+		$sudo apt-get install -y glow
+	fi
 elif type pacman; then
 	if [[ ${_uname} = MINGW64_NT ]]; then
 		# windows
