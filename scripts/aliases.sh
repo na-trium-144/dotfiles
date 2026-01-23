@@ -2,8 +2,12 @@ type nano 1>/dev/null 2>&1 && alias snano="sudo $(which nano) -f $HOME/.nanorc"
 type micro 1>/dev/null 2>&1 && alias smicro="sudo MICRO_CONFIG_HOME=$HOME/.config/micro $(which micro)"
 type git 1>/dev/null 2>&1 && alias sgit="sudo PATH=\"${PATH}\" HOME=\"$HOME\" $(which git)"
 
-[[ -e /opt/sublime_merge/sublime_merge ]] && alias subm="/opt/sublime_merge/sublime_merge"
-[[ -e /c/Program\ Files/Sublime\ Merge/sublime_merge.exe ]] && alias subm="/c/Program\ Files/Sublime\ Merge/sublime_merge.exe"
+if type smerge 1>/dev/null 2>&1; then
+	alias subm=smerge
+else
+	[[ -e /opt/sublime_merge/sublime_merge ]] && alias subm="/opt/sublime_merge/sublime_merge"
+	[[ -e /c/Program\ Files/Sublime\ Merge/sublime_merge.exe ]] && alias subm="/c/Program\ Files/Sublime\ Merge/sublime_merge.exe"
+fi
 
 alias exa="exa --git --group-directories-first --color=auto"
 
