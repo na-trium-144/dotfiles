@@ -21,4 +21,9 @@ else
     nvm alias default 'lts/*'
     for ver in $(ls "$NVM_DIR/versions/node/"); do nvm uninstall "$ver" || true; done
 fi
-npm install -g git-user-switch
+if ! type git-user >/dev/null; then
+    npm install -g git-user-switch
+fi
+if ! type ni > /dev/null; then
+    npm install -g @antfu/ni
+fi
