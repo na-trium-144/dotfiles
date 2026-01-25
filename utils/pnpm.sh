@@ -2,10 +2,10 @@
 set -e
 
 if type npm >/dev/null; then 
-    npm uni -g pnpm
+    npm uni -g pnpm || true
 fi
 if type bun >/dev/null; then 
-    bun r -g pnpm
+    bun r -g pnpm || true
 fi
 if brew list pnpm >/dev/null; then 
     brew uninstall pnpm
