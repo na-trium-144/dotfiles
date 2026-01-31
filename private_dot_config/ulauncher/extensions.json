@@ -2,15 +2,29 @@
     "com.github.ulauncher.ulauncher-emoji": {
         "id": "com.github.ulauncher.ulauncher-emoji",
         "url": "https://github.com/Ulauncher/ulauncher-emoji",
-        "updated_at": "2026-01-31T18:43:47.608778",
+        "updated_at": "2026-01-31T21:25:27.405893",
         "last_commit": "195d167ea0cfdbb2169906b5acaac8097db84767",
         "last_commit_time": "2025-10-05T04:07:23"
     },
     "com.github.doekeb.ulauncher-gnome-calculator": {
         "id": "com.github.doekeb.ulauncher-gnome-calculator",
         "url": "https://github.com/Doekeb/ulauncher-gnome-calculator",
-        "updated_at": "2026-01-31T18:49:34.462022",
+        "updated_at": "2026-01-31T21:25:28.571589",
         "last_commit": "f1efd61c6ecd1160b007bca1f90511a346378e64",
         "last_commit_time": "2021-05-03T15:30:01"
+    },
+    "com.github.melianmiko.ulauncher-nmcli": {
+        "id": "com.github.melianmiko.ulauncher-nmcli",
+        "url": "https://github.com/melianmiko/ulauncher-nmcli",
+        "updated_at": "2026-01-31T21:30:38.764933",
+        "last_commit": "13f226d83f8feac3cf6f73532cce1ffc23f42700",
+        "last_commit_time": "2024-10-11T14:18:16"
+    },
+    "com.github.beajeanm.ulauncher-windows-switcher": {
+        "id": "com.github.beajeanm.ulauncher-windows-switcher",
+        "url": "https://github.com/beajeanm/ulauncher-windows-switcher",
+        "updated_at": "2026-01-31T21:32:13.766784",
+        "last_commit": "e746afcd1ae971294f983dadb6ad2c90a730ec39",
+        "last_commit_time": "2022-08-04T22:59:46"
     }
 }
