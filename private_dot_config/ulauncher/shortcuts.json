@@ -1,1 +1,22 @@
-{}
+{
+    "61f9b0c7-7067-436b-ac93-4acba6b1f981": {
+        "id": "61f9b0c7-7067-436b-ac93-4acba6b1f981",
+        "name": "Cloudflare Warp Connect",
+        "keyword": "cfc",
+        "cmd": "#!/usr/bin/sh\n\nwarp-cli connect",
+        "icon": "/usr/share/icons/hicolor/scalable/apps/zero-trust-orange.svg",
+        "is_default_search": false,
+        "run_without_argument": true,
+        "added": 1769971533.728193
+    },
+    "8bc8388f-c738-4634-85be-058b426bc395": {
+        "id": "8bc8388f-c738-4634-85be-058b426bc395",
+        "name": "Cloudflare Warp Disconnect",
+        "keyword": "cfd",
+        "cmd": "#!/usr/bin/sh\nwarp-cli disconnect",
+        "icon": "/usr/share/icons/hicolor/scalable/apps/zero-trust-disconnected.svg",
+        "is_default_search": false,
+        "run_without_argument": true,
+        "added": 1769971645.7410545
+    }
+}
