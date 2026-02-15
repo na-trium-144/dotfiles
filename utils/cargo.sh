@@ -12,3 +12,4 @@ else
     curl https://sh.rustup.rs -sSf | sh -s -- -y
 fi
 cargo install fd-find git-delta hexyl
+cargo install --git https://github.com/na-trium-144/git-checkoutui
