@@ -4,5 +4,5 @@ remote=${1:-origin}
 git symbolic-ref refs/remotes/$remote/HEAD || git remote set-head $remote -a
 default_branch=$(git symbolic-ref refs/remotes/$remote/HEAD | sed 's#^.*/##')
 git switch $default_branch
-git fetch
+git fetch -p
 git merge $remote/$default_branch --ff-only
