@@ -18,5 +18,35 @@
         "is_default_search": false,
         "run_without_argument": true,
         "added": 1769971645.7410545
+    },
+    "cd9a8356-644f-496c-a8cb-e6a4833d60cc": {
+        "id": "cd9a8356-644f-496c-a8cb-e6a4833d60cc",
+        "name": "ufw enable",
+        "keyword": "ufwe",
+        "cmd": "#!/usr/bin/sh\npkexec ufw enable\n",
+        "icon": "/usr/share/icons/Mint-L/apps/48/gufw.png",
+        "is_default_search": false,
+        "run_without_argument": true,
+        "added": 1772535737.5776522
+    },
+    "72b2b5b7-ab08-4f5c-a258-0d0ad853ba97": {
+        "id": "72b2b5b7-ab08-4f5c-a258-0d0ad853ba97",
+        "name": "ufw disable",
+        "keyword": "ufwd",
+        "cmd": "#!/usr/bin/sh\npkexec ufw disable\n",
+        "icon": "/usr/share/icons/Mint-L/apps/48/gufw.png",
+        "is_default_search": false,
+        "run_without_argument": true,
+        "added": 1772535898.2207448
+    },
+    "32b9d868-c50c-4d1a-8754-59c0f2f40ba5": {
+        "id": "32b9d868-c50c-4d1a-8754-59c0f2f40ba5",
+        "name": "Show Network Status",
+        "keyword": "status",
+        "cmd": "#!/usr/bin/sh\nip=$(ip a | grep inet | grep -v inet6 | grep -v \"inet 172.\" | grep -v \"inet 127.\" | sed 's/^\\s*//')\nwarp=$(warp-cli status)\nisi=in\ncat ~/.ssh/config_isi | grep \"gw.\" && isi=out\nufw=$(pkexec ufw status verbose)\nzenity --info --title=\"Network Status\" --text=\"ip:\\n$ip\\n\\nisi: $isi\\n\\nufw:\\n$ufw\\n\\nwarp:\\n$warp\"\n",
+        "icon": "/usr/share/icons/Mint-L/categories/48/applications-internet.png",
+        "is_default_search": false,
+        "run_without_argument": true,
+        "added": 1772536412.6416268
     }
 }
