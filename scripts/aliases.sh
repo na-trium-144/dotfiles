@@ -74,6 +74,23 @@ function pninja() {
 	fi
 }
 
+if [[ "${_uname}" = "Darwin" ]]; then
+	function fw() {
+		case "$1" in
+		"on")
+			sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+			;;
+		"off")
+			sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate off
+			;;
+		*)
+			echo "Usage: fw on|off"
+			;;
+		esac
+		sudo /usr/libexec/ApplicationFirewall/socketfilterfw --getglobalstate
+	}
+fi
+
 if [ "${_uname}" = "MINGW64_NT" ]; then
 	# workaround https://github.com/microsoft/terminal/issues/5132
 	# function tmux(){
