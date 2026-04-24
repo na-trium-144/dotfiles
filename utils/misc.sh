@@ -43,6 +43,7 @@ elif type apt-get; then
 elif type pacman; then
 	if [[ ${_uname} = MINGW64_NT ]]; then
 		# windows
+		type iconv || pacman -S --noconfirm iconv
 		type git || pacman -S --noconfirm git
 		type mc || pacman -S --noconfirm mc
 		type tmux || pacman -S --noconfirm tmux
