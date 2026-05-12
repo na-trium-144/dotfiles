@@ -11,6 +11,10 @@ if uname | grep MINGW64 >/dev/null; then
     for ver in $(cygpath -u "$NVM_HOME")/v*; do nvm uninstall $(echo $(basename $ver) | sed s/v//) || true; done
     nvm install lts
     nvm use lts
+    if [[ $(cygpath -u $(npm config get cache)) != $HOME/* ]]; then
+        npm cache clean --force
+        npm config set cache $HOME/.npm
+    fi
     source $_chezmoi_root/scripts/load_nvm.sh
 else
     unset NVM_DIR
