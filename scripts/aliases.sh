@@ -24,7 +24,7 @@ bind '"\e[B": history-search-forward'
 bind '"\e\e[D": backward-word' #alt-left
 bind '"\e\e[C": forward-word'  #alt-right
 
-bind -x '"\C-r":source $HOME/.profile'
+bind -x '"\C-r":source $HOME/.bashrc'
 
 # cdpeco/pdpeco: fdしてpecoしてcdかpushdするコマンド
 # fdpeco() {
