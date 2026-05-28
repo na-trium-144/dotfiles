@@ -11,3 +11,4 @@ utils
 .gitignore
 .github
 docker
+iterm2
