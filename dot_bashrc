@@ -27,6 +27,7 @@ if [[ "${_uname}" = "Darwin" ]]; then
 else
     export PNPM_HOME="$HOME/.local/share/pnpm"
 fi
+export pnpm_config_runtime_on_fail=warn
 [[ -d /home/linuxbrew/.linuxbrew ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 source ${_chezmoi_root}/scripts/load_pyenv.sh
 source ${_chezmoi_root}/scripts/load_nvm.sh
