@@ -68,5 +68,6 @@ elif type pacman; then
 		type mc || sudo pacman -S --noconfirm mc
 		type tmux || sudo pacman -S --noconfirm tmux
 		type fzf || sudo pacman -S --noconfirm fzf
+		type glow || sudo pacman -S --noconfirm glow
 	fi
 fi
