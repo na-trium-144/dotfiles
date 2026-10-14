@@ -7,14 +7,14 @@
     "line_padding_top": 2,
     "line_padding_bottom": 2,
     "draw_white_space": ["leading_mixed", "trailing_all", "isolated_mixed", "selection_spaces"],
-    "color_scheme": "ayu-light.sublime-color-scheme",
+    "color_scheme": "Packages/ayu/ayu-light.sublime-color-scheme",
     "ignored_packages": [
         "Vintage",
     ],
     "theme": "ayu-light.sublime-theme",
     "highlight_line": true,
     "caret_style": "smooth",
-    "font_size": 15,
+    "font_size": 17,
     "hot_exit": "disabled",
     "hot_exit_projects": false,
     "remember_workspace": false,
@@ -29,4 +29,5 @@
     "open_tabs_after_current": false,
     "show_definitions": false,
     "console_max_history_lines": 3000,
+    "file_icon_theme": "A File Icon.sublime-file-icons",
 }
