@@ -8,7 +8,7 @@ if uname | grep MINGW64 >/dev/null; then
         sudo choco install -y nvm
     fi
     source $_chezmoi_root/scripts/load_nvm.sh
-    for ver in $(cygpath -u "$NVM_HOME")/v*; do nvm uninstall $(echo $(basename $ver) | sed s/v//) || true; done
+    for ver in $(nvm ls | awk '{ print $2 }'); do nvm uninstall $(echo $(basename $ver) | sed s/v//) || true; done
     nvm install lts
     nvm use lts
     if [[ $(cygpath -u $(npm config get cache)) != $HOME/* ]]; then

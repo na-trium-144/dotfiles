@@ -1,7 +1,5 @@
 if uname | grep MINGW64 >/dev/null; then
-    export NVM_HOME="C:\ProgramData\nvm"
-    export NVM_SYMLINK="C:\Program Files\nodejs"
-    export PATH="$(cygpath -u "$NVM_HOME"):$(cygpath -u "$NVM_SYMLINK"):$PATH"
+    :
 else
     [[ -d "$HOME/.nvm" ]] && export NVM_DIR="$(realpath $HOME/.nvm)"
     [[ -d "$XDG_CONFIG_HOME/nvm" ]] && export NVM_DIR="$(realpath $XDG_CONFIG_HOME/nvm)"
