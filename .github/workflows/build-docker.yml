@@ -98,7 +98,8 @@ jobs:
     strategy:
       matrix:
         arch: [amd64, arm64]
-        stage: [base_ubuntu20, base_ubuntu22, base_ubuntu24, base_arch, base_brew, base_nix]
+        stage: [base_ubuntu20, base_ubuntu22, base_ubuntu24, base_arch, base_nix]
+        # base_brewはaptがエラーを出すので一旦削除した
         include:
           - arch: amd64
             arch_img: archlinux
@@ -106,9 +107,9 @@ jobs:
           - arch: arm64
             arch_img: lopsided/archlinux-arm64v8
             runner: ubuntu-22.04-arm
-        exclude:
-          - arch: arm64
-            stage: base_brew
+        # exclude:
+          # - arch: arm64
+          #   stage: base_brew
 
     runs-on: ${{matrix.runner}}
     name: Build
