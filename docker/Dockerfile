@@ -84,7 +84,8 @@ ENV LANG=C.utf-8
 ENV __is_vm=1
 COPY . /tmp/
 # tar for chezmoi on arm64
-RUN pacman -Syu --noconfirm && \
+RUN sed -i '/^\[options\]/a DisableSandbox' /etc/pacman.conf && \
+    pacman -Syu --noconfirm && \
     pacman -S --noconfirm sudo curl tar && \
     pacman -Scc --noconfirm
 RUN bash /tmp/useradd.sh
